@@ -1,0 +1,176 @@
+"""
+FastAPI application for Bible Commentary Agent
+"""
+from fastapi import FastAPI, HTTPException, Depends, Query
+from fastapi.middleware.cors import CORSMiddleware
+from typing import List, Optional
+from pydantic import BaseModel
+from sqlalchemy.orm import Session
+from agent import BibleCommentaryAgent
+from models import get_db, init_db, SearchHistory
+from datetime import datetime
+
+app = FastAPI(
+    title="Bible Commentary Agent API",
+    description="AI-powered agent for building comprehensive Bible commentaries",
+    version="1.0.0"
+)
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Initialize agent
+agent = BibleCommentaryAgent()
+
+# Initialize database
+init_db()
+
+
+# Pydantic models
+class CommentaryRequest(BaseModel):
+    book: str
+    chapter: int
+    verse: int
+    source_types: Optional[List[str]] = None
+    synthesize: bool = True
+
+
+class CommentaryResponse(BaseModel):
+    book: str
+    chapter: int
+    verse: int
+    commentaries: List[dict]
+    synthesized: Optional[str] = None
+
+
+class SearchRequest(BaseModel):
+    query: str
+    book: Optional[str] = None
+    chapter: Optional[int] = None
+    verse: Optional[int] = None
+    source_types: Optional[List[str]] = None
+
+
+@app.get("/")
+async def root():
+    """Root endpoint"""
+    return {
+        "message": "Bible Commentary Agent API",
+        "version": "1.0.0",
+        "endpoints": {
+            "build_commentary": "/api/commentary",
+            "search": "/api/search",
+            "get_by_category": "/api/commentary/{book}/{chapter}/{verse}/{category}",
+            "suggestions": "/api/suggestions/{book}/{chapter}/{verse}"
+        }
+    }
+
+
+@app.post("/api/commentary", response_model=CommentaryResponse)
+async def build_commentary(request: CommentaryRequest, db: Session = Depends(get_db)):
+    """Build or retrieve commentary for a specific verse"""
+    try:
+        result = agent.build_commentary(
+            book=request.book,
+            chapter=request.chapter,
+            verse=request.verse,
+            source_types=request.source_types,
+            synthesize=request.synthesize
+        )
+        return CommentaryResponse(**result)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/commentary/{book}/{chapter}/{verse}")
+async def get_commentary(
+    book: str,
+    chapter: int,
+    verse: int,
+    source_types: Optional[List[str]] = Query(None),
+    synthesize: bool = Query(True)
+):
+    """Get commentary for a specific verse"""
+    try:
+        result = agent.build_commentary(
+            book=book,
+            chapter=chapter,
+            verse=verse,
+            source_types=source_types,
+            synthesize=synthesize
+        )
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/commentary/{book}/{chapter}/{verse}/{category}")
+async def get_commentary_by_category(
+    book: str,
+    chapter: int,
+    verse: int,
+    category: str
+):
+    """Get commentary filtered by category (church_fathers, middle_ages, modern, jewish, popes)"""
+    try:
+        result = agent.get_commentary_by_category(book, chapter, verse, category)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/search")
+async def search_commentaries(request: SearchRequest, db: Session = Depends(get_db)):
+    """Search commentaries using natural language query"""
+    try:
+        results = agent.search_commentaries(
+            query=request.query,
+            book=request.book,
+            chapter=request.chapter,
+            verse=request.verse,
+            source_types=request.source_types
+        )
+        
+        # Save search history
+        search_history = SearchHistory(
+            query=request.query,
+            book=request.book,
+            chapter=request.chapter,
+            verse=request.verse,
+            results_count=len(results)
+        )
+        db.add(search_history)
+        db.commit()
+        
+        return {"results": results, "count": len(results)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/suggestions/{book}/{chapter}/{verse}")
+async def get_suggestions(book: str, chapter: int, verse: int):
+    """Get AI-powered suggestions for improving commentary collection"""
+    try:
+        suggestions = agent.suggest_improvements(book, chapter, verse)
+        return {"suggestions": suggestions}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/books")
+async def get_books():
+    """Get list of all Bible books"""
+    from config import BIBLE_BOOKS
+    return {"books": BIBLE_BOOKS}
+
+
+@app.get("/health")
+async def health():
+    """Health check endpoint"""
+    return {"status": "healthy", "agent_initialized": agent.llm is not None}
