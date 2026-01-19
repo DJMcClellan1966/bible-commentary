@@ -1,5 +1,5 @@
 """
-Configuration settings for the Bible Commentary Agent
+Configuration settings for Quantum AI Framework
 """
 import os
 from typing import List
@@ -8,60 +8,32 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Database
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./bible_commentaries.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./quantum_ai.db")
 
 # API Keys
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
+HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY", "")
+MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
+TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY", "")
 
-# Web Scraping
+# Phi-3 Configuration (for local models)
+PHI3_MODEL = os.getenv("PHI3_MODEL", "phi3:mini")  # Options: phi3:mini, phi3:medium, phi3-mini-4k-instruct
+PHI3_USE_LOCAL = os.getenv("PHI3_USE_LOCAL", "true").lower() == "true"  # Use local Ollama if available
+
+# Web Scraping (for general data collection)
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 REQUEST_TIMEOUT = 30
 MAX_RETRIES = 3
 
-# Commentary Sources Configuration
-COMMENTARY_SOURCES = {
-    "church_fathers": [
-        "https://www.newadvent.org/fathers/",
-        "https://www.ccel.org/fathers.html",
-    ],
-    "middle_ages": [
-        "https://www.ccel.org/",
-    ],
-    "modern": [
-        "https://biblehub.com/commentaries/",
-        "https://www.biblestudytools.com/commentaries/",
-    ],
-    "jewish": [
-        "https://www.sefaria.org/",
-        "https://www.chabad.org/library/",
-    ],
-    "popes": [
-        "https://www.vatican.va/",
-    ],
-}
-
-# Bible Books (66 books from Genesis to Revelation)
-BIBLE_BOOKS = [
-    # Old Testament
-    "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy",
-    "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel",
-    "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra",
-    "Nehemiah", "Esther", "Job", "Psalms", "Proverbs",
-    "Ecclesiastes", "Song of Solomon", "Isaiah", "Jeremiah", "Lamentations",
-    "Ezekiel", "Daniel", "Hosea", "Joel", "Amos",
-    "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk",
-    "Zephaniah", "Haggai", "Zechariah", "Malachi",
-    # New Testament
-    "Matthew", "Mark", "Luke", "John", "Acts",
-    "Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians",
-    "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy",
-    "2 Timothy", "Titus", "Philemon", "Hebrews", "James",
-    "1 Peter", "2 Peter", "1 John", "2 John", "3 John",
-    "Jude", "Revelation"
-]
-
-# Agent Settings
+# AI System Settings
 AGENT_TEMPERATURE = 0.7
 MAX_TOKENS = 2000
 ENABLE_WEB_SEARCH = True
 ENABLE_LEARNING = True
+
+# Quantum Kernel Settings
+KERNEL_EMBEDDING_DIM = 256
+KERNEL_CACHE_SIZE = 50000
+KERNEL_ENABLE_CACHING = True

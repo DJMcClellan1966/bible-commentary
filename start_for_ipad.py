@@ -22,7 +22,7 @@ def get_local_ip():
 def print_banner(local_ip):
     """Print connection information"""
     print("\n" + "="*70)
-    print(" " * 15 + "Bible Commentary Agent - iPad Access")
+    print(" " * 15 + "Quantum AI Framework - iPad Access")
     print("="*70)
     print(f"\n✓ Server starting on all network interfaces")
     print(f"\n📱 On your iPad (same Wi-Fi network):")

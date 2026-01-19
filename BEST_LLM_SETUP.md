@@ -26,6 +26,13 @@ The Bible app now has **best LLM integration** that automatically selects the be
 - **Model:** `claude-3-opus`
 - **Cost:** Similar to GPT-4
 
+### 4. **Phi-3 (Microsoft)** (Local, Free) ⭐ NEW!
+- **Best for:** Local, private, free LLM
+- **Setup:** Install Ollama and run `ollama pull phi3:mini`
+- **Model:** `phi3:mini` or `phi3:medium`
+- **Cost:** FREE (runs locally)
+- **See:** `PHI3_SETUP.md` for detailed instructions
+
 ---
 
 ## Setup Instructions
