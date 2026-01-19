@@ -56,6 +56,14 @@ except ImportError:
     BIBLE_AI_AVAILABLE = False
     bible_ai_router = None
 
+# Import Bible LLM integration
+try:
+    from bible_llm_api import router as bible_llm_router
+    BIBLE_LLM_AVAILABLE = True
+except ImportError:
+    BIBLE_LLM_AVAILABLE = False
+    bible_llm_router = None
+
 app = FastAPI(
     title="Bible Commentary Agent API",
     description="AI-powered agent for building comprehensive Bible commentaries",
@@ -99,6 +107,10 @@ if KERNEL_BIBLE_STUDY_AVAILABLE and kernel_bible_study_router:
 # Include Bible AI router if available
 if BIBLE_AI_AVAILABLE and bible_ai_router:
     app.include_router(bible_ai_router)
+
+# Include Bible LLM router if available
+if BIBLE_LLM_AVAILABLE and bible_llm_router:
+    app.include_router(bible_llm_router)
 
 
 # Pydantic models

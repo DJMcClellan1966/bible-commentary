@@ -28,6 +28,23 @@ class LearningRequest(BaseModel):
     examples: List[List[str]]  # List of [input, output] pairs
 
 
+class TextGenerationRequest(BaseModel):
+    prompt: str
+    max_length: int = 50
+    temperature: float = 0.7
+
+
+class TranslationRequest(BaseModel):
+    text: str
+    source_lang: str = "en"
+    target_lang: str = "es"
+
+
+class LearnFromLLMRequest(BaseModel):
+    prompt: str
+    llm_output: str
+
+
 @router.get("/search")
 async def ai_search(
     query: str = Query(..., description="Search query"),
@@ -137,6 +154,59 @@ async def ai_themes(
         return result
     except Exception as e:
         logger.error(f"Error discovering themes: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/generate-text")
+async def ai_generate_text(
+    request: TextGenerationRequest,
+    db: Session = Depends(get_db)
+):
+    """Generate text using quantum techniques"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.generate_text(
+            request.prompt,
+            max_length=request.max_length,
+            temperature=request.temperature
+        )
+        return result
+    except Exception as e:
+        logger.error(f"Error generating text: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/translate")
+async def ai_translate(
+    request: TranslationRequest,
+    db: Session = Depends(get_db)
+):
+    """Translate text using quantum techniques"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.translate_text(
+            request.text,
+            source_lang=request.source_lang,
+            target_lang=request.target_lang
+        )
+        return result
+    except Exception as e:
+        logger.error(f"Error translating: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/learn-from-llm")
+async def ai_learn_from_llm(
+    request: LearnFromLLMRequest,
+    db: Session = Depends(get_db)
+):
+    """Learn from traditional LLM output to improve quantum generation"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.learn_from_llm_output(request.prompt, request.llm_output)
+        return result
+    except Exception as e:
+        logger.error(f"Error learning from LLM: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

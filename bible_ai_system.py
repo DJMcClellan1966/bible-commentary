@@ -9,6 +9,15 @@ from typing import List, Dict, Optional
 from models import Commentary
 import logging
 
+# Import quantum text generation and translation
+try:
+    from quantum_text_generation import QuantumTextGenerator, QuantumTranslator
+    QUANTUM_TEXT_AVAILABLE = True
+except ImportError:
+    QUANTUM_TEXT_AVAILABLE = False
+    QuantumTextGenerator = None
+    QuantumTranslator = None
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -48,6 +57,19 @@ class BibleAISystem:
         
         # Ensure they use the same kernel instance
         self.ai.kernel = self.kernel
+        
+        # Add quantum text generation and translation
+        if QUANTUM_TEXT_AVAILABLE:
+            self.text_generator = QuantumTextGenerator(kernel=self.kernel)
+            self.translator = QuantumTranslator(kernel=self.kernel)
+            # Train on Bible verses
+            verses = self.get_verses(limit=100)
+            if verses:
+                self.text_generator.build_vocab(verses)
+            logger.info("Quantum text generation and translation initialized")
+        else:
+            self.text_generator = None
+            self.translator = None
         
         logger.info("Bible AI System initialized with shared kernel")
     
@@ -168,12 +190,95 @@ class BibleAISystem:
             "count": len(themes)
         }
     
+    def generate_text(self, prompt: str, max_length: int = 50, temperature: float = 0.7) -> Dict:
+        """
+        Generate text using quantum techniques
+        """
+        if not self.text_generator:
+            return {"error": "Quantum text generation not available"}
+        
+        generated = self.text_generator.generate_text(prompt, max_length=max_length, temperature=temperature)
+        
+        return {
+            "prompt": prompt,
+            "generated": generated,
+            "method": "quantum"
+        }
+    
+    def translate_text(self, text: str, source_lang: str = "en", target_lang: str = "es") -> Dict:
+        """
+        Translate text using quantum techniques
+        """
+        if not self.translator:
+            return {"error": "Quantum translation not available"}
+        
+        translation = self.translator.translate(text, source_lang=source_lang, target_lang=target_lang)
+        
+        return {
+            "original": text,
+            "translation": translation,
+            "source_lang": source_lang,
+            "target_lang": target_lang,
+            "method": "quantum"
+        }
+    
+    def learn_from_llm_output(self, prompt: str, llm_output: str):
+        """
+        Learn from traditional LLM output to improve quantum generation
+        Uses the LLM output as a high-quality example to improve vocabulary and patterns
+        """
+        if not self.text_generator:
+            return {"error": "Quantum text generation not available"}
+        
+        # Add LLM output as training example (merge with existing vocab)
+        # This helps quantum generator learn better patterns from high-quality LLM output
+        training_texts = [llm_output]
+        self.text_generator.build_vocab(training_texts, merge=True)
+        
+        # Store prompt-output pairs for better context learning
+        if not hasattr(self.text_generator, 'learned_pairs'):
+            self.text_generator.learned_pairs = []
+        
+        self.text_generator.learned_pairs.append((prompt, llm_output))
+        
+        # Update context window with learned patterns
+        # Extract key phrases from LLM output
+        import re
+        phrases = re.findall(r'\b\w+\s+\w+\b', llm_output.lower())
+        if phrases:
+            # Add common phrases to context understanding
+            for phrase in phrases[:5]:  # Top 5 phrases
+                if phrase not in self.text_generator.token_embeddings:
+                    self.text_generator.token_embeddings[phrase] = self.kernel.embed(phrase)
+        
+        return {
+            "learned": True,
+            "prompt": prompt,
+            "example": llm_output[:100] + "...",
+            "vocab_size": len(self.text_generator.vocab),
+            "learned_pairs": len(self.text_generator.learned_pairs)
+        }
+    
     def get_stats(self) -> Dict:
         """Get system statistics"""
-        return {
+        stats = {
             "kernel": self.kernel.get_stats(),
             "ai_system": self.ai.get_stats()
         }
+        
+        if self.text_generator:
+            stats["text_generator"] = {
+                "vocab_size": len(self.text_generator.vocab),
+                "available": True
+            }
+        
+        if self.translator:
+            stats["translator"] = {
+                "translation_pairs": len(self.translator.translation_pairs),
+                "available": True
+            }
+        
+        return stats
 
 
 def create_bible_ai_system(db: Session, kernel: Optional[QuantumKernel] = None) -> BibleAISystem:
