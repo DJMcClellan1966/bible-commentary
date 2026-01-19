@@ -40,6 +40,14 @@ except ImportError:
     QUANTUM_AI_AVAILABLE = False
     quantum_ai_router = None
 
+# Import kernel-based Bible study
+try:
+    from bible_app_kernel_api import router as kernel_bible_study_router
+    KERNEL_BIBLE_STUDY_AVAILABLE = True
+except ImportError:
+    KERNEL_BIBLE_STUDY_AVAILABLE = False
+    kernel_bible_study_router = None
+
 app = FastAPI(
     title="Bible Commentary Agent API",
     description="AI-powered agent for building comprehensive Bible commentaries",
@@ -75,6 +83,10 @@ if BIBLE_CHARACTERS_AVAILABLE and bible_characters_router:
 # Include quantum AI router if available
 if QUANTUM_AI_AVAILABLE and quantum_ai_router:
     app.include_router(quantum_ai_router)
+
+# Include kernel-based Bible study router if available
+if KERNEL_BIBLE_STUDY_AVAILABLE and kernel_bible_study_router:
+    app.include_router(kernel_bible_study_router)
 
 
 # Pydantic models

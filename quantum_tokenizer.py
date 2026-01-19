@@ -222,26 +222,43 @@ class QuantumTokenizer:
     
     def save(self, filepath: str):
         """Save tokenizer to disk"""
+        # Helper function to convert complex arrays to JSON-serializable format
+        def convert_complex_array(arr):
+            if arr is None:
+                return None
+            if isinstance(arr, np.ndarray):
+                if np.iscomplexobj(arr):
+                    return {
+                        "real": arr.real.tolist(),
+                        "imag": arr.imag.tolist(),
+                        "dtype": "complex"
+                    }
+                else:
+                    return arr.tolist()
+            return arr
+        
         data = {
             "vocab_size": self.vocab_size,
             "dimension": self.dimension,
-            "vocab": {
-                token: {
-                    "text": qt.text,
-                    "amplitude_real": float(qt.amplitude.real),
-                    "amplitude_imag": float(qt.amplitude.imag),
-                    "frequency": qt.frequency,
-                    "quantum_state_real": qt.quantum_state.real.tolist() if qt.quantum_state is not None else None,
-                    "quantum_state_imag": qt.quantum_state.imag.tolist() if qt.quantum_state is not None else None
-                }
-                for token, qt in self.vocab.items()
-            },
-            "token_to_id": self.token_to_id,
-            "id_to_token": self.id_to_token
+            "vocab": {}
         }
         
-        with open(filepath, 'w') as f:
-            json.dump(data, f, indent=2)
+        # Build vocab dictionary with proper complex number handling
+        for token, qt in self.vocab.items():
+            data["vocab"][token] = {
+                "text": qt.text,
+                "amplitude_real": float(qt.amplitude.real),
+                "amplitude_imag": float(qt.amplitude.imag),
+                "frequency": qt.frequency,
+                "quantum_state": convert_complex_array(qt.quantum_state),
+                "embeddings": convert_complex_array(qt.embeddings) if qt.embeddings is not None else None
+            }
+        
+        data["token_to_id"] = self.token_to_id
+        data["id_to_token"] = {str(k): v for k, v in self.id_to_token.items()}  # Ensure keys are strings
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
         
         # Save entanglement matrix separately (can be large)
         if self.entanglement_matrix is not None:
