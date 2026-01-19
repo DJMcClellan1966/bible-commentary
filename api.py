@@ -3,12 +3,18 @@ FastAPI application for Bible Commentary Agent
 """
 from fastapi import FastAPI, HTTPException, Depends, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from typing import List, Optional
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from agent import BibleCommentaryAgent
 from models import get_db, init_db, SearchHistory
 from datetime import datetime
+import os
+
+# Import study system
+from study_api import router as study_router
 
 app = FastAPI(
     title="Bible Commentary Agent API",
@@ -30,6 +36,9 @@ agent = BibleCommentaryAgent()
 
 # Initialize database
 init_db()
+
+# Include study router
+app.include_router(study_router)
 
 
 # Pydantic models
@@ -59,17 +68,34 @@ class SearchRequest(BaseModel):
 
 @app.get("/")
 async def root():
-    """Root endpoint"""
+    """Root endpoint - serves web interface if available"""
+    if os.path.exists("web_interface.html"):
+        return FileResponse("web_interface.html")
     return {
         "message": "Bible Commentary Agent API",
         "version": "1.0.0",
         "endpoints": {
+            "web_interface": "/web",
             "build_commentary": "/api/commentary",
             "search": "/api/search",
             "get_by_category": "/api/commentary/{book}/{chapter}/{verse}/{category}",
             "suggestions": "/api/suggestions/{book}/{chapter}/{verse}"
         }
     }
+
+@app.get("/web")
+async def web_interface():
+    """Serve web interface"""
+    if os.path.exists("web_interface.html"):
+        return FileResponse("web_interface.html")
+    raise HTTPException(status_code=404, detail="Web interface not found")
+
+@app.get("/study")
+async def bible_study_interface():
+    """Serve Bible study interface"""
+    if os.path.exists("bible_study.html"):
+        return FileResponse("bible_study.html")
+    raise HTTPException(status_code=404, detail="Bible study interface not found")
 
 
 @app.post("/api/commentary", response_model=CommentaryResponse)

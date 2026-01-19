@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Commentary Agent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 10px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .commentary-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        
+        .commentary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .source-badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .commentary-text {
+            color: #333;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+        
+        .synthesized {
+            background: #e8f5e9;
+            border-left-color: #4caf50;
+            margin-top: 20px;
+        }
+        
+        .error {
+            background: #ffebee;
+            border-left-color: #f44336;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .api-config {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .api-config input {
+            margin-top: 10px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .tab.active {
+            background: white;
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 Bible Commentary Agent</h1>
+        <p class="subtitle">AI-powered comprehensive Bible commentaries</p>
+        
+        <div class="api-config">
+            <label>API Server URL:</label>
+            <input type="text" id="apiUrl" value="" placeholder="Auto-detected from current page">
+            <small style="color: #666;">Automatically set to current server. Only change if using a different API server.</small>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('verse')">Verse Lookup</button>
+            <button class="tab" onclick="showTab('search')">Search</button>
+            <button class="tab" onclick="showTab('category')">By Category</button>
+        </div>
+        
+        <!-- Verse Lookup Tab -->
+        <div id="verse-tab" class="tab-content active">
+            <div class="form-group">
+                <label>Book</label>
+                <select id="book">
+                    <option value="Genesis">Genesis</option>
+                    <option value="Exodus">Exodus</option>
+                    <option value="Leviticus">Leviticus</option>
+                    <option value="Numbers">Numbers</option>
+                    <option value="Deuteronomy">Deuteronomy</option>
+                    <option value="Joshua">Joshua</option>
+                    <option value="Judges">Judges</option>
+                    <option value="Ruth">Ruth</option>
+                    <option value="1 Samuel">1 Samuel</option>
+                    <option value="2 Samuel">2 Samuel</option>
+                    <option value="1 Kings">1 Kings</option>
+                    <option value="2 Kings">2 Kings</option>
+                    <option value="1 Chronicles">1 Chronicles</option>
+                    <option value="2 Chronicles">2 Chronicles</option>
+                    <option value="Ezra">Ezra</option>
+                    <option value="Nehemiah">Nehemiah</option>
+                    <option value="Esther">Esther</option>
+                    <option value="Job">Job</option>
+                    <option value="Psalms">Psalms</option>
+                    <option value="Proverbs">Proverbs</option>
+                    <option value="Ecclesiastes">Ecclesiastes</option>
+                    <option value="Song of Solomon">Song of Solomon</option>
+                    <option value="Isaiah">Isaiah</option>
+                    <option value="Jeremiah">Jeremiah</option>
+                    <option value="Lamentations">Lamentations</option>
+                    <option value="Ezekiel">Ezekiel</option>
+                    <option value="Daniel">Daniel</option>
+                    <option value="Hosea">Hosea</option>
+                    <option value="Joel">Joel</option>
+                    <option value="Amos">Amos</option>
+                    <option value="Obadiah">Obadiah</option>
+                    <option value="Jonah">Jonah</option>
+                    <option value="Micah">Micah</option>
+                    <option value="Nahum">Nahum</option>
+                    <option value="Habakkuk">Habakkuk</option>
+                    <option value="Zephaniah">Zephaniah</option>
+                    <option value="Haggai">Haggai</option>
+                    <option value="Zechariah">Zechariah</option>
+                    <option value="Malachi">Malachi</option>
+                    <option value="Matthew">Matthew</option>
+                    <option value="Mark">Mark</option>
+                    <option value="Luke">Luke</option>
+                    <option value="John">John</option>
+                    <option value="Acts">Acts</option>
+                    <option value="Romans">Romans</option>
+                    <option value="1 Corinthians">1 Corinthians</option>
+                    <option value="2 Corinthians">2 Corinthians</option>
+                    <option value="Galatians">Galatians</option>
+                    <option value="Ephesians">Ephesians</option>
+                    <option value="Philippians">Philippians</option>
+                    <option value="Colossians">Colossians</option>
+                    <option value="1 Thessalonians">1 Thessalonians</option>
+                    <option value="2 Thessalonians">2 Thessalonians</option>
+                    <option value="1 Timothy">1 Timothy</option>
+                    <option value="2 Timothy">2 Timothy</option>
+                    <option value="Titus">Titus</option>
+                    <option value="Philemon">Philemon</option>
+                    <option value="Hebrews">Hebrews</option>
+                    <option value="James">James</option>
+                    <option value="1 Peter">1 Peter</option>
+                    <option value="2 Peter">2 Peter</option>
+                    <option value="1 John">1 John</option>
+                    <option value="2 John">2 John</option>
+                    <option value="3 John">3 John</option>
+                    <option value="Jude">Jude</option>
+                    <option value="Revelation">Revelation</option>
+                </select>
+            </div>
+            
+            <div class="row">
+                <div class="form-group">
+                    <label>Chapter</label>
+                    <input type="number" id="chapter" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Verse</label>
+                    <input type="number" id="verse" min="1" value="1">
+                </div>
+            </div>
+            
+            <button onclick="getCommentary()">Get Commentary</button>
+        </div>
+        
+        <!-- Search Tab -->
+        <div id="search-tab" class="tab-content">
+            <div class="form-group">
+                <label>Search Query</label>
+                <input type="text" id="searchQuery" placeholder="e.g., creation, love, redemption">
+            </div>
+            <div class="form-group">
+                <label>Book (Optional)</label>
+                <select id="searchBook">
+                    <option value="">All Books</option>
+                    <option value="Genesis">Genesis</option>
+                    <option value="John">John</option>
+                    <!-- Add more as needed -->
+                </select>
+            </div>
+            <button onclick="searchCommentaries()">Search</button>
+        </div>
+        
+        <!-- Category Tab -->
+        <div id="category-tab" class="tab-content">
+            <div class="form-group">
+                <label>Book</label>
+                <select id="catBook">
+                    <option value="Genesis">Genesis</option>
+                    <option value="John">John</option>
+                    <!-- Add more as needed -->
+                </select>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>Chapter</label>
+                    <input type="number" id="catChapter" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Verse</label>
+                    <input type="number" id="catVerse" min="1" value="1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select id="category">
+                    <option value="church_fathers">Church Fathers</option>
+                    <option value="middle_ages">Middle Ages</option>
+                    <option value="modern">Modern</option>
+                    <option value="jewish">Jewish</option>
+                    <option value="popes">Popes</option>
+                </select>
+            </div>
+            <button onclick="getByCategory()">Get Commentary</button>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading commentary...</p>
+        </div>
+        
+        <div class="results" id="results"></div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function getApiUrl() {
+            let url = document.getElementById('apiUrl').value.trim();
+            
+            // If empty, use current origin
+            if (!url) {
+                return window.location.origin;
+            }
+            
+            // Remove trailing slash
+            url = url.replace(/\/$/, '');
+            
+            // If it doesn't start with http:// or https://, add the protocol
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                // If it looks like an IP or hostname, add http://
+                if (url.includes(':') || url.match(/^\d+\.\d+\.\d+\.\d+/)) {
+                    url = 'http://' + url;
+                } else {
+                    // Otherwise use current origin
+                    url = window.location.origin;
+                }
+            }
+            
+            return url;
+        }
+        
+        // Auto-detect API URL on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const apiUrlInput = document.getElementById('apiUrl');
+            if (!apiUrlInput.value || apiUrlInput.value === 'http://localhost:8000') {
+                apiUrlInput.value = window.location.origin;
+            }
+        });
+        
+        async function getCommentary() {
+            const book = document.getElementById('book').value;
+            const chapter = document.getElementById('chapter').value;
+            const verse = document.getElementById('verse').value;
+            const apiUrl = getApiUrl();
+            
+            showLoading();
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/commentary/${encodeURIComponent(book)}/${chapter}/${verse}`);
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                showError('Failed to fetch commentary: ' + error.message);
+            }
+        }
+        
+        async function searchCommentaries() {
+            const query = document.getElementById('searchQuery').value;
+            const book = document.getElementById('searchBook').value;
+            const apiUrl = getApiUrl();
+            
+            showLoading();
+            
+            try {
+                const body = { query: query };
+                if (book) body.book = book;
+                
+                const response = await fetch(`${apiUrl}/api/search`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                const data = await response.json();
+                displaySearchResults(data);
+            } catch (error) {
+                showError('Search failed: ' + error.message);
+            }
+        }
+        
+        async function getByCategory() {
+            const book = document.getElementById('catBook').value;
+            const chapter = document.getElementById('catChapter').value;
+            const verse = document.getElementById('catVerse').value;
+            const category = document.getElementById('category').value;
+            const apiUrl = getApiUrl();
+            
+            showLoading();
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/commentary/${encodeURIComponent(book)}/${chapter}/${verse}/${category}`);
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                showError('Failed to fetch commentary: ' + error.message);
+            }
+        }
+        
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = '';
+            
+            if (data.synthesized) {
+                const synthesized = document.createElement('div');
+                synthesized.className = 'commentary-item synthesized';
+                synthesized.innerHTML = `
+                    <div class="commentary-header">
+                        <strong>Synthesized Commentary</strong>
+                    </div>
+                    <div class="commentary-text">${data.synthesized}</div>
+                `;
+                resultsDiv.appendChild(synthesized);
+            }
+            
+            if (data.commentaries && data.commentaries.length > 0) {
+                data.commentaries.forEach(comm => {
+                    const item = document.createElement('div');
+                    item.className = 'commentary-item';
+                    item.innerHTML = `
+                        <div class="commentary-header">
+                            <strong>${comm.author || 'Unknown'}</strong>
+                            <span class="source-badge">${comm.source_type || 'unknown'}</span>
+                        </div>
+                        <div class="commentary-text">${comm.text}</div>
+                    `;
+                    resultsDiv.appendChild(item);
+                });
+            } else {
+                resultsDiv.innerHTML = '<div class="error">No commentaries found for this verse.</div>';
+            }
+            
+            hideLoading();
+        }
+        
+        function displaySearchResults(data) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = `<h3>Found ${data.count || 0} results</h3>`;
+            
+            if (data.results && data.results.length > 0) {
+                data.results.forEach(result => {
+                    const item = document.createElement('div');
+                    item.className = 'commentary-item';
+                    item.innerHTML = `
+                        <div class="commentary-header">
+                            <strong>${result.book} ${result.chapter}:${result.verse}</strong>
+                            <span class="source-badge">${result.source_type || 'unknown'}</span>
+                        </div>
+                        <div class="commentary-text">${result.text.substring(0, 200)}...</div>
+                    `;
+                    resultsDiv.appendChild(item);
+                });
+            }
+            
+            hideLoading();
+        }
+        
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function showError(message) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = `<div class="error">${message}</div>`;
+            hideLoading();
+        }
+    </script>
+</body>
+</html>

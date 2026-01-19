@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Study Program</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            min-height: calc(100vh - 20px);
+        }
+        
+        .sidebar {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .main-content {
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .nav-item {
+            padding: 12px 15px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .nav-item.active {
+            background: #667eea;
+            color: white;
+            border-left-color: #764ba2;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        button.secondary {
+            background: #6c757d;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .verse-item {
+            background: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #28a745; color: white; }
+        .badge-warning { background: #ffc107; color: #333; }
+        .badge-info { background: #17a2b8; color: white; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .note-item, .bookmark-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .note-item .meta {
+            color: #666;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        
+        .plan-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .plan-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1 style="font-size: 1.3em; margin-bottom: 20px;">📖 Study</h1>
+            <div class="nav-item active" onclick="showSection('dashboard')">📊 Dashboard</div>
+            <div class="nav-item" onclick="showSection('reading')">📚 Reading Plans</div>
+            <div class="nav-item" onclick="showSection('verses')">📖 Verse Study</div>
+            <div class="nav-item" onclick="showSection('notes')">📝 Notes</div>
+            <div class="nav-item" onclick="showSection('bookmarks')">🔖 Bookmarks</div>
+            <div class="nav-item" onclick="showSection('themes')">🎯 Themes</div>
+            <div class="nav-item" onclick="showSection('memory')">💭 Memory Verses</div>
+            <div class="nav-item" onclick="showSection('word-study')">🔤 Word Study</div>
+            <div class="nav-item" onclick="showSection('statistics')">📈 Statistics</div>
+        </div>
+        
+        <div class="main-content">
+            <!-- Dashboard -->
+            <div id="dashboard" class="section active">
+                <h1>Dashboard</h1>
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <div class="number" id="totalVerses">0</div>
+                        <div class="label">Verses Read</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="totalSessions">0</div>
+                        <div class="label">Reading Sessions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="totalNotes">0</div>
+                        <div class="label">Notes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="memoryVerses">0</div>
+                        <div class="label">Memory Verses</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Today's Reading</h3>
+                    <div id="todayReading">Loading...</div>
+                </div>
+                
+                <div class="card">
+                    <h3>Verses to Review</h3>
+                    <div id="versesToReview">Loading...</div>
+                </div>
+            </div>
+            
+            <!-- Reading Plans -->
+            <div id="reading" class="section">
+                <h1>Reading Plans</h1>
+                <div class="card">
+                    <h3>Active Plans</h3>
+                    <div id="studyPlans">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>Today's Reading</h3>
+                    <div id="todayPlanReading">Select a plan to see today's reading</div>
+                </div>
+            </div>
+            
+            <!-- Verse Study -->
+            <div id="verses" class="section">
+                <h1>Verse Study</h1>
+                <div class="form-group">
+                    <label>Book</label>
+                    <select id="studyBook">
+                        <option value="Genesis">Genesis</option>
+                        <option value="John">John</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label>Chapter</label>
+                        <input type="number" id="studyChapter" min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Verse</label>
+                        <input type="number" id="studyVerse" min="1" value="1">
+                    </div>
+                </div>
+                <button onclick="studyVerse()">Study Verse</button>
+                <div id="verseStudyResults" style="margin-top: 20px;"></div>
+            </div>
+            
+            <!-- Notes -->
+            <div id="notes" class="section">
+                <h1>My Notes</h1>
+                <div class="card">
+                    <h3>Add Note</h3>
+                    <div class="form-group">
+                        <label>Book</label>
+                        <select id="noteBook">
+                            <option value="Genesis">Genesis</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Chapter</label>
+                            <input type="number" id="noteChapter" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Verse</label>
+                            <input type="number" id="noteVerse" min="1" value="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Note</label>
+                        <textarea id="noteText" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="noteType">
+                            <option value="general">General</option>
+                            <option value="insight">Insight</option>
+                            <option value="question">Question</option>
+                            <option value="prayer">Prayer</option>
+                        </select>
+                    </div>
+                    <button onclick="addNote()">Add Note</button>
+                </div>
+                <div class="card">
+                    <h3>My Notes</h3>
+                    <div id="notesList">Loading...</div>
+                </div>
+            </div>
+            
+            <!-- Bookmarks -->
+            <div id="bookmarks" class="section">
+                <h1>Bookmarks</h1>
+                <div class="card">
+                    <h3>Add Bookmark</h3>
+                    <div class="form-group">
+                        <label>Book</label>
+                        <select id="bookmarkBook">
+                            <option value="Genesis">Genesis</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Chapter</label>
+                            <input type="number" id="bookmarkChapter" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Verse</label>
+                            <input type="number" id="bookmarkVerse" min="1" value="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Label</label>
+                        <input type="text" id="bookmarkLabel">
+                    </div>
+                    <button onclick="addBookmark()">Add Bookmark</button>
+                </div>
+                <div class="card">
+                    <h3>My Bookmarks</h3>
+                    <div id="bookmarksList">Loading...</div>
+                </div>
+            </div>
+            
+            <!-- Themes -->
+            <div id="themes" class="section">
+                <h1>Themes</h1>
+                <div class="card">
+                    <h3>Create Theme</h3>
+                    <div class="form-group">
+                        <label>Theme Name</label>
+                        <input type="text" id="themeName">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="themeDescription" rows="3"></textarea>
+                    </div>
+                    <button onclick="createTheme()">Create Theme</button>
+                </div>
+                <div class="card">
+                    <h3>My Themes</h3>
+                    <div id="themesList">Loading...</div>
+                </div>
+            </div>
+            
+            <!-- Memory Verses -->
+            <div id="memory" class="section">
+                <h1>Memory Verses</h1>
+                <div class="card">
+                    <h3>Add Memory Verse</h3>
+                    <div class="form-group">
+                        <label>Book</label>
+                        <select id="memoryBook">
+                            <option value="John">John</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Chapter</label>
+                            <input type="number" id="memoryChapter" min="1" value="3">
+                        </div>
+                        <div class="form-group">
+                            <label>Verse</label>
+                            <input type="number" id="memoryVerse" min="1" value="16">
+                        </div>
+                    </div>
+                    <button onclick="addMemoryVerse()">Add Memory Verse</button>
+                </div>
+                <div class="card">
+                    <h3>Verses to Review</h3>
+                    <div id="memoryVersesReview">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>All Memory Verses</h3>
+                    <div id="memoryVersesList">Loading...</div>
+                </div>
+            </div>
+            
+            <!-- Word Study -->
+            <div id="word-study" class="section">
+                <h1>Word Study</h1>
+                <div class="card">
+                    <h3>Study a Word</h3>
+                    <div class="form-group">
+                        <label>Word</label>
+                        <input type="text" id="studyWord" placeholder="e.g., love, faith, grace">
+                    </div>
+                    <button onclick="studyWord()">Study Word</button>
+                </div>
+                <div id="wordStudyResults"></div>
+            </div>
+            
+            <!-- Statistics -->
+            <div id="statistics" class="section">
+                <h1>Statistics</h1>
+                <div class="stats-grid" id="statisticsGrid">
+                    <!-- Stats will be loaded here -->
+                </div>
+                <div class="card">
+                    <h3>Reading History</h3>
+                    <div id="readingHistory">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+    
+    <script>
+        const API_BASE = window.location.origin;
+        
+        function showSection(sectionName) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(sectionName).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Load section data
+            if (sectionName === 'dashboard') loadDashboard();
+            else if (sectionName === 'reading') loadReadingPlans();
+            else if (sectionName === 'notes') loadNotes();
+            else if (sectionName === 'bookmarks') loadBookmarks();
+            else if (sectionName === 'themes') loadThemes();
+            else if (sectionName === 'memory') loadMemoryVerses();
+            else if (sectionName === 'statistics') loadStatistics();
+        }
+        
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        async function loadDashboard() {
+            try {
+                const stats = await fetch(`${API_BASE}/api/study/statistics`).then(r => r.json());
+                document.getElementById('totalVerses').textContent = stats.total_verses_read || 0;
+                document.getElementById('totalSessions').textContent = stats.total_sessions || 0;
+                
+                const notes = await fetch(`${API_BASE}/api/study/notes`).then(r => r.json());
+                document.getElementById('totalNotes').textContent = notes.length || 0;
+                
+                const memory = await fetch(`${API_BASE}/api/study/memory-verses`).then(r => r.json());
+                document.getElementById('memoryVerses').textContent = memory.length || 0;
+                
+                const toReview = await fetch(`${API_BASE}/api/study/memory-verses/to-review`).then(r => r.json());
+                let reviewHtml = '<p>No verses to review</p>';
+                if (toReview.length > 0) {
+                    reviewHtml = toReview.slice(0, 5).map(v => 
+                        `<div class="verse-item">${v.book} ${v.chapter}:${v.verse}</div>`
+                    ).join('');
+                }
+                document.getElementById('versesToReview').innerHTML = reviewHtml;
+            } catch (e) {
+                console.error('Error loading dashboard:', e);
+            }
+        }
+        
+        async function loadReadingPlans() {
+            try {
+                const plans = await fetch(`${API_BASE}/api/study/plans`).then(r => r.json());
+                const plansHtml = plans.map(p => 
+                    `<div class="plan-item" onclick="selectPlan(${p.id})">
+                        <strong>${p.name}</strong><br>
+                        <small>${p.plan_type} - ${p.duration_days || 'N/A'} days</small>
+                    </div>`
+                ).join('');
+                document.getElementById('studyPlans').innerHTML = plansHtml || '<p>No plans found</p>';
+            } catch (e) {
+                console.error('Error loading plans:', e);
+            }
+        }
+        
+        async function selectPlan(planId) {
+            try {
+                const reading = await fetch(`${API_BASE}/api/study/plans/${planId}/today`).then(r => r.json());
+                document.getElementById('todayPlanReading').innerHTML = 
+                    `<div class="verse-item">
+                        <strong>Day ${reading.day}</strong><br>
+                        ${reading.book} ${reading.start_chapter}:${reading.start_verse || 1} - 
+                        ${reading.end_chapter}:${reading.end_verse || 'end'}<br>
+                        ${reading.notes || ''}
+                    </div>`;
+            } catch (e) {
+                document.getElementById('todayPlanReading').innerHTML = '<p>No reading for today</p>';
+            }
+        }
+        
+        async function studyVerse() {
+            const book = document.getElementById('studyBook').value;
+            const chapter = document.getElementById('studyChapter').value;
+            const verse = document.getElementById('studyVerse').value;
+            
+            showLoading();
+            try {
+                // Get commentary
+                const commentary = await fetch(`${API_BASE}/api/commentary/${book}/${chapter}/${verse}`).then(r => r.json());
+                
+                // Get cross references
+                const crossRefs = await fetch(`${API_BASE}/api/study/cross-references?book=${book}&chapter=${chapter}&verse=${verse}`).then(r => r.json());
+                
+                // Get notes
+                const notes = await fetch(`${API_BASE}/api/study/notes?book=${book}&chapter=${chapter}&verse=${verse}`).then(r => r.json());
+                
+                let html = `<div class="card"><h3>${book} ${chapter}:${verse}</h3>`;
+                
+                if (commentary.synthesized) {
+                    html += `<div class="verse-item"><strong>Synthesized Commentary:</strong><br>${commentary.synthesized}</div>`;
+                }
+                
+                if (crossRefs.length > 0) {
+                    html += `<h4>Cross References:</h4>`;
+                    html += crossRefs.map(r => 
+                        `<div class="verse-item">${r.target_book} ${r.target_chapter}:${r.target_verse}</div>`
+                    ).join('');
+                }
+                
+                if (notes.length > 0) {
+                    html += `<h4>My Notes:</h4>`;
+                    html += notes.map(n => 
+                        `<div class="note-item">${n.note_text}<div class="meta">${n.note_type}</div></div>`
+                    ).join('');
+                }
+                
+                html += '</div>';
+                document.getElementById('verseStudyResults').innerHTML = html;
+            } catch (e) {
+                document.getElementById('verseStudyResults').innerHTML = '<p>Error loading verse study</p>';
+            }
+            hideLoading();
+        }
+        
+        async function addNote() {
+            const note = {
+                book: document.getElementById('noteBook').value,
+                chapter: parseInt(document.getElementById('noteChapter').value),
+                verse: parseInt(document.getElementById('noteVerse').value),
+                note_text: document.getElementById('noteText').value,
+                note_type: document.getElementById('noteType').value
+            };
+            
+            try {
+                await fetch(`${API_BASE}/api/study/notes`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(note)
+                });
+                document.getElementById('noteText').value = '';
+                loadNotes();
+                alert('Note added!');
+            } catch (e) {
+                alert('Error adding note');
+            }
+        }
+        
+        async function loadNotes() {
+            try {
+                const notes = await fetch(`${API_BASE}/api/study/notes`).then(r => r.json());
+                const notesHtml = notes.map(n => 
+                    `<div class="note-item">
+                        <strong>${n.book} ${n.chapter}:${n.verse}</strong>
+                        <span class="badge badge-primary">${n.note_type}</span><br>
+                        ${n.note_text}
+                        <div class="meta">${new Date(n.created_at).toLocaleDateString()}</div>
+                    </div>`
+                ).join('');
+                document.getElementById('notesList').innerHTML = notesHtml || '<p>No notes yet</p>';
+            } catch (e) {
+                console.error('Error loading notes:', e);
+            }
+        }
+        
+        async function addBookmark() {
+            const bookmark = {
+                book: document.getElementById('bookmarkBook').value,
+                chapter: parseInt(document.getElementById('bookmarkChapter').value),
+                verse: parseInt(document.getElementById('bookmarkVerse').value),
+                label: document.getElementById('bookmarkLabel').value
+            };
+            
+            try {
+                await fetch(`${API_BASE}/api/study/bookmarks`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(bookmark)
+                });
+                document.getElementById('bookmarkLabel').value = '';
+                loadBookmarks();
+                alert('Bookmark added!');
+            } catch (e) {
+                alert('Error adding bookmark');
+            }
+        }
+        
+        async function loadBookmarks() {
+            try {
+                const bookmarks = await fetch(`${API_BASE}/api/study/bookmarks`).then(r => r.json());
+                const bookmarksHtml = bookmarks.map(b => 
+                    `<div class="bookmark-item">
+                        <strong>${b.book} ${b.chapter}:${b.verse}</strong>
+                        ${b.label ? `<br>${b.label}` : ''}
+                    </div>`
+                ).join('');
+                document.getElementById('bookmarksList').innerHTML = bookmarksHtml || '<p>No bookmarks yet</p>';
+            } catch (e) {
+                console.error('Error loading bookmarks:', e);
+            }
+        }
+        
+        async function createTheme() {
+            const theme = {
+                name: document.getElementById('themeName').value,
+                description: document.getElementById('themeDescription').value
+            };
+            
+            try {
+                await fetch(`${API_BASE}/api/study/themes`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(theme)
+                });
+                document.getElementById('themeName').value = '';
+                document.getElementById('themeDescription').value = '';
+                loadThemes();
+                alert('Theme created!');
+            } catch (e) {
+                alert('Error creating theme');
+            }
+        }
+        
+        async function loadThemes() {
+            try {
+                const themes = await fetch(`${API_BASE}/api/study/themes`).then(r => r.json());
+                const themesHtml = themes.map(t => 
+                    `<div class="card">
+                        <h3>${t.name}</h3>
+                        <p>${t.description || ''}</p>
+                    </div>`
+                ).join('');
+                document.getElementById('themesList').innerHTML = themesHtml || '<p>No themes yet</p>';
+            } catch (e) {
+                console.error('Error loading themes:', e);
+            }
+        }
+        
+        async function addMemoryVerse() {
+            const verse = {
+                book: document.getElementById('memoryBook').value,
+                chapter: parseInt(document.getElementById('memoryChapter').value),
+                verse: parseInt(document.getElementById('memoryVerse').value)
+            };
+            
+            try {
+                await fetch(`${API_BASE}/api/study/memory-verses`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(verse)
+                });
+                loadMemoryVerses();
+                alert('Memory verse added!');
+            } catch (e) {
+                alert('Error adding memory verse');
+            }
+        }
+        
+        async function loadMemoryVerses() {
+            try {
+                const toReview = await fetch(`${API_BASE}/api/study/memory-verses/to-review`).then(r => r.json());
+                const reviewHtml = toReview.map(v => 
+                    `<div class="verse-item">
+                        <strong>${v.book} ${v.chapter}:${v.verse}</strong>
+                        <button onclick="reviewVerse(${v.id}, true)" style="margin-left: 10px;">Mark Memorized</button>
+                    </div>`
+                ).join('');
+                document.getElementById('memoryVersesReview').innerHTML = reviewHtml || '<p>No verses to review</p>';
+                
+                const all = await fetch(`${API_BASE}/api/study/memory-verses`).then(r => r.json());
+                const allHtml = all.map(v => 
+                    `<div class="verse-item">
+                        <strong>${v.book} ${v.chapter}:${v.verse}</strong>
+                        <span class="badge ${v.memorized ? 'badge-success' : 'badge-warning'}">
+                            ${v.memorized ? 'Memorized' : 'Learning'}
+                        </span>
+                    </div>`
+                ).join('');
+                document.getElementById('memoryVersesList').innerHTML = allHtml || '<p>No memory verses yet</p>';
+            } catch (e) {
+                console.error('Error loading memory verses:', e);
+            }
+        }
+        
+        async function reviewVerse(verseId, memorized) {
+            try {
+                await fetch(`${API_BASE}/api/study/memory-verses/${verseId}/review?memorized=${memorized}`, {
+                    method: 'POST'
+                });
+                loadMemoryVerses();
+            } catch (e) {
+                alert('Error reviewing verse');
+            }
+        }
+        
+        async function studyWord() {
+            const word = document.getElementById('studyWord').value;
+            if (!word) return;
+            
+            showLoading();
+            try {
+                const wordStudy = await fetch(`${API_BASE}/api/study/word-studies/${word}`).then(r => r.json());
+                document.getElementById('wordStudyResults').innerHTML = 
+                    `<div class="card">
+                        <h3>${wordStudy.word}</h3>
+                        <p><strong>Language:</strong> ${wordStudy.original_language || 'N/A'}</p>
+                        <p><strong>Transliteration:</strong> ${wordStudy.transliteration || 'N/A'}</p>
+                        <p><strong>Definition:</strong> ${wordStudy.definition || 'No definition available'}</p>
+                    </div>`;
+            } catch (e) {
+                document.getElementById('wordStudyResults').innerHTML = 
+                    '<div class="card"><p>Word study not found. You can create one!</p></div>';
+            }
+            hideLoading();
+        }
+        
+        async function loadStatistics() {
+            try {
+                const stats = await fetch(`${API_BASE}/api/study/statistics`).then(r => r.json());
+                document.getElementById('statisticsGrid').innerHTML = `
+                    <div class="stat-card">
+                        <div class="number">${stats.total_sessions || 0}</div>
+                        <div class="label">Total Sessions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">${stats.total_verses_read || 0}</div>
+                        <div class="label">Verses Read</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">${Math.round(stats.total_time_minutes / 60) || 0}</div>
+                        <div class="label">Hours Spent</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">${stats.books_read || 0}</div>
+                        <div class="label">Books Read</div>
+                    </div>
+                `;
+            } catch (e) {
+                console.error('Error loading statistics:', e);
+            }
+        }
+        
+        // Initialize
+        window.addEventListener('DOMContentLoaded', function() {
+            loadDashboard();
+        });
+    </script>
+</body>
+</html>
