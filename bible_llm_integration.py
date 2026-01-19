@@ -16,6 +16,7 @@ class BibleLLMIntegration:
     """
     Best LLM integration for Bible app
     Supports multiple LLM providers and quantum learning
+    Can learn from multiple LLMs simultaneously for faster convergence
     """
     
     def __init__(self, bible_ai_system: BibleAISystem):
@@ -23,11 +24,15 @@ class BibleLLMIntegration:
         self.llm_agent = BibleCommentaryAgent()
         self.llm_provider = None
         self.llm_model = None
+        self.available_llms = []  # List of available LLM providers
         self._initialize_llm()
+        self._initialize_all_llms()  # Initialize all available LLMs
     
     def _initialize_llm(self):
         """Initialize the best available LLM"""
-        # Priority order: OpenAI GPT-4 > GPT-3.5 > Anthropic Claude > Open Source
+        # Priority order: Paid > Free
+        # Paid: OpenAI GPT-4 > GPT-3.5 > Anthropic Claude
+        # Free: Google Gemini > Hugging Face > Mistral > Together AI > Ollama
         
         # Try OpenAI GPT-4 (best for Bible study)
         if os.getenv("OPENAI_API_KEY"):
@@ -77,10 +82,181 @@ class BibleLLMIntegration:
             except Exception as e:
                 logger.warning(f"Could not initialize Claude: {e}")
         
+        # FREE LLMs (try in order of quality/availability)
+        
+        # Try Google Gemini (free tier available)
+        if os.getenv("GOOGLE_API_KEY"):
+            try:
+                from langchain_google_genai import ChatGoogleGenerativeAI
+                self.llm_provider = "google"
+                self.llm_model = "gemini-pro"
+                self.llm_agent.llm = ChatGoogleGenerativeAI(
+                    model="gemini-pro",
+                    temperature=0.7,
+                    max_tokens=1000
+                )
+                logger.info("Initialized Google Gemini (free tier)")
+                return
+            except Exception as e:
+                logger.warning(f"Could not initialize Gemini: {e}")
+        
+        # Try Hugging Face Inference API (free tier)
+        if os.getenv("HUGGINGFACE_API_KEY"):
+            try:
+                from langchain_huggingface import HuggingFaceEndpoint
+                self.llm_provider = "huggingface"
+                self.llm_model = "mistralai/Mistral-7B-Instruct-v0.2"  # Good free model
+                self.llm_agent.llm = HuggingFaceEndpoint(
+                    repo_id="mistralai/Mistral-7B-Instruct-v0.2",
+                    temperature=0.7,
+                    max_length=1000
+                )
+                logger.info("Initialized Hugging Face (free tier)")
+                return
+            except Exception as e:
+                logger.warning(f"Could not initialize Hugging Face: {e}")
+        
+        # Try Mistral AI (free tier)
+        if os.getenv("MISTRAL_API_KEY"):
+            try:
+                from langchain_mistralai import ChatMistralAI
+                self.llm_provider = "mistral"
+                self.llm_model = "mistral-medium"
+                self.llm_agent.llm = ChatMistralAI(
+                    model="mistral-medium",
+                    temperature=0.7,
+                    max_tokens=1000
+                )
+                logger.info("Initialized Mistral AI (free tier)")
+                return
+            except Exception as e:
+                logger.warning(f"Could not initialize Mistral: {e}")
+        
+        # Try Together AI (free tier)
+        if os.getenv("TOGETHER_API_KEY"):
+            try:
+                from langchain_together import Together
+                self.llm_provider = "together"
+                self.llm_model = "mistralai/Mixtral-8x7B-Instruct-v0.1"
+                self.llm_agent.llm = Together(
+                    model="mistralai/Mixtral-8x7B-Instruct-v0.1",
+                    temperature=0.7,
+                    max_tokens=1000
+                )
+                logger.info("Initialized Together AI (free tier)")
+                return
+            except Exception as e:
+                logger.warning(f"Could not initialize Together AI: {e}")
+        
+        # Try Ollama (completely free, runs locally)
+        try:
+            from langchain_community.llms import Ollama
+            self.llm_provider = "ollama"
+            self.llm_model = "llama2"  # or mistral, codellama, etc.
+            self.llm_agent.llm = Ollama(
+                model="llama2",
+                temperature=0.7
+            )
+            logger.info("Initialized Ollama (local, free)")
+            return
+        except Exception as e:
+            logger.debug(f"Ollama not available: {e}")
+        
         # Fallback: No LLM available
         logger.warning("No LLM API key found. Using quantum-only mode.")
         self.llm_provider = None
         self.llm_model = None
+    
+    def _initialize_all_llms(self):
+        """Initialize all available LLMs for multi-LLM learning"""
+        self.available_llms = []
+        
+        # Try to initialize all free LLMs (for learning diversity)
+        # Google Gemini
+        if os.getenv("GOOGLE_API_KEY"):
+            try:
+                from langchain_google_genai import ChatGoogleGenerativeAI
+                self.available_llms.append({
+                    "provider": "google",
+                    "model": "gemini-pro",
+                    "llm": ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.7, max_tokens=1000)
+                })
+            except:
+                pass
+        
+        # Hugging Face
+        if os.getenv("HUGGINGFACE_API_KEY"):
+            try:
+                from langchain_huggingface import HuggingFaceEndpoint
+                self.available_llms.append({
+                    "provider": "huggingface",
+                    "model": "mistralai/Mistral-7B-Instruct-v0.2",
+                    "llm": HuggingFaceEndpoint(repo_id="mistralai/Mistral-7B-Instruct-v0.2", temperature=0.7, max_length=1000)
+                })
+            except:
+                pass
+        
+        # Ollama (local, always try)
+        try:
+            from langchain_community.llms import Ollama
+            self.available_llms.append({
+                "provider": "ollama",
+                "model": "llama2",
+                "llm": Ollama(model="llama2", temperature=0.7)
+            })
+        except:
+            pass
+        
+        logger.info(f"Initialized {len(self.available_llms)} additional LLMs for multi-source learning")
+    
+    def learn_from_multiple_llms(self, prompt: str, max_llms: int = 3) -> Dict:
+        """
+        Learn from multiple LLMs simultaneously for faster convergence
+        Gets outputs from multiple LLMs and learns from all of them
+        """
+        if not self.available_llms:
+            return {"error": "No additional LLMs available for multi-source learning"}
+        
+        results = []
+        learned_count = 0
+        
+        # Get outputs from multiple LLMs (up to max_llms)
+        for llm_info in self.available_llms[:max_llms]:
+            try:
+                from langchain.prompts import PromptTemplate
+                from langchain.chains import LLMChain
+                
+                template = PromptTemplate(
+                    input_variables=["prompt"],
+                    template="""You are a Bible study assistant. Provide a thoughtful, 
+                    theologically sound response to: {prompt}
+
+                    Response:"""
+                )
+                
+                chain = LLMChain(llm=llm_info["llm"], prompt=template)
+                llm_output = chain.run(prompt=prompt).strip()
+                
+                # Learn from this LLM output
+                if self.bible_ai.text_generator:
+                    learn_result = self.bible_ai.learn_from_llm_output(prompt, llm_output)
+                    learned_count += 1
+                    results.append({
+                        "provider": llm_info["provider"],
+                        "model": llm_info["model"],
+                        "output": llm_output[:100] + "...",
+                        "learned": True
+                    })
+            except Exception as e:
+                logger.warning(f"Could not get output from {llm_info['provider']}: {e}")
+        
+        return {
+            "prompt": prompt,
+            "llms_used": len(results),
+            "learned_from": learned_count,
+            "results": results,
+            "vocab_size": len(self.bible_ai.text_generator.vocab) if self.bible_ai.text_generator else 0
+        }
     
     def generate_with_llm(self, prompt: str, context: Optional[str] = None) -> Dict:
         """

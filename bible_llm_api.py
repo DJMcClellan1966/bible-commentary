@@ -31,6 +31,11 @@ class TranslationRequest(BaseModel):
     use_llm: bool = True
 
 
+class MultiLLMLearningRequest(BaseModel):
+    prompt: str
+    max_llms: int = 3
+
+
 @router.get("/status")
 async def llm_status(db: Session = Depends(get_db)):
     """Get LLM integration status"""
@@ -113,4 +118,23 @@ async def learn_from_llm(
         return result
     except Exception as e:
         logger.error(f"Error learning: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/learn-from-multiple")
+async def learn_from_multiple_llms(
+    request: MultiLLMLearningRequest,
+    db: Session = Depends(get_db)
+):
+    """Learn from multiple LLMs simultaneously for faster convergence"""
+    try:
+        bible_ai = create_bible_ai_system(db)
+        llm_integration = create_bible_llm_integration(bible_ai)
+        result = llm_integration.learn_from_multiple_llms(
+            request.prompt,
+            max_llms=request.max_llms
+        )
+        return result
+    except Exception as e:
+        logger.error(f"Error learning from multiple LLMs: {e}")
         raise HTTPException(status_code=500, detail=str(e))

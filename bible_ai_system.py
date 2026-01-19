@@ -18,6 +18,23 @@ except ImportError:
     QuantumTextGenerator = None
     QuantumTranslator = None
 
+# Import grounded generation (prevents hallucinations and bias)
+try:
+    from quantum_grounded_generation import GroundedQuantumGenerator
+    GROUNDED_GENERATION_AVAILABLE = True
+except ImportError:
+    GROUNDED_GENERATION_AVAILABLE = False
+    GroundedQuantumGenerator = None
+
+# Import standalone quantum LLM (with progressive learning)
+try:
+    from quantum_llm_standalone import StandaloneQuantumLLM, create_quantum_llm
+    STANDALONE_LLM_AVAILABLE = True
+except ImportError:
+    STANDALONE_LLM_AVAILABLE = False
+    StandaloneQuantumLLM = None
+    create_quantum_llm = None
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -70,6 +87,40 @@ class BibleAISystem:
         else:
             self.text_generator = None
             self.translator = None
+        
+        # Add grounded generation (prevents hallucinations and bias)
+        if GROUNDED_GENERATION_AVAILABLE:
+            verses = self.get_verses(limit=500)  # More verses for better grounding
+            if verses:
+                self.grounded_generator = GroundedQuantumGenerator(
+                    kernel=self.kernel,
+                    source_texts=verses
+                )
+                logger.info(f"Grounded quantum generation initialized with {len(verses)} verified sources")
+            else:
+                self.grounded_generator = None
+        else:
+            self.grounded_generator = None
+        
+        # Add standalone quantum LLM with progressive learning
+        if STANDALONE_LLM_AVAILABLE:
+            verses = self.get_verses(limit=1000)  # Even more for progressive learning
+            if verses:
+                self.quantum_llm = create_quantum_llm(
+                    kernel=self.kernel,
+                    source_texts=verses,
+                    config={
+                        'confidence_threshold': 0.6,
+                        'min_phrase_length': 2,
+                        'max_phrase_length': 5,
+                        'vocab_expansion_rate': 0.1  # 10% per week
+                    }
+                )
+                logger.info(f"Standalone quantum LLM initialized with {len(verses)} verified sources")
+            else:
+                self.quantum_llm = None
+        else:
+            self.quantum_llm = None
         
         logger.info("Bible AI System initialized with shared kernel")
     
@@ -176,6 +227,73 @@ class BibleAISystem:
         """
         return self.ai.learning.learn_from_examples(examples)
     
+    def generate_grounded_text(self, prompt: str, max_length: int = 50, 
+                               require_validation: bool = True) -> Dict:
+        """
+        Generate text grounded in verified Bible sources
+        Prevents hallucinations, bias, and misinformation
+        Uses standalone quantum LLM if available, otherwise falls back to grounded generator
+        """
+        # Prefer standalone LLM (has progressive learning)
+        if self.quantum_llm:
+            return self.quantum_llm.generate_grounded(
+                prompt,
+                max_length=max_length,
+                require_validation=require_validation
+            )
+        elif self.grounded_generator:
+            return self.grounded_generator.generate_grounded(
+                prompt, 
+                max_length=max_length,
+                require_validation=require_validation
+            )
+        else:
+            # Fallback to regular generation if grounded not available
+            if self.text_generator:
+                result = self.text_generator.generate_text(prompt, max_length=max_length)
+                return {
+                    "generated": result if isinstance(result, str) else result.get("generated", ""),
+                    "confidence": 0.5,  # Lower confidence for ungrounded
+                    "is_safe": False,
+                    "warning": "Grounded generation not available, using ungrounded method"
+                }
+            return {
+                "error": "No text generation available",
+                "is_safe": False
+            }
+    
+    def validate_text(self, text: str) -> Dict:
+        """
+        Validate text against verified sources
+        Detects hallucinations and low-confidence content
+        """
+        # Use standalone LLM if available, otherwise fallback to grounded generator
+        if self.quantum_llm:
+            return self.quantum_llm.validate_against_sources(text)
+        elif self.grounded_generator:
+            return self.grounded_generator.validate_against_sources(text)
+        else:
+            return {
+                "error": "Validation not available",
+                "is_safe": False
+            }
+    
+    def detect_bias_in_text(self, text: str) -> Dict:
+        """
+        Detect potential bias in text
+        Checks for one-sided language, missing perspectives, etc.
+        """
+        # Use standalone LLM if available, otherwise fallback to grounded generator
+        if self.quantum_llm:
+            return self.quantum_llm.detect_bias(text)
+        elif self.grounded_generator:
+            return self.grounded_generator.detect_bias(text)
+        else:
+            return {
+                "error": "Bias detection not available",
+                "has_bias": False
+            }
+    
     def ai_discover_themes(self, verses: List[str] = None, min_cluster_size: int = 2) -> Dict:
         """
         Discover themes in Bible verses using AI
@@ -259,6 +377,50 @@ class BibleAISystem:
             "learned_pairs": len(self.text_generator.learned_pairs)
         }
     
+    def progressive_learning_step(self, new_texts: List[str], week: Optional[int] = None) -> Dict:
+        """
+        Perform one step of progressive learning
+        Gradually expands vocabulary and improves quality
+        """
+        if not self.quantum_llm:
+            return {
+                "error": "Standalone quantum LLM not available",
+                "suggestion": "Initialize with source texts first"
+            }
+        
+        return self.quantum_llm.progressive_learning_step(new_texts, week)
+    
+    def get_llm_statistics(self) -> Dict:
+        """
+        Get statistics about the quantum LLM
+        """
+        if not self.quantum_llm:
+            return {
+                "error": "Standalone quantum LLM not available"
+            }
+        
+        return self.quantum_llm.get_statistics()
+    
+    def save_llm_state(self, filepath: str):
+        """
+        Save quantum LLM state to file
+        """
+        if not self.quantum_llm:
+            return {"error": "Standalone quantum LLM not available"}
+        
+        self.quantum_llm.save(filepath)
+        return {"success": True, "filepath": filepath}
+    
+    def load_llm_state(self, filepath: str):
+        """
+        Load quantum LLM state from file
+        """
+        if not self.quantum_llm:
+            return {"error": "Standalone quantum LLM not available"}
+        
+        self.quantum_llm.load(filepath)
+        return {"success": True, "filepath": filepath}
+    
     def get_stats(self) -> Dict:
         """Get system statistics"""
         stats = {
@@ -277,6 +439,9 @@ class BibleAISystem:
                 "translation_pairs": len(self.translator.translation_pairs),
                 "available": True
             }
+        
+        if self.quantum_llm:
+            stats["quantum_llm"] = self.quantum_llm.get_statistics()
         
         return stats
 

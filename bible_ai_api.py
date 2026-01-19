@@ -45,6 +45,25 @@ class LearnFromLLMRequest(BaseModel):
     llm_output: str
 
 
+class GroundedGenerationRequest(BaseModel):
+    prompt: str
+    max_length: int = 50
+    require_validation: bool = True
+
+
+class ValidateTextRequest(BaseModel):
+    text: str
+
+
+class DetectBiasRequest(BaseModel):
+    text: str
+
+
+class ProgressiveLearningRequest(BaseModel):
+    new_texts: List[str]
+    week: Optional[int] = None
+
+
 @router.get("/search")
 async def ai_search(
     query: str = Query(..., description="Search query"),
@@ -207,6 +226,117 @@ async def ai_learn_from_llm(
         return result
     except Exception as e:
         logger.error(f"Error learning from LLM: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/generate-grounded")
+async def ai_generate_grounded(
+    request: GroundedGenerationRequest,
+    db: Session = Depends(get_db)
+):
+    """Generate text grounded in verified Bible sources (prevents hallucinations and bias)"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.generate_grounded_text(
+            request.prompt,
+            max_length=request.max_length,
+            require_validation=request.require_validation
+        )
+        return result
+    except Exception as e:
+        logger.error(f"Error in grounded generation: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/validate-text")
+async def ai_validate_text(
+    request: ValidateTextRequest,
+    db: Session = Depends(get_db)
+):
+    """Validate text against verified sources (detects hallucinations)"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.validate_text(request.text)
+        return result
+    except Exception as e:
+        logger.error(f"Error validating text: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/detect-bias")
+async def ai_detect_bias(
+    request: DetectBiasRequest,
+    db: Session = Depends(get_db)
+):
+    """Detect potential bias in text"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.detect_bias_in_text(request.text)
+        return result
+    except Exception as e:
+        logger.error(f"Error detecting bias: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/progressive-learning")
+async def ai_progressive_learning(
+    request: ProgressiveLearningRequest,
+    db: Session = Depends(get_db)
+):
+    """Perform one step of progressive learning (expands vocabulary and improves quality)"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.progressive_learning_step(
+            request.new_texts,
+            week=request.week
+        )
+        return result
+    except Exception as e:
+        logger.error(f"Error in progressive learning: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/llm-statistics")
+async def ai_llm_statistics(
+    db: Session = Depends(get_db)
+):
+    """Get quantum LLM statistics (vocabulary, quality, learning progress)"""
+    try:
+        system = create_bible_ai_system(db)
+        stats = system.get_llm_statistics()
+        return stats
+    except Exception as e:
+        logger.error(f"Error getting LLM statistics: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/save-llm-state")
+async def ai_save_llm_state(
+    filepath: str = Body(..., embed=True),
+    db: Session = Depends(get_db)
+):
+    """Save quantum LLM state to file"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.save_llm_state(filepath)
+        return result
+    except Exception as e:
+        logger.error(f"Error saving LLM state: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/load-llm-state")
+async def ai_load_llm_state(
+    filepath: str = Body(..., embed=True),
+    db: Session = Depends(get_db)
+):
+    """Load quantum LLM state from file"""
+    try:
+        system = create_bible_ai_system(db)
+        result = system.load_llm_state(filepath)
+        return result
+    except Exception as e:
+        logger.error(f"Error loading LLM state: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
