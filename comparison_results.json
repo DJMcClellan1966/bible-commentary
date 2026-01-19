@@ -1,0 +1,50 @@
+{
+  "quantum": {
+    "tokenizer_time": 0.007214546203613281,
+    "vocab_size": 54,
+    "model_params": 2430262,
+    "training_time": 9.94154667854309,
+    "generations": {
+      "The Word": [
+        "the word was the word word , and the word was with god . . . word , and the",
+        0.0476992130279541
+      ],
+      "Love": [
+        "love your neighbor as yourself . , but the greatest of these is love . . shall not want .",
+        0.04701590538024902
+      ],
+      "God": [
+        "god so loved the and love , and the greatest of these is love . . shall not want .",
+        0.05122828483581543
+      ],
+      "The Lord": [
+        "the lord is my shepherd , i shall not want . with god . . . shall not want .",
+        0.04693961143493652
+      ]
+    }
+  },
+  "classical": {
+    "tokenizer_time": 0.002095937728881836,
+    "vocab_size": 54,
+    "model_params": 2430262,
+    "training_time": 9.234984397888184,
+    "generations": {
+      "The Word": [
+        "the word was with the word , and the word was with god . . the word , and the",
+        0.025683879852294922
+      ],
+      "Love": [
+        "love your neighbor as yourself . , but the greatest of these is love . the lord is love ,",
+        0.02909255027770996
+      ],
+      "God": [
+        "god so beginning was the word , and the word was with god . . the word , and the",
+        0.03254413604736328
+      ],
+      "The Lord": [
+        "the lord is my shepherd , i shall not want . my shepherd , . the lord is my shepherd",
+        0.02147364616394043
+      ]
+    }
+  }
+}

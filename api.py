@@ -16,6 +16,22 @@ import os
 # Import study system
 from study_api import router as study_router
 
+# Import quantum study system
+try:
+    from quantum_study_api import router as quantum_study_router
+    QUANTUM_AVAILABLE = True
+except ImportError:
+    QUANTUM_AVAILABLE = False
+    quantum_study_router = None
+
+# Import Bible characters
+try:
+    from bible_characters_api import router as bible_characters_router
+    BIBLE_CHARACTERS_AVAILABLE = True
+except ImportError:
+    BIBLE_CHARACTERS_AVAILABLE = False
+    bible_characters_router = None
+
 app = FastAPI(
     title="Bible Commentary Agent API",
     description="AI-powered agent for building comprehensive Bible commentaries",
@@ -39,6 +55,14 @@ init_db()
 
 # Include study router
 app.include_router(study_router)
+
+# Include quantum study router if available
+if QUANTUM_AVAILABLE and quantum_study_router:
+    app.include_router(quantum_study_router)
+
+# Include Bible characters router if available
+if BIBLE_CHARACTERS_AVAILABLE and bible_characters_router:
+    app.include_router(bible_characters_router)
 
 
 # Pydantic models
@@ -96,6 +120,20 @@ async def bible_study_interface():
     if os.path.exists("bible_study.html"):
         return FileResponse("bible_study.html")
     raise HTTPException(status_code=404, detail="Bible study interface not found")
+
+@app.get("/quantum-study")
+async def quantum_study_interface():
+    """Serve Quantum Bible Study interface"""
+    if os.path.exists("quantum_study_interface.html"):
+        return FileResponse("quantum_study_interface.html")
+    raise HTTPException(status_code=404, detail="Quantum study interface not found")
+
+@app.get("/bible-characters")
+async def bible_characters_interface():
+    """Serve Bible Characters interface"""
+    if os.path.exists("bible_characters_interface.html"):
+        return FileResponse("bible_characters_interface.html")
+    raise HTTPException(status_code=404, detail="Bible characters interface not found")
 
 
 @app.post("/api/commentary", response_model=CommentaryResponse)

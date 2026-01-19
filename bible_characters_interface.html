@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Character Models</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .character-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .character-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .character-card.active {
+            border-color: #667eea;
+            background: #e8f0fe;
+        }
+        
+        .character-card h3 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .character-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .chat-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .chat-messages {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .message.user {
+            background: #e3f2fd;
+            margin-left: 20%;
+        }
+        
+        .message.character {
+            background: #f3e5f5;
+            margin-right: 20%;
+        }
+        
+        .message-header {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .compare-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .response-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .response-item h4 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 Bible Character Models</h1>
+        <p class="subtitle">Chat with Moses, David, Solomon, Paul, and John - trained on their actual Bible writings</p>
+        
+        <div class="characters-grid">
+            <div class="character-card" onclick="selectCharacter('Moses')">
+                <h3>Moses</h3>
+                <p>Law, Authority, Teaching</p>
+            </div>
+            <div class="character-card" onclick="selectCharacter('David')">
+                <h3>David</h3>
+                <p>Worship, Poetry, Passion</p>
+            </div>
+            <div class="character-card" onclick="selectCharacter('Solomon')">
+                <h3>Solomon</h3>
+                <p>Wisdom, Reflection</p>
+            </div>
+            <div class="character-card" onclick="selectCharacter('Paul')">
+                <h3>Paul</h3>
+                <p>Theology, Grace, Zeal</p>
+            </div>
+            <div class="character-card" onclick="selectCharacter('John')">
+                <h3>John</h3>
+                <p>Love, Intimacy, Revelation</p>
+            </div>
+        </div>
+        
+        <div class="chat-section">
+            <h2>Chat with Character</h2>
+            <div id="selectedCharacter" style="margin: 10px 0; color: #666;">Select a character above</div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="input-group">
+                <input type="text" id="messageInput" placeholder="Ask a question..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+        
+        <div class="compare-section">
+            <h2>Compare All Characters</h2>
+            <div class="input-group" style="margin-top: 15px;">
+                <input type="text" id="compareInput" placeholder="Ask a question to all characters..." onkeypress="if(event.key==='Enter') compareCharacters()">
+                <button onclick="compareCharacters()">Compare</button>
+            </div>
+            <div id="compareResults"></div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = window.location.origin;
+        let selectedCharacter = null;
+        
+        function selectCharacter(name) {
+            selectedCharacter = name;
+            document.querySelectorAll('.character-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.target.closest('.character-card').classList.add('active');
+            document.getElementById('selectedCharacter').textContent = `Chatting with: ${name}`;
+        }
+        
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        async function sendMessage() {
+            if (!selectedCharacter) {
+                alert('Please select a character first');
+                return;
+            }
+            
+            const message = document.getElementById('messageInput').value;
+            if (!message.trim()) return;
+            
+            // Add user message to chat
+            const chatMessages = document.getElementById('chatMessages');
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.innerHTML = `<div class="message-header">You</div><div>${message}</div>`;
+            chatMessages.appendChild(userMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            document.getElementById('messageInput').value = '';
+            
+            showLoading();
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/bible-characters/characters/${selectedCharacter}/chat`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message: message})
+                });
+                
+                const data = await response.json();
+                
+                // Add character response
+                const charMsg = document.createElement('div');
+                charMsg.className = 'message character';
+                charMsg.innerHTML = `<div class="message-header">${selectedCharacter}</div><div>${data.response}</div>`;
+                chatMessages.appendChild(charMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
+            
+            hideLoading();
+        }
+        
+        async function compareCharacters() {
+            const question = document.getElementById('compareInput').value;
+            if (!question.trim()) return;
+            
+            showLoading();
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/bible-characters/compare?question=${encodeURIComponent(question)}`, {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                
+                let html = '<h3>Responses from All Characters:</h3>';
+                
+                for (const [name, result] of Object.entries(data.responses)) {
+                    if (result.error) {
+                        html += `<div class="response-item"><h4>${name}</h4><p>Error: ${result.error}</p></div>`;
+                    } else {
+                        html += `<div class="response-item"><h4>${name}</h4><p>${result.response}</p></div>`;
+                    }
+                }
+                
+                document.getElementById('compareResults').innerHTML = html;
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
+            
+            hideLoading();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+[
+  {
+    "test": "Love & Sacrifice",
+    "classical": {
+      "jaccard": 0.08695652173913043,
+      "similarity": 0.14285714285714285,
+      "score": 0.11490683229813664
+    },
+    "quantum": {
+      "quantum_overlap": 0.8482692135879938,
+      "entanglement": 0.12649781316250291,
+      "semantic_similarity": 0.9555734140799511,
+      "score": 0.9555734140799511
+    },
+    "improvement": 731.6071333344439
+  },
+  {
+    "test": "Word & Truth",
+    "classical": {
+      "jaccard": 0.15789473684210525,
+      "similarity": 0.2,
+      "score": 0.17894736842105263
+    },
+    "quantum": {
+      "quantum_overlap": 0.803390390546072,
+      "entanglement": 0.11701633843493701,
+      "semantic_similarity": 0.8974001923815873,
+      "score": 0.8974001923815873
+    },
+    "improvement": 401.48834280147526
+  },
+  {
+    "test": "Faith & Trust",
+    "classical": {
+      "jaccard": 0.13333333333333333,
+      "similarity": 0.2222222222222222,
+      "score": 0.17777777777777776
+    },
+    "quantum": {
+      "quantum_overlap": 0.8513371268804231,
+      "entanglement": 0.10983689466805513,
+      "semantic_similarity": 0.9448453532125929,
+      "score": 0.9448453532125929
+    },
+    "improvement": 431.4755111820835
+  },
+  {
+    "test": "Shepherd & Care",
+    "classical": {
+      "jaccard": 0.05263157894736842,
+      "similarity": 0.09090909090909091,
+      "score": 0.07177033492822966
+    },
+    "quantum": {
+      "quantum_overlap": 0.6191328971543542,
+      "entanglement": 0.09367023369346211,
+      "semantic_similarity": 0.6771272203181127,
+      "score": 0.6771272203181127
+    },
+    "improvement": 843.4639269765702
+  },
+  {
+    "test": "Creation & Beginning",
+    "classical": {
+      "jaccard": 0.46153846153846156,
+      "similarity": 0.5714285714285714,
+      "score": 0.5164835164835164
+    },
+    "quantum": {
+      "quantum_overlap": 0.9434111384097386,
+      "entanglement": 0.10680333052750055,
+      "semantic_similarity": 1.0441705900486393,
+      "score": 1.0441705900486393
+    },
+    "improvement": 102.16919934984297
+  },
+  {
+    "test": "Unrelated",
+    "classical": {
+      "jaccard": 0.3,
+      "similarity": 0.2857142857142857,
+      "score": 0.2928571428571428
+    },
+    "quantum": {
+      "quantum_overlap": 0.8817177293425237,
+      "entanglement": 0.12328893731247251,
+      "semantic_similarity": 0.9904237712027297,
+      "score": 0.9904237712027297
+    },
+    "improvement": 238.1934828497126
+  }
+]
