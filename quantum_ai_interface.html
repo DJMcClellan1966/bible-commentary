@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum AI System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .section h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .result-box {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .result-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .result-item h3 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .result-item p {
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 5px;
+        }
+        
+        .status-active {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .status-inactive {
+            background: #f44336;
+            color: white;
+        }
+        
+        .memory-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+        
+        .memory-key {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .memory-value {
+            color: #666;
+            flex: 1;
+            margin: 0 10px;
+        }
+        
+        .delete-btn {
+            background: #f44336;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .premise-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .premise-input input {
+            flex: 1;
+        }
+        
+        .remove-btn {
+            background: #f44336;
+            padding: 10px;
+        }
+        
+        .add-btn {
+            background: #4caf50;
+            padding: 10px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quantum AI System</h1>
+        <p class="subtitle">Next-generation AI with quantum computing capabilities</p>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('status')">Status</button>
+            <button class="tab" onclick="switchTab('memory')">Memory</button>
+            <button class="tab" onclick="switchTab('reasoning')">Reasoning</button>
+            <button class="tab" onclick="switchTab('generate')">Generate</button>
+            <button class="tab" onclick="switchTab('train')">Train</button>
+        </div>
+        
+        <!-- Status Tab -->
+        <div id="status" class="tab-content active">
+            <div class="section">
+                <h2>System Status</h2>
+                <button onclick="checkStatus()">Refresh Status</button>
+                <div id="status-result" class="result-box" style="display: none;"></div>
+            </div>
+        </div>
+        
+        <!-- Memory Tab -->
+        <div id="memory" class="tab-content">
+            <div class="section">
+                <h2>Store Memory</h2>
+                <div class="form-group">
+                    <label>Key:</label>
+                    <input type="text" id="memory-key" placeholder="e.g., 'key_fact'">
+                </div>
+                <div class="form-group">
+                    <label>Value:</label>
+                    <textarea id="memory-value" placeholder="Information to store"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Importance (0.0 - 1.0):</label>
+                    <input type="number" id="memory-importance" value="1.0" min="0" max="1" step="0.1">
+                </div>
+                <button onclick="storeMemory()">Store Memory</button>
+                <div id="store-result" class="result-box" style="display: none;"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Recall Memory</h2>
+                <div class="form-group">
+                    <label>Query:</label>
+                    <input type="text" id="recall-query" placeholder="What to search for">
+                </div>
+                <div class="form-group">
+                    <label>Top K:</label>
+                    <input type="number" id="recall-topk" value="5" min="1" max="20">
+                </div>
+                <button onclick="recallMemory()">Recall Memories</button>
+                <div id="recall-result" class="result-box" style="display: none;"></div>
+            </div>
+            
+            <div class="section">
+                <h2>All Memories</h2>
+                <button onclick="listMemories()">List All Memories</button>
+                <button onclick="clearAllMemories()" style="background: #f44336;">Clear All</button>
+                <div id="list-result" class="result-box" style="display: none;"></div>
+            </div>
+        </div>
+        
+        <!-- Reasoning Tab -->
+        <div id="reasoning" class="tab-content">
+            <div class="section">
+                <h2>Quantum Reasoning</h2>
+                <div class="form-group">
+                    <label>Premises:</label>
+                    <div id="premises-container">
+                        <div class="premise-input">
+                            <input type="text" class="premise" placeholder="Premise 1">
+                            <button class="remove-btn" onclick="removePremise(this)">Remove</button>
+                        </div>
+                    </div>
+                    <button class="add-btn" onclick="addPremise()">Add Premise</button>
+                </div>
+                <div class="form-group">
+                    <label>Conclusion:</label>
+                    <input type="text" id="conclusion" placeholder="Conclusion to test">
+                </div>
+                <button onclick="performReasoning()">Perform Reasoning</button>
+                <div id="reasoning-result" class="result-box" style="display: none;"></div>
+            </div>
+        </div>
+        
+        <!-- Generate Tab -->
+        <div id="generate" class="tab-content">
+            <div class="section">
+                <h2>Generate Response</h2>
+                <div class="form-group">
+                    <label>Prompt:</label>
+                    <textarea id="generate-prompt" placeholder="Enter your prompt here"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="use-memory" checked> Use Memory
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="use-reasoning" checked> Use Reasoning
+                    </label>
+                </div>
+                <button onclick="generateResponse()">Generate Response</button>
+                <div id="generate-result" class="result-box" style="display: none;"></div>
+            </div>
+        </div>
+        
+        <!-- Train Tab -->
+        <div id="train" class="tab-content">
+            <div class="section">
+                <h2>Train System</h2>
+                <div class="form-group">
+                    <label>Training Examples (JSON format):</label>
+                    <textarea id="train-examples" placeholder='[{"input": "What is love?", "output": "Love is patient and kind."}, ...]' style="min-height: 200px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Epochs:</label>
+                    <input type="number" id="train-epochs" value="5" min="1" max="50">
+                </div>
+                <button onclick="trainSystem()">Train System</button>
+                <button onclick="quantumLearn()" style="background: #4caf50;">Quantum Learn</button>
+                <div id="train-result" class="result-box" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = window.location.origin;
+        
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+        
+        async function checkStatus() {
+            const resultDiv = document.getElementById('status-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div> Loading...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/status`);
+                const data = await response.json();
+                
+                let html = '<div class="stats">';
+                html += `<div class="stat-card"><div class="stat-value">${data.num_qubits}</div><div class="stat-label">Qubits</div></div>`;
+                html += `<div class="stat-card"><div class="stat-value">${data.vocab_size}</div><div class="stat-label">Vocabulary</div></div>`;
+                html += `<div class="stat-card"><div class="stat-value">${data.memory_count}</div><div class="stat-label">Memories</div></div>`;
+                html += `<div class="stat-card"><div class="stat-value">${data.tokenizer_initialized ? 'Yes' : 'No'}</div><div class="stat-label">Tokenizer</div></div>`;
+                html += '</div>';
+                
+                html += `<p><strong>Status:</strong> <span class="status-badge ${data.status === 'active' ? 'status-active' : 'status-inactive'}">${data.status}</span></p>`;
+                html += `<p><strong>Model Initialized:</strong> ${data.model_initialized ? 'Yes' : 'No'}</p>`;
+                
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function storeMemory() {
+            const key = document.getElementById('memory-key').value;
+            const value = document.getElementById('memory-value').value;
+            const importance = parseFloat(document.getElementById('memory-importance').value);
+            
+            if (!key || !value) {
+                alert('Please fill in both key and value');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('store-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div> Storing...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/memory/store`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({key, value, importance})
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = `<div class="result-item"><h3>Success!</h3><p>Memory stored with key: ${data.key}</p></div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function recallMemory() {
+            const query = document.getElementById('recall-query').value;
+            const topK = parseInt(document.getElementById('recall-topk').value);
+            
+            if (!query) {
+                alert('Please enter a query');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('recall-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div> Searching...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/memory/recall`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({query, top_k: topK})
+                });
+                const data = await response.json();
+                
+                let html = `<h3>Found ${data.count} memories:</h3>`;
+                data.memories.forEach(mem => {
+                    html += `<div class="result-item">
+                        <h3>${mem.key}</h3>
+                        <p><strong>Text:</strong> ${mem.text}</p>
+                        <p><strong>Similarity:</strong> ${mem.similarity.toFixed(3)}</p>
+                        <p><strong>Score:</strong> ${mem.score.toFixed(3)}</p>
+                    </div>`;
+                });
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function listMemories() {
+            const resultDiv = document.getElementById('list-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div> Loading...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/memory/list?limit=100`);
+                const data = await response.json();
+                
+                let html = `<h3>Total Memories: ${data.total}</h3>`;
+                data.memories.forEach(mem => {
+                    html += `<div class="memory-item">
+                        <span class="memory-key">${mem.key}</span>
+                        <span class="memory-value">${mem.text}</span>
+                        <span>Importance: ${mem.importance}</span>
+                        <button class="delete-btn" onclick="deleteMemory('${mem.key}')">Delete</button>
+                    </div>`;
+                });
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function deleteMemory(key) {
+            if (!confirm(`Delete memory "${key}"?`)) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/memory/${key}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                if (data.success) {
+                    listMemories();
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+        
+        async function clearAllMemories() {
+            if (!confirm('Clear all memories? This cannot be undone.')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/memory`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                alert(`Cleared ${data.memories_cleared} memories`);
+                listMemories();
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+        
+        function addPremise() {
+            const container = document.getElementById('premises-container');
+            const div = document.createElement('div');
+            div.className = 'premise-input';
+            div.innerHTML = `
+                <input type="text" class="premise" placeholder="Premise">
+                <button class="remove-btn" onclick="removePremise(this)">Remove</button>
+            `;
+            container.appendChild(div);
+        }
+        
+        function removePremise(btn) {
+            btn.parentElement.remove();
+        }
+        
+        async function performReasoning() {
+            const premises = Array.from(document.querySelectorAll('.premise')).map(inp => inp.value).filter(p => p);
+            const conclusion = document.getElementById('conclusion').value;
+            
+            if (premises.length === 0 || !conclusion) {
+                alert('Please provide at least one premise and a conclusion');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('reasoning-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div> Reasoning...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/reasoning`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({premises, conclusion})
+                });
+                const data = await response.json();
+                
+                let html = `<div class="result-item">
+                    <h3>Reasoning Result</h3>
+                    <p><strong>Valid:</strong> ${data.valid ? 'Yes' : 'No'}</p>
+                    <p><strong>Confidence:</strong> ${data.confidence.toFixed(3)}</p>
+                    <p><strong>Correlation:</strong> ${data.correlation.toFixed(3)}</p>
+                    <p><strong>Conclusion:</strong> ${data.conclusion}</p>
+                </div>`;
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function generateResponse() {
+            const prompt = document.getElementById('generate-prompt').value;
+            const useMemory = document.getElementById('use-memory').checked;
+            const useReasoning = document.getElementById('use-reasoning').checked;
+            
+            if (!prompt) {
+                alert('Please enter a prompt');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('generate-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div> Generating...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/generate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({prompt, use_memory: useMemory, use_reasoning: useReasoning})
+                });
+                const data = await response.json();
+                
+                let html = `<div class="result-item">
+                    <h3>Response</h3>
+                    <p>${data.response}</p>
+                </div>`;
+                
+                if (data.relevant_memories && data.relevant_memories.length > 0) {
+                    html += `<div class="result-item"><h3>Relevant Memories (${data.relevant_memories.length})</h3>`;
+                    data.relevant_memories.forEach(mem => {
+                        html += `<p><strong>${mem.key}:</strong> ${mem.text}</p>`;
+                    });
+                    html += '</div>';
+                }
+                
+                if (data.reasoning) {
+                    html += `<div class="result-item">
+                        <h3>Reasoning</h3>
+                        <p><strong>Valid:</strong> ${data.reasoning.valid ? 'Yes' : 'No'}</p>
+                        <p><strong>Confidence:</strong> ${data.reasoning.confidence.toFixed(3)}</p>
+                    </div>`;
+                }
+                
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function trainSystem() {
+            const examplesText = document.getElementById('train-examples').value;
+            const epochs = parseInt(document.getElementById('train-epochs').value);
+            
+            let examples;
+            try {
+                examples = JSON.parse(examplesText);
+            } catch (e) {
+                alert('Invalid JSON format');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('train-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div> Training...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/train`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({examples, epochs})
+                });
+                const data = await response.json();
+                
+                let html = `<div class="result-item">
+                    <h3>Training Complete!</h3>
+                    <p><strong>Examples Processed:</strong> ${data.examples_processed}</p>
+                    <p><strong>Efficiency Gain:</strong> ${data.efficiency_gain.toFixed(1)}x</p>
+                    <p>${data.message}</p>
+                </div>`;
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function quantumLearn() {
+            const examplesText = document.getElementById('train-examples').value;
+            const epochs = parseInt(document.getElementById('train-epochs').value);
+            
+            let examples;
+            try {
+                examples = JSON.parse(examplesText);
+            } catch (e) {
+                alert('Invalid JSON format');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('train-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div> Learning...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/quantum-ai/learn`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({examples, epochs})
+                });
+                const data = await response.json();
+                
+                let html = `<div class="result-item">
+                    <h3>Quantum Learning Complete!</h3>
+                    <p><strong>Examples Processed:</strong> ${data.examples_processed}</p>
+                    <p><strong>Classical Iterations:</strong> ${data.classical_iterations}</p>
+                    <p><strong>Quantum Iterations:</strong> ${data.quantum_iterations}</p>
+                    <p><strong>Efficiency Gain:</strong> ${data.efficiency_gain.toFixed(1)}x</p>
+                    <p>${data.message}</p>
+                </div>`;
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Check status on load
+        window.onload = () => checkStatus();
+    </script>
+</body>
+</html>

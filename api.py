@@ -32,6 +32,14 @@ except ImportError:
     BIBLE_CHARACTERS_AVAILABLE = False
     bible_characters_router = None
 
+# Import quantum AI system
+try:
+    from quantum_ai_api import router as quantum_ai_router
+    QUANTUM_AI_AVAILABLE = True
+except ImportError:
+    QUANTUM_AI_AVAILABLE = False
+    quantum_ai_router = None
+
 app = FastAPI(
     title="Bible Commentary Agent API",
     description="AI-powered agent for building comprehensive Bible commentaries",
@@ -63,6 +71,10 @@ if QUANTUM_AVAILABLE and quantum_study_router:
 # Include Bible characters router if available
 if BIBLE_CHARACTERS_AVAILABLE and bible_characters_router:
     app.include_router(bible_characters_router)
+
+# Include quantum AI router if available
+if QUANTUM_AI_AVAILABLE and quantum_ai_router:
+    app.include_router(quantum_ai_router)
 
 
 # Pydantic models
@@ -134,6 +146,13 @@ async def bible_characters_interface():
     if os.path.exists("bible_characters_interface.html"):
         return FileResponse("bible_characters_interface.html")
     raise HTTPException(status_code=404, detail="Bible characters interface not found")
+
+@app.get("/quantum-ai")
+async def quantum_ai_interface():
+    """Serve Quantum AI interface"""
+    if os.path.exists("quantum_ai_interface.html"):
+        return FileResponse("quantum_ai_interface.html")
+    raise HTTPException(status_code=404, detail="Quantum AI interface not found")
 
 
 @app.post("/api/commentary", response_model=CommentaryResponse)

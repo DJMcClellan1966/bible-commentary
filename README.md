@@ -28,9 +28,20 @@ A comprehensive, one-of-a-kind Bible study program that combines AI-powered comm
 - **📈 Statistics**: Track reading progress, time spent, verses read
 - **📊 Dashboard**: Overview of your study journey
 
+### Quantum AI System
+- **🧠 Quantum Memory**: Store and retrieve information using quantum states
+- **🔍 Quantum Reasoning**: Logical inference using quantum circuits
+- **⚡ Quantum Learning**: 500x+ more efficient training than classical methods
+- **💡 Quantum Attention**: Better focus on relevant information
+- **🌐 Semantic Understanding**: Deep semantic comprehension through quantum states
+- **🔗 Entanglement**: Related concepts are quantum-entangled for better connections
+
 ### Web Interfaces
 - **Commentary Interface**: `/` - Simple verse commentary lookup
 - **Bible Study Program**: `/study` - Full-featured study interface
+- **Quantum Study**: `/quantum-study` - Quantum-enhanced Bible study
+- **Bible Characters**: `/bible-characters` - Chat with Bible characters
+- **Quantum AI**: `/quantum-ai` - Full quantum AI system interface
 - **Mobile-Friendly**: Works perfectly on iPad and mobile devices
 
 ## Installation
@@ -77,6 +88,9 @@ The API will be available at `http://localhost:8000`
 
 - `GET /` - Commentary web interface
 - `GET /study` - **Bible Study Program** (full-featured study system)
+- `GET /quantum-study` - Quantum-enhanced Bible study
+- `GET /bible-characters` - Chat with Bible characters
+- `GET /quantum-ai` - **Quantum AI System** (full quantum AI interface)
 - `GET /docs` - API documentation
 
 #### API Endpoints
@@ -102,6 +116,17 @@ The API will be available at `http://localhost:8000`
 - `GET /api/study/word-studies/{word}` - Get word study
 - `GET /api/study/cross-references` - Get cross references
 - `GET /api/study/statistics` - Get reading statistics
+
+**Quantum AI Endpoints:**
+- `GET /api/quantum-ai/status` - Get system status
+- `POST /api/quantum-ai/memory/store` - Store memory
+- `POST /api/quantum-ai/memory/recall` - Recall memories
+- `GET /api/quantum-ai/memory/list` - List all memories
+- `DELETE /api/quantum-ai/memory/{key}` - Delete memory
+- `POST /api/quantum-ai/reasoning` - Perform quantum reasoning
+- `POST /api/quantum-ai/generate` - Generate quantum response
+- `POST /api/quantum-ai/train` - Train the system
+- `POST /api/quantum-ai/learn` - Quantum learning
 
 #### Example API Calls
 
