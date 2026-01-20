@@ -1,0 +1,1449 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "The Mysteries of the Bible: How Divine Mysteries Reveal God's Grand Design",
+      "description": "A comprehensive exploration of 20 biblical mysteries and how they relate to the whole of Scripture",
+      "category": "Theological Studies",
+      "tags": [
+        "mysteries",
+        "theology",
+        "biblical studies",
+        "relationships"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\bible_mysteries_book.md",
+      "original_path": "bible_mysteries_book/bible_mysteries_book.md",
+      "word_count": 3455,
+      "char_count": 22874,
+      "added_date": "2026-01-20T11:32:57.605587",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 2,
+      "title": "Red Letters: How Jesus' Words Reveal the Way to Relationship with God",
+      "description": "Exploring Jesus' sayings from the Gospels and how they relate to the whole Bible and reveal relationships",
+      "category": "Gospel Studies",
+      "tags": [
+        "jesus",
+        "gospels",
+        "red letters",
+        "relationships",
+        "discipleship"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\red_letters_book.md",
+      "original_path": "red_letters_book/red_letters_book.md",
+      "word_count": 5273,
+      "char_count": 32664,
+      "added_date": "2026-01-20T11:32:57.610585",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 3,
+      "title": "The Mysteries of the Bible: How Divine Mysteries Reveal God's Grand Design",
+      "description": "A comprehensive exploration of 20 biblical mysteries and how they relate to the whole of Scripture",
+      "category": "Theological Studies",
+      "tags": [
+        "mysteries",
+        "theology",
+        "biblical studies",
+        "relationships"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\bible_mysteries_book.md",
+      "original_path": "bible_mysteries_book/bible_mysteries_book.md",
+      "word_count": 3455,
+      "char_count": 22874,
+      "added_date": "2026-01-20T11:41:24.139254",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 4,
+      "title": "Red Letters: How Jesus' Words Reveal the Way to Relationship with God",
+      "description": "Exploring Jesus' sayings from the Gospels and how they relate to the whole Bible and reveal relationships",
+      "category": "Gospel Studies",
+      "tags": [
+        "jesus",
+        "gospels",
+        "red letters",
+        "relationships",
+        "discipleship"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\red_letters_book.md",
+      "original_path": "red_letters_book/red_letters_book.md",
+      "word_count": 5273,
+      "char_count": 32664,
+      "added_date": "2026-01-20T11:41:24.141260",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 5,
+      "title": "Genesis: A Bible Study",
+      "description": "Comprehensive study of the book of Genesis. The Beginning - Creation, Fall, and God's Covenant",
+      "category": "Old Testament Studies",
+      "tags": [
+        "genesis",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Genesis_study.md",
+      "original_path": "book_by_book_studies\\Genesis_study.md",
+      "word_count": 124,
+      "char_count": 791,
+      "added_date": "2026-01-20T11:41:24.146011",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 6,
+      "title": "Exodus: A Bible Study",
+      "description": "Comprehensive study of the book of Exodus. Deliverance from Egypt and the Law",
+      "category": "Old Testament Studies",
+      "tags": [
+        "exodus",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Exodus_study.md",
+      "original_path": "book_by_book_studies\\Exodus_study.md",
+      "word_count": 122,
+      "char_count": 773,
+      "added_date": "2026-01-20T11:41:24.146011",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 7,
+      "title": "Leviticus: A Bible Study",
+      "description": "Comprehensive study of the book of Leviticus. Holiness and Worship",
+      "category": "Old Testament Studies",
+      "tags": [
+        "leviticus",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Leviticus_study.md",
+      "original_path": "book_by_book_studies\\Leviticus_study.md",
+      "word_count": 119,
+      "char_count": 765,
+      "added_date": "2026-01-20T11:41:24.156011",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 8,
+      "title": "Numbers: A Bible Study",
+      "description": "Comprehensive study of the book of Numbers. Journey and Testing in the Wilderness",
+      "category": "Old Testament Studies",
+      "tags": [
+        "numbers",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Numbers_study.md",
+      "original_path": "book_by_book_studies\\Numbers_study.md",
+      "word_count": 122,
+      "char_count": 778,
+      "added_date": "2026-01-20T11:41:24.156011",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 9,
+      "title": "Deuteronomy: A Bible Study",
+      "description": "Comprehensive study of the book of Deuteronomy. The Second Law - Reminder and Renewal",
+      "category": "Old Testament Studies",
+      "tags": [
+        "deuteronomy",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Deuteronomy_study.md",
+      "original_path": "book_by_book_studies\\Deuteronomy_study.md",
+      "word_count": 123,
+      "char_count": 786,
+      "added_date": "2026-01-20T11:41:24.161606",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 10,
+      "title": "Joshua: A Bible Study",
+      "description": "Comprehensive study of the book of Joshua. Conquest and Inheritance of the Promised Land",
+      "category": "Old Testament Studies",
+      "tags": [
+        "joshua",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Joshua_study.md",
+      "original_path": "book_by_book_studies\\Joshua_study.md",
+      "word_count": 123,
+      "char_count": 784,
+      "added_date": "2026-01-20T11:41:24.165603",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 11,
+      "title": "Judges: A Bible Study",
+      "description": "Comprehensive study of the book of Judges. Cycles of Sin, Oppression, and Deliverance",
+      "category": "Old Testament Studies",
+      "tags": [
+        "judges",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Judges_study.md",
+      "original_path": "book_by_book_studies\\Judges_study.md",
+      "word_count": 122,
+      "char_count": 781,
+      "added_date": "2026-01-20T11:41:24.170436",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 12,
+      "title": "Ruth: A Bible Study",
+      "description": "Comprehensive study of the book of Ruth. Redemption and Loyalty",
+      "category": "Old Testament Studies",
+      "tags": [
+        "ruth",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Ruth_study.md",
+      "original_path": "book_by_book_studies\\Ruth_study.md",
+      "word_count": 119,
+      "char_count": 756,
+      "added_date": "2026-01-20T11:41:24.174452",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 13,
+      "title": "1 Samuel: A Bible Study",
+      "description": "Comprehensive study of the book of 1 Samuel. The Kingdom Established - Saul and David",
+      "category": "Old Testament Studies",
+      "tags": [
+        "1 samuel",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\1_Samuel_study.md",
+      "original_path": "book_by_book_studies\\1_Samuel_study.md",
+      "word_count": 125,
+      "char_count": 783,
+      "added_date": "2026-01-20T11:41:24.180442",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 14,
+      "title": "2 Samuel: A Bible Study",
+      "description": "Comprehensive study of the book of 2 Samuel. David's Reign and God's Covenant",
+      "category": "Old Testament Studies",
+      "tags": [
+        "2 samuel",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\2_Samuel_study.md",
+      "original_path": "book_by_book_studies\\2_Samuel_study.md",
+      "word_count": 123,
+      "char_count": 775,
+      "added_date": "2026-01-20T11:41:24.183390",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 15,
+      "title": "1 Kings: A Bible Study",
+      "description": "Comprehensive study of the book of 1 Kings. The Divided Kingdom",
+      "category": "Old Testament Studies",
+      "tags": [
+        "1 kings",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\1_Kings_study.md",
+      "original_path": "book_by_book_studies\\1_Kings_study.md",
+      "word_count": 121,
+      "char_count": 760,
+      "added_date": "2026-01-20T11:41:24.189690",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 16,
+      "title": "2 Kings: A Bible Study",
+      "description": "Comprehensive study of the book of 2 Kings. The Fall of Israel and Judah",
+      "category": "Old Testament Studies",
+      "tags": [
+        "2 kings",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\2_Kings_study.md",
+      "original_path": "book_by_book_studies\\2_Kings_study.md",
+      "word_count": 124,
+      "char_count": 769,
+      "added_date": "2026-01-20T11:41:24.197700",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 17,
+      "title": "1 Chronicles: A Bible Study",
+      "description": "Comprehensive study of the book of 1 Chronicles. The History Retold - Genealogy and David",
+      "category": "Old Testament Studies",
+      "tags": [
+        "1 chronicles",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\1_Chronicles_study.md",
+      "original_path": "book_by_book_studies\\1_Chronicles_study.md",
+      "word_count": 125,
+      "char_count": 791,
+      "added_date": "2026-01-20T11:41:24.202976",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 18,
+      "title": "2 Chronicles: A Bible Study",
+      "description": "Comprehensive study of the book of 2 Chronicles. The History Retold - The Kingdom",
+      "category": "Old Testament Studies",
+      "tags": [
+        "2 chronicles",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\2_Chronicles_study.md",
+      "original_path": "book_by_book_studies\\2_Chronicles_study.md",
+      "word_count": 124,
+      "char_count": 783,
+      "added_date": "2026-01-20T11:41:24.206473",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 19,
+      "title": "Ezra: A Bible Study",
+      "description": "Comprehensive study of the book of Ezra. The Return from Exile and Rebuilding",
+      "category": "Old Testament Studies",
+      "tags": [
+        "ezra",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Ezra_study.md",
+      "original_path": "book_by_book_studies\\Ezra_study.md",
+      "word_count": 122,
+      "char_count": 771,
+      "added_date": "2026-01-20T11:41:24.209479",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 20,
+      "title": "Nehemiah: A Bible Study",
+      "description": "Comprehensive study of the book of Nehemiah. Rebuilding the Walls of Jerusalem",
+      "category": "Old Testament Studies",
+      "tags": [
+        "nehemiah",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Nehemiah_study.md",
+      "original_path": "book_by_book_studies\\Nehemiah_study.md",
+      "word_count": 121,
+      "char_count": 776,
+      "added_date": "2026-01-20T11:41:24.216491",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 21,
+      "title": "Esther: A Bible Study",
+      "description": "Comprehensive study of the book of Esther. God's Hidden Hand in Deliverance",
+      "category": "Old Testament Studies",
+      "tags": [
+        "esther",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Esther_study.md",
+      "original_path": "book_by_book_studies\\Esther_study.md",
+      "word_count": 121,
+      "char_count": 770,
+      "added_date": "2026-01-20T11:41:24.219479",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 22,
+      "title": "Job: A Bible Study",
+      "description": "Comprehensive study of the book of Job. Suffering, Faith, and God's Sovereignty",
+      "category": "Old Testament Studies",
+      "tags": [
+        "job",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Job_study.md",
+      "original_path": "book_by_book_studies\\Job_study.md",
+      "word_count": 121,
+      "char_count": 772,
+      "added_date": "2026-01-20T11:41:24.222272",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 23,
+      "title": "Psalms: A Bible Study",
+      "description": "Comprehensive study of the book of Psalms. Songs of the Heart - Worship, Prayer, and Praise",
+      "category": "Old Testament Studies",
+      "tags": [
+        "psalms",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Psalms_study.md",
+      "original_path": "book_by_book_studies\\Psalms_study.md",
+      "word_count": 125,
+      "char_count": 787,
+      "added_date": "2026-01-20T11:41:24.225291",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 24,
+      "title": "Proverbs: A Bible Study",
+      "description": "Comprehensive study of the book of Proverbs. Wisdom for Daily Living",
+      "category": "Old Testament Studies",
+      "tags": [
+        "proverbs",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Proverbs_study.md",
+      "original_path": "book_by_book_studies\\Proverbs_study.md",
+      "word_count": 120,
+      "char_count": 766,
+      "added_date": "2026-01-20T11:41:24.230297",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 25,
+      "title": "Ecclesiastes: A Bible Study",
+      "description": "Comprehensive study of the book of Ecclesiastes. The Meaning of Life Under the Sun",
+      "category": "Old Testament Studies",
+      "tags": [
+        "ecclesiastes",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Ecclesiastes_study.md",
+      "original_path": "book_by_book_studies\\Ecclesiastes_study.md",
+      "word_count": 123,
+      "char_count": 783,
+      "added_date": "2026-01-20T11:41:24.233292",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 26,
+      "title": "Song of Songs: A Bible Study",
+      "description": "Comprehensive study of the book of Song of Songs. Love and Intimacy",
+      "category": "Old Testament Studies",
+      "tags": [
+        "song of songs",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Song_of_Songs_study.md",
+      "original_path": "book_by_book_studies\\Song_of_Songs_study.md",
+      "word_count": 123,
+      "char_count": 769,
+      "added_date": "2026-01-20T11:41:24.235291",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 27,
+      "title": "Isaiah: A Bible Study",
+      "description": "Comprehensive study of the book of Isaiah. The Prophet of Hope and the Messiah",
+      "category": "Old Testament Studies",
+      "tags": [
+        "isaiah",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Isaiah_study.md",
+      "original_path": "book_by_book_studies\\Isaiah_study.md",
+      "word_count": 123,
+      "char_count": 774,
+      "added_date": "2026-01-20T11:41:24.238805",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 28,
+      "title": "Jeremiah: A Bible Study",
+      "description": "Comprehensive study of the book of Jeremiah. Judgment and Restoration",
+      "category": "Old Testament Studies",
+      "tags": [
+        "jeremiah",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Jeremiah_study.md",
+      "original_path": "book_by_book_studies\\Jeremiah_study.md",
+      "word_count": 119,
+      "char_count": 767,
+      "added_date": "2026-01-20T11:41:24.241829",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 29,
+      "title": "Lamentations: A Bible Study",
+      "description": "Comprehensive study of the book of Lamentations. Grief and Hope in Destruction",
+      "category": "Old Testament Studies",
+      "tags": [
+        "lamentations",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Lamentations_study.md",
+      "original_path": "book_by_book_studies\\Lamentations_study.md",
+      "word_count": 121,
+      "char_count": 779,
+      "added_date": "2026-01-20T11:41:24.247292",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 30,
+      "title": "Ezekiel: A Bible Study",
+      "description": "Comprehensive study of the book of Ezekiel. Visions of Judgment and Restoration",
+      "category": "Old Testament Studies",
+      "tags": [
+        "ezekiel",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Ezekiel_study.md",
+      "original_path": "book_by_book_studies\\Ezekiel_study.md",
+      "word_count": 121,
+      "char_count": 776,
+      "added_date": "2026-01-20T11:41:24.250570",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 31,
+      "title": "Daniel: A Bible Study",
+      "description": "Comprehensive study of the book of Daniel. Faith in Exile and Prophecy",
+      "category": "Old Testament Studies",
+      "tags": [
+        "daniel",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Daniel_study.md",
+      "original_path": "book_by_book_studies\\Daniel_study.md",
+      "word_count": 121,
+      "char_count": 766,
+      "added_date": "2026-01-20T11:41:24.254568",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 32,
+      "title": "Hosea: A Bible Study",
+      "description": "Comprehensive study of the book of Hosea. God's Unfaithful People and Unfailing Love",
+      "category": "Old Testament Studies",
+      "tags": [
+        "hosea",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Hosea_study.md",
+      "original_path": "book_by_book_studies\\Hosea_study.md",
+      "word_count": 122,
+      "char_count": 779,
+      "added_date": "2026-01-20T11:41:24.256587",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 33,
+      "title": "Joel: A Bible Study",
+      "description": "Comprehensive study of the book of Joel. The Day of the Lord",
+      "category": "Old Testament Studies",
+      "tags": [
+        "joel",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Joel_study.md",
+      "original_path": "book_by_book_studies\\Joel_study.md",
+      "word_count": 121,
+      "char_count": 753,
+      "added_date": "2026-01-20T11:41:24.259606",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 34,
+      "title": "Amos: A Bible Study",
+      "description": "Comprehensive study of the book of Amos. Justice and Righteousness",
+      "category": "Old Testament Studies",
+      "tags": [
+        "amos",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Amos_study.md",
+      "original_path": "book_by_book_studies\\Amos_study.md",
+      "word_count": 119,
+      "char_count": 760,
+      "added_date": "2026-01-20T11:41:24.267597",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 35,
+      "title": "Obadiah: A Bible Study",
+      "description": "Comprehensive study of the book of Obadiah. Judgment on Edom",
+      "category": "Old Testament Studies",
+      "tags": [
+        "obadiah",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Obadiah_study.md",
+      "original_path": "book_by_book_studies\\Obadiah_study.md",
+      "word_count": 119,
+      "char_count": 756,
+      "added_date": "2026-01-20T11:41:24.269593",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 36,
+      "title": "Jonah: A Bible Study",
+      "description": "Comprehensive study of the book of Jonah. God's Mercy to All Nations",
+      "category": "Old Testament Studies",
+      "tags": [
+        "jonah",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Jonah_study.md",
+      "original_path": "book_by_book_studies\\Jonah_study.md",
+      "word_count": 121,
+      "char_count": 763,
+      "added_date": "2026-01-20T11:41:24.271593",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 37,
+      "title": "Micah: A Bible Study",
+      "description": "Comprehensive study of the book of Micah. Justice, Mercy, and the Coming Messiah",
+      "category": "Old Testament Studies",
+      "tags": [
+        "micah",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Micah_study.md",
+      "original_path": "book_by_book_studies\\Micah_study.md",
+      "word_count": 122,
+      "char_count": 775,
+      "added_date": "2026-01-20T11:41:24.273595",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 38,
+      "title": "Nahum: A Bible Study",
+      "description": "Comprehensive study of the book of Nahum. Judgment on Nineveh",
+      "category": "Old Testament Studies",
+      "tags": [
+        "nahum",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Nahum_study.md",
+      "original_path": "book_by_book_studies\\Nahum_study.md",
+      "word_count": 119,
+      "char_count": 755,
+      "added_date": "2026-01-20T11:41:24.280226",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 39,
+      "title": "Habakkuk: A Bible Study",
+      "description": "Comprehensive study of the book of Habakkuk. Faith in Times of Trouble",
+      "category": "Old Testament Studies",
+      "tags": [
+        "habakkuk",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Habakkuk_study.md",
+      "original_path": "book_by_book_studies\\Habakkuk_study.md",
+      "word_count": 121,
+      "char_count": 768,
+      "added_date": "2026-01-20T11:41:24.286526",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 40,
+      "title": "Zephaniah: A Bible Study",
+      "description": "Comprehensive study of the book of Zephaniah. The Day of the Lord's Wrath",
+      "category": "Old Testament Studies",
+      "tags": [
+        "zephaniah",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Zephaniah_study.md",
+      "original_path": "book_by_book_studies\\Zephaniah_study.md",
+      "word_count": 122,
+      "char_count": 772,
+      "added_date": "2026-01-20T11:41:24.292055",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 41,
+      "title": "Haggai: A Bible Study",
+      "description": "Comprehensive study of the book of Haggai. Rebuilding the Temple",
+      "category": "Old Testament Studies",
+      "tags": [
+        "haggai",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Haggai_study.md",
+      "original_path": "book_by_book_studies\\Haggai_study.md",
+      "word_count": 119,
+      "char_count": 759,
+      "added_date": "2026-01-20T11:41:24.298061",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 42,
+      "title": "Zechariah: A Bible Study",
+      "description": "Comprehensive study of the book of Zechariah. Visions of Restoration and the Coming King",
+      "category": "Old Testament Studies",
+      "tags": [
+        "zechariah",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Zechariah_study.md",
+      "original_path": "book_by_book_studies\\Zechariah_study.md",
+      "word_count": 123,
+      "char_count": 787,
+      "added_date": "2026-01-20T11:41:24.302413",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 43,
+      "title": "Malachi: A Bible Study",
+      "description": "Comprehensive study of the book of Malachi. The Last Prophet - Preparing for the Messiah",
+      "category": "Old Testament Studies",
+      "tags": [
+        "malachi",
+        "old",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Malachi_study.md",
+      "original_path": "book_by_book_studies\\Malachi_study.md",
+      "word_count": 124,
+      "char_count": 784,
+      "added_date": "2026-01-20T11:41:24.307926",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 44,
+      "title": "Matthew: A Bible Study",
+      "description": "Comprehensive study of the book of Matthew. The Kingdom Gospel - Jesus as King",
+      "category": "New Testament Studies",
+      "tags": [
+        "matthew",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Matthew_study.md",
+      "original_path": "book_by_book_studies\\Matthew_study.md",
+      "word_count": 123,
+      "char_count": 775,
+      "added_date": "2026-01-20T11:41:24.314926",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 45,
+      "title": "Mark: A Bible Study",
+      "description": "Comprehensive study of the book of Mark. The Action Gospel - Jesus as Servant",
+      "category": "New Testament Studies",
+      "tags": [
+        "mark",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Mark_study.md",
+      "original_path": "book_by_book_studies\\Mark_study.md",
+      "word_count": 123,
+      "char_count": 771,
+      "added_date": "2026-01-20T11:41:24.318926",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 46,
+      "title": "Luke: A Bible Study",
+      "description": "Comprehensive study of the book of Luke. The Universal Gospel - Jesus as Savior of All",
+      "category": "New Testament Studies",
+      "tags": [
+        "luke",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Luke_study.md",
+      "original_path": "book_by_book_studies\\Luke_study.md",
+      "word_count": 125,
+      "char_count": 780,
+      "added_date": "2026-01-20T11:41:24.321924",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 47,
+      "title": "John: A Bible Study",
+      "description": "Comprehensive study of the book of John. The Gospel of Life - Jesus as God",
+      "category": "New Testament Studies",
+      "tags": [
+        "john",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\John_study.md",
+      "original_path": "book_by_book_studies\\John_study.md",
+      "word_count": 124,
+      "char_count": 768,
+      "added_date": "2026-01-20T11:41:24.324924",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 48,
+      "title": "Acts: A Bible Study",
+      "description": "Comprehensive study of the book of Acts. The Early Church and the Spread of the Gospel",
+      "category": "New Testament Studies",
+      "tags": [
+        "acts",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Acts_study.md",
+      "original_path": "book_by_book_studies\\Acts_study.md",
+      "word_count": 125,
+      "char_count": 780,
+      "added_date": "2026-01-20T11:41:24.329283",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 49,
+      "title": "Romans: A Bible Study",
+      "description": "Comprehensive study of the book of Romans. The Gospel Explained - Righteousness by Faith",
+      "category": "New Testament Studies",
+      "tags": [
+        "romans",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Romans_study.md",
+      "original_path": "book_by_book_studies\\Romans_study.md",
+      "word_count": 123,
+      "char_count": 784,
+      "added_date": "2026-01-20T11:41:24.335284",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 50,
+      "title": "1 Corinthians: A Bible Study",
+      "description": "Comprehensive study of the book of 1 Corinthians. Church Life and Unity",
+      "category": "New Testament Studies",
+      "tags": [
+        "1 corinthians",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\1_Corinthians_study.md",
+      "original_path": "book_by_book_studies\\1_Corinthians_study.md",
+      "word_count": 122,
+      "char_count": 774,
+      "added_date": "2026-01-20T11:41:24.338276",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 51,
+      "title": "2 Corinthians: A Bible Study",
+      "description": "Comprehensive study of the book of 2 Corinthians. Ministry, Suffering, and Grace",
+      "category": "New Testament Studies",
+      "tags": [
+        "2 corinthians",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\2_Corinthians_study.md",
+      "original_path": "book_by_book_studies\\2_Corinthians_study.md",
+      "word_count": 122,
+      "char_count": 783,
+      "added_date": "2026-01-20T11:41:24.340277",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 52,
+      "title": "Galatians: A Bible Study",
+      "description": "Comprehensive study of the book of Galatians. Freedom in Christ - Justification by Faith",
+      "category": "New Testament Studies",
+      "tags": [
+        "galatians",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Galatians_study.md",
+      "original_path": "book_by_book_studies\\Galatians_study.md",
+      "word_count": 123,
+      "char_count": 787,
+      "added_date": "2026-01-20T11:41:24.345363",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 53,
+      "title": "Ephesians: A Bible Study",
+      "description": "Comprehensive study of the book of Ephesians. The Church's Identity and Unity in Christ",
+      "category": "New Testament Studies",
+      "tags": [
+        "ephesians",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Ephesians_study.md",
+      "original_path": "book_by_book_studies\\Ephesians_study.md",
+      "word_count": 123,
+      "char_count": 786,
+      "added_date": "2026-01-20T11:41:24.348834",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 54,
+      "title": "Philippians: A Bible Study",
+      "description": "Comprehensive study of the book of Philippians. Joy in Christ Despite Circumstances",
+      "category": "New Testament Studies",
+      "tags": [
+        "philippians",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Philippians_study.md",
+      "original_path": "book_by_book_studies\\Philippians_study.md",
+      "word_count": 121,
+      "char_count": 784,
+      "added_date": "2026-01-20T11:41:24.350833",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 55,
+      "title": "Colossians: A Bible Study",
+      "description": "Comprehensive study of the book of Colossians. The Supremacy of Christ",
+      "category": "New Testament Studies",
+      "tags": [
+        "colossians",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Colossians_study.md",
+      "original_path": "book_by_book_studies\\Colossians_study.md",
+      "word_count": 120,
+      "char_count": 770,
+      "added_date": "2026-01-20T11:41:24.354091",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 56,
+      "title": "1 Thessalonians: A Bible Study",
+      "description": "Comprehensive study of the book of 1 Thessalonians. The Second Coming and Holy Living",
+      "category": "New Testament Studies",
+      "tags": [
+        "1 thessalonians",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\1_Thessalonians_study.md",
+      "original_path": "book_by_book_studies\\1_Thessalonians_study.md",
+      "word_count": 124,
+      "char_count": 790,
+      "added_date": "2026-01-20T11:41:24.357119",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 57,
+      "title": "2 Thessalonians: A Bible Study",
+      "description": "Comprehensive study of the book of 2 Thessalonians. The Day of the Lord and Perseverance",
+      "category": "New Testament Studies",
+      "tags": [
+        "2 thessalonians",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\2_Thessalonians_study.md",
+      "original_path": "book_by_book_studies\\2_Thessalonians_study.md",
+      "word_count": 125,
+      "char_count": 793,
+      "added_date": "2026-01-20T11:41:24.362132",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 58,
+      "title": "1 Timothy: A Bible Study",
+      "description": "Comprehensive study of the book of 1 Timothy. Pastoral Leadership and Sound Doctrine",
+      "category": "New Testament Studies",
+      "tags": [
+        "1 timothy",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\1_Timothy_study.md",
+      "original_path": "book_by_book_studies\\1_Timothy_study.md",
+      "word_count": 123,
+      "char_count": 783,
+      "added_date": "2026-01-20T11:41:24.366126",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 59,
+      "title": "2 Timothy: A Bible Study",
+      "description": "Comprehensive study of the book of 2 Timothy. Endurance and Faithfulness in Ministry",
+      "category": "New Testament Studies",
+      "tags": [
+        "2 timothy",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\2_Timothy_study.md",
+      "original_path": "book_by_book_studies\\2_Timothy_study.md",
+      "word_count": 123,
+      "char_count": 783,
+      "added_date": "2026-01-20T11:41:24.369127",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 60,
+      "title": "Titus: A Bible Study",
+      "description": "Comprehensive study of the book of Titus. Sound Doctrine and Good Works",
+      "category": "New Testament Studies",
+      "tags": [
+        "titus",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Titus_study.md",
+      "original_path": "book_by_book_studies\\Titus_study.md",
+      "word_count": 121,
+      "char_count": 766,
+      "added_date": "2026-01-20T11:41:24.371126",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 61,
+      "title": "Philemon: A Bible Study",
+      "description": "Comprehensive study of the book of Philemon. Forgiveness and Reconciliation",
+      "category": "New Testament Studies",
+      "tags": [
+        "philemon",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Philemon_study.md",
+      "original_path": "book_by_book_studies\\Philemon_study.md",
+      "word_count": 119,
+      "char_count": 772,
+      "added_date": "2026-01-20T11:41:24.374126",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 62,
+      "title": "Hebrews: A Bible Study",
+      "description": "Comprehensive study of the book of Hebrews. The Superiority of Christ and the New Covenant",
+      "category": "New Testament Studies",
+      "tags": [
+        "hebrews",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Hebrews_study.md",
+      "original_path": "book_by_book_studies\\Hebrews_study.md",
+      "word_count": 124,
+      "char_count": 787,
+      "added_date": "2026-01-20T11:41:24.377023",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 63,
+      "title": "James: A Bible Study",
+      "description": "Comprehensive study of the book of James. Faith in Action - Practical Christianity",
+      "category": "New Testament Studies",
+      "tags": [
+        "james",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\James_study.md",
+      "original_path": "book_by_book_studies\\James_study.md",
+      "word_count": 122,
+      "char_count": 777,
+      "added_date": "2026-01-20T11:41:24.379849",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 64,
+      "title": "1 Peter: A Bible Study",
+      "description": "Comprehensive study of the book of 1 Peter. Living as Exiles - Hope in Suffering",
+      "category": "New Testament Studies",
+      "tags": [
+        "1 peter",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\1_Peter_study.md",
+      "original_path": "book_by_book_studies\\1_Peter_study.md",
+      "word_count": 125,
+      "char_count": 777,
+      "added_date": "2026-01-20T11:41:24.382764",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 65,
+      "title": "2 Peter: A Bible Study",
+      "description": "Comprehensive study of the book of 2 Peter. False Teachers and the Day of the Lord",
+      "category": "New Testament Studies",
+      "tags": [
+        "2 peter",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\2_Peter_study.md",
+      "original_path": "book_by_book_studies\\2_Peter_study.md",
+      "word_count": 126,
+      "char_count": 779,
+      "added_date": "2026-01-20T11:41:24.382764",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 66,
+      "title": "1 John: A Bible Study",
+      "description": "Comprehensive study of the book of 1 John. Love, Truth, and Assurance",
+      "category": "New Testament Studies",
+      "tags": [
+        "1 john",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\1_John_study.md",
+      "original_path": "book_by_book_studies\\1_John_study.md",
+      "word_count": 122,
+      "char_count": 765,
+      "added_date": "2026-01-20T11:41:24.382764",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 67,
+      "title": "2 John: A Bible Study",
+      "description": "Comprehensive study of the book of 2 John. Walking in Truth and Love",
+      "category": "New Testament Studies",
+      "tags": [
+        "2 john",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\2_John_study.md",
+      "original_path": "book_by_book_studies\\2_John_study.md",
+      "word_count": 123,
+      "char_count": 763,
+      "added_date": "2026-01-20T11:41:24.390537",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 68,
+      "title": "3 John: A Bible Study",
+      "description": "Comprehensive study of the book of 3 John. Hospitality and Support for Ministry",
+      "category": "New Testament Studies",
+      "tags": [
+        "3 john",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\3_John_study.md",
+      "original_path": "book_by_book_studies\\3_John_study.md",
+      "word_count": 123,
+      "char_count": 774,
+      "added_date": "2026-01-20T11:41:24.397248",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 69,
+      "title": "Jude: A Bible Study",
+      "description": "Comprehensive study of the book of Jude. Contending for the Faith",
+      "category": "New Testament Studies",
+      "tags": [
+        "jude",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Jude_study.md",
+      "original_path": "book_by_book_studies\\Jude_study.md",
+      "word_count": 120,
+      "char_count": 758,
+      "added_date": "2026-01-20T11:41:24.400246",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 70,
+      "title": "Revelation: A Bible Study",
+      "description": "Comprehensive study of the book of Revelation. The End and the Beginning - Victory in Christ",
+      "category": "New Testament Studies",
+      "tags": [
+        "revelation",
+        "new",
+        "book study",
+        "bible study"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\Revelation_study.md",
+      "original_path": "book_by_book_studies\\Revelation_study.md",
+      "word_count": 125,
+      "char_count": 792,
+      "added_date": "2026-01-20T11:41:24.402246",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 71,
+      "title": "The Mysteries of the Bible: How Divine Mysteries Reveal God's Grand Design",
+      "description": "A comprehensive exploration of 20 biblical mysteries and how they relate to the whole of Scripture",
+      "category": "Theological Studies",
+      "tags": [
+        "mysteries",
+        "theology",
+        "biblical studies",
+        "relationships"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\bible_mysteries_book.md",
+      "original_path": "bible_mysteries_book/bible_mysteries_book.md",
+      "word_count": 3455,
+      "char_count": 22874,
+      "added_date": "2026-01-20T11:42:48.872703",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 72,
+      "title": "Red Letters: How Jesus' Words Reveal the Way to Relationship with God",
+      "description": "Exploring Jesus' sayings from the Gospels and how they relate to the whole Bible and reveal relationships",
+      "category": "Gospel Studies",
+      "tags": [
+        "jesus",
+        "gospels",
+        "red letters",
+        "relationships",
+        "discipleship"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\red_letters_book.md",
+      "original_path": "red_letters_book/red_letters_book.md",
+      "word_count": 5273,
+      "char_count": 32664,
+      "added_date": "2026-01-20T11:42:48.880541",
+      "last_read": null,
+      "read_count": 0
+    }
+  ],
+  "last_updated": "2026-01-20T11:42:48.880541",
+  "total_books": 72
+}

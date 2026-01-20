@@ -1,0 +1,36 @@
+{
+  "started": "2026-01-20T11:46:42.319289",
+  "current_theme": "God's Character",
+  "discoveries": [
+    {
+      "verse": {
+        "reference": "John 3:16",
+        "text": "",
+        "why": "A beautiful starting point"
+      },
+      "theme": "God's Character",
+      "insight": "Write a brief, personal insight about this Bible verse that helps someone build relationship with God.\n\nVerse: John 3:16 - \nContext: Your journey begins here\n\nWrite as if you're a friend helping them discover something beautiful about God.\nKeep it conversational, warm, and focused on relationship - not just information.\nMake it feel like a discovery, not a lesson.\n2-3 sentences max.",
+      "cross_references": [],
+      "discovered_at": "2026-01-20T11:46:42.319289",
+      "connections_found": 0
+    }
+  ],
+  "conversations": [],
+  "personal_verses": [],
+  "journey_path": [
+    {
+      "date": "2026-01-20T11:46:42.319289",
+      "type": "start",
+      "verse": "John 3:16",
+      "theme": "God's Character"
+    }
+  ],
+  "relationship_milestones": [],
+  "current_question": null,
+  "life_situations": [
+    {
+      "date": "2026-01-20T11:46:42.319289",
+      "situation": "I want to know God better"
+    }
+  ]
+}

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Bible - Deep Theological Insights</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .verse-input {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .verse-input input {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        .verse-input button {
+            padding: 15px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .thinker-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .thinker-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .thinker-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-color: #1e3c72;
+        }
+
+        .thinker-card.selected {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border-color: #1e3c72;
+        }
+
+        .thinker-card h4 {
+            margin-bottom: 5px;
+        }
+
+        .thinker-card .tradition {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .verse-display {
+            background: #f8f9fa;
+            border-left: 4px solid #1e3c72;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .verse-reference {
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .verse-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            font-style: italic;
+        }
+
+        .insights-container {
+            margin: 30px 0;
+        }
+
+        .insight-card {
+            background: white;
+            border-left: 4px solid #2a5298;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .insight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .thinker-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        .tradition-badge {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+
+        .insight-text {
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.05em;
+            margin: 15px 0;
+        }
+
+        .synthesis {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe0b2 100%);
+            border-left: 4px solid #ff9800;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+
+        .synthesis h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+
+        .synthesis-text {
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .comparison-mode {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: #2a5298;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #1e3c72;
+            font-size: 1.2em;
+        }
+
+        .thinker-themes {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .theme-tag {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 10px;
+            border-radius: 15px;
+            margin: 3px;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📖 Understanding Bible</h1>
+            <p>Deep Theological Insights from Great Thinkers</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Verse Input -->
+            <div class="verse-input">
+                <input type="text" id="book-input" placeholder="Book (e.g., John)" value="John">
+                <input type="number" id="chapter-input" placeholder="Chapter" value="3" min="1">
+                <input type="number" id="verse-input" placeholder="Verse" value="16" min="1">
+                <button onclick="getUnderstanding()">Get Understanding</button>
+            </div>
+
+            <!-- Thinker Selector -->
+            <div>
+                <h3>Select Thinkers (or leave all selected for all perspectives):</h3>
+                <div class="thinker-selector" id="thinker-selector">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Verse Display -->
+            <div id="verse-display"></div>
+
+            <!-- Insights -->
+            <div id="insights-container" class="insights-container"></div>
+
+            <!-- Synthesis -->
+            <div id="synthesis-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+        const THINKERS = {
+            "Aquinas": "Thomas Aquinas",
+            "Benedict": "Pope Benedict XVI",
+            "Keller": "Tim Keller",
+            "Augustine": "Augustine of Hippo",
+            "Luther": "Martin Luther",
+            "Calvin": "John Calvin",
+            "Lewis": "C.S. Lewis",
+            "Bonhoeffer": "Dietrich Bonhoeffer",
+            "Barth": "Karl Barth",
+            "Wright": "N.T. Wright"
+        };
+
+        let selectedThinkers = Object.keys(THINKERS);
+
+        // Initialize thinker selector
+        function initThinkerSelector() {
+            const selector = document.getElementById('thinker-selector');
+            Object.keys(THINKERS).forEach(key => {
+                const card = document.createElement('div');
+                card.className = 'thinker-card selected';
+                card.dataset.thinker = key;
+                card.innerHTML = `
+                    <h4>${THINKERS[key]}</h4>
+                    <div class="tradition">Click to toggle</div>
+                `;
+                card.onclick = () => toggleThinker(key, card);
+                selector.appendChild(card);
+            });
+        }
+
+        function toggleThinker(key, card) {
+            if (selectedThinkers.includes(key)) {
+                selectedThinkers = selectedThinkers.filter(t => t !== key);
+                card.classList.remove('selected');
+            } else {
+                selectedThinkers.push(key);
+                card.classList.add('selected');
+            }
+        }
+
+        async function getUnderstanding() {
+            const book = document.getElementById('book-input').value.trim();
+            const chapter = parseInt(document.getElementById('chapter-input').value);
+            const verse = parseInt(document.getElementById('verse-input').value);
+
+            if (!book || !chapter || !verse) {
+                alert('Please enter book, chapter, and verse');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('verse-display').innerHTML = '<div class="loading">Loading verse...</div>';
+            document.getElementById('insights-container').innerHTML = '<div class="loading">Gathering insights from great thinkers...</div>';
+            document.getElementById('synthesis-container').innerHTML = '';
+
+            try {
+                // Get verse
+                const verseResponse = await fetch(`${API_BASE}/api/verse/${encodeURIComponent(book)}/${chapter}/${verse}`);
+                const verseData = await verseResponse.json();
+
+                // Display verse
+                document.getElementById('verse-display').innerHTML = `
+                    <div class="verse-display">
+                        <div class="verse-reference">${verseData.reference}</div>
+                        <div class="verse-text">${verseData.text}</div>
+                    </div>
+                `;
+
+                // Get understanding (for now, use search and generate insights client-side)
+                // In production, this would call /api/understanding endpoint
+                generateInsights(book, chapter, verse, verseData.text);
+
+            } catch (error) {
+                document.getElementById('verse-display').innerHTML = `<div class="insight-card"><p>Error: ${error.message}</p></div>`;
+            }
+        }
+
+        async function generateInsights(book, chapter, verse, verseText) {
+            // For now, show message about generating insights
+            // In production, this would call the understanding API
+            document.getElementById('insights-container').innerHTML = `
+                <div class="insight-card">
+                    <h3>Deep Theological Insights</h3>
+                    <p>Gathering insights from ${selectedThinkers.length} great thinkers...</p>
+                    <p style="margin-top: 15px; color: #666;">
+                        This feature will show how thinkers like Aquinas, Pope Benedict, Tim Keller, 
+                        and others understand this verse. Each perspective reveals deep meaning that 
+                        might take a lifetime to discover on your own.
+                    </p>
+                    <p style="margin-top: 15px; font-style: italic; color: #1e3c72;">
+                        "The insights from great theological minds help us see Scripture's depth 
+                        and richness in ways we might never discover alone."
+                    </p>
+                </div>
+            `;
+
+            // Get cross-references for context
+            try {
+                const crossRefResponse = await fetch(`${API_BASE}/api/cross-references/${encodeURIComponent(book)}/${chapter}/${verse}?top_k=5`);
+                const crossRefData = await crossRefResponse.json();
+
+                if (crossRefData.cross_references && crossRefData.cross_references.length > 0) {
+                    let html = '<div class="insight-card"><h3>Related Verses (Context)</h3>';
+                    crossRefData.cross_references.forEach(ref => {
+                        html += `<div style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">`;
+                        html += `<strong>${ref.reference}</strong>: ${ref.text.substring(0, 150)}...`;
+                        html += `</div>`;
+                    });
+                    html += '</div>';
+                    document.getElementById('insights-container').innerHTML += html;
+                }
+            } catch (e) {
+                console.log('Could not load cross-references:', e);
+            }
+
+            // Show synthesis placeholder
+            document.getElementById('synthesis-container').innerHTML = `
+                <div class="synthesis">
+                    <h3>Synthesis: The Deep Meaning</h3>
+                    <div class="synthesis-text">
+                        When great theological minds like ${selectedThinkers.map(k => THINKERS[k]).slice(0, 3).join(', ')} 
+                        examine this verse, they find profound meaning that goes beyond surface reading. 
+                        Their insights reveal the depth and richness of Scripture, showing how God's Word 
+                        speaks to the deepest questions of the human heart.
+                    </div>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9em;">
+                        <em>Note: Full AI-generated insights from each thinker will be available when the 
+                        understanding API endpoint is fully implemented.</em>
+                    </p>
+                </div>
+            `;
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            initThinkerSelector();
+        });
+    </script>
+</body>
+</html>

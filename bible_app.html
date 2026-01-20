@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Study App - AI-Powered Cross-References</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .verse-reader {
+            grid-column: 1 / -1;
+        }
+
+        .verse-display {
+            background: white;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .verse-reference {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .verse-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .cross-refs {
+            margin-top: 20px;
+        }
+
+        .cross-ref-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid #764ba2;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cross-ref-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .cross-ref-ref {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .cross-ref-summary {
+            color: #764ba2;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .cross-ref-text {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .commentary {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .commentary h3 {
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+
+        .commentary-text {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-box button {
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #764ba2;
+        }
+
+        .search-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid #667eea;
+        }
+
+        .search-result-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .verse-input {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .verse-input input, .verse-input select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .verse-input button {
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #c62828;
+        }
+
+        .version-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .version-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .version-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .version-btn:hover {
+            background: #764ba2;
+            border-color: #764ba2;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📖 Bible Study App</h1>
+            <p>AI-Powered Cross-References & Commentary</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Verse Reader Section -->
+            <div class="section verse-reader">
+                <h2>Verse Reader</h2>
+                
+                <div class="verse-input">
+                    <input type="text" id="book-input" placeholder="Book (e.g., John)" value="John">
+                    <input type="number" id="chapter-input" placeholder="Chapter" value="3" min="1">
+                    <input type="number" id="verse-input" placeholder="Verse" value="16" min="1">
+                    <button onclick="loadVerse()">Load Verse</button>
+                </div>
+
+                <div class="version-selector">
+                    <button class="version-btn active" onclick="selectVersion('asv')">ASV</button>
+                    <button class="version-btn" onclick="selectVersion('engDBY')">Darby</button>
+                    <button class="version-btn" onclick="selectVersion('englyt')">YLT</button>
+                </div>
+
+                <div id="verse-display"></div>
+                <div id="commentary-display"></div>
+                <div id="cross-refs-display"></div>
+            </div>
+
+            <!-- Search Section -->
+            <div class="section">
+                <h2>🔍 Semantic Search</h2>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search by meaning (e.g., 'God's love for humanity')" onkeypress="if(event.key==='Enter') searchVerses()">
+                    <button onclick="searchVerses()">Search</button>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+        let currentVersion = 'asv';
+
+        function selectVersion(version) {
+            currentVersion = version;
+            document.querySelectorAll('.version-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            loadVerse(); // Reload current verse with new version
+        }
+
+        async function loadVerse() {
+            const book = document.getElementById('book-input').value.trim();
+            const chapter = parseInt(document.getElementById('chapter-input').value);
+            const verse = parseInt(document.getElementById('verse-input').value);
+
+            if (!book || !chapter || !verse) {
+                showError('Please enter book, chapter, and verse');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('verse-display').innerHTML = '<div class="loading">Loading verse...</div>';
+            document.getElementById('commentary-display').innerHTML = '';
+            document.getElementById('cross-refs-display').innerHTML = '';
+
+            try {
+                // Load verse
+                const verseResponse = await fetch(`${API_BASE}/api/verse/${encodeURIComponent(book)}/${chapter}/${verse}?version=${currentVersion}`);
+                if (!verseResponse.ok) {
+                    throw new Error('Verse not found');
+                }
+                const verseData = await verseResponse.json();
+
+                // Display verse
+                document.getElementById('verse-display').innerHTML = `
+                    <div class="verse-display">
+                        <div class="verse-reference">${verseData.reference}</div>
+                        <div class="verse-text">${verseData.text}</div>
+                    </div>
+                `;
+
+                // Load commentary
+                loadCommentary(book, chapter, verse);
+
+                // Load cross-references
+                loadCrossReferences(book, chapter, verse);
+
+            } catch (error) {
+                document.getElementById('verse-display').innerHTML = `
+                    <div class="error">Error: ${error.message}</div>
+                `;
+            }
+        }
+
+        async function loadCommentary(book, chapter, verse) {
+            document.getElementById('commentary-display').innerHTML = '<div class="loading">Generating commentary...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/commentary/${encodeURIComponent(book)}/${chapter}/${verse}?version=${currentVersion}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('commentary-display').innerHTML = `
+                        <div class="commentary">
+                            <h3>💭 AI Commentary</h3>
+                            <div class="commentary-text">${data.commentary}</div>
+                            <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                                Confidence: ${(data.confidence * 100).toFixed(0)}% | 
+                                Safe: ${data.is_safe ? '✓' : '✗'}
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('commentary-display').innerHTML = `
+                    <div class="error">Could not generate commentary: ${error.message}</div>
+                `;
+            }
+        }
+
+        async function loadCrossReferences(book, chapter, verse) {
+            document.getElementById('cross-refs-display').innerHTML = '<div class="loading">Finding cross-references...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/cross-references/${encodeURIComponent(book)}/${chapter}/${verse}?top_k=10&version=${currentVersion}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data.cross_references && data.cross_references.length > 0) {
+                        let html = '<div class="cross-refs"><h3>🔗 Cross-References</h3>';
+                        data.cross_references.forEach(ref => {
+                            html += `
+                                <div class="cross-ref-item" onclick="loadVerseByRef('${ref.reference}')">
+                                    <div class="cross-ref-ref">${ref.reference}</div>
+                                    <div class="cross-ref-summary">${ref.summary || 'Related verse'}</div>
+                                    <div class="cross-ref-text">${ref.text.substring(0, 100)}${ref.text.length > 100 ? '...' : ''}</div>
+                                    <div style="margin-top: 5px; font-size: 0.85em; color: #999;">
+                                        Similarity: ${(ref.similarity * 100).toFixed(0)}%
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        html += '</div>';
+                        document.getElementById('cross-refs-display').innerHTML = html;
+                    } else {
+                        document.getElementById('cross-refs-display').innerHTML = '<div class="error">No cross-references found</div>';
+                    }
+                }
+            } catch (error) {
+                document.getElementById('cross-refs-display').innerHTML = `
+                    <div class="error">Could not load cross-references: ${error.message}</div>
+                `;
+            }
+        }
+
+        function loadVerseByRef(reference) {
+            // Parse reference like "John 3:16"
+            const match = reference.match(/(.+?)\s+(\d+):(\d+)/);
+            if (match) {
+                document.getElementById('book-input').value = match[1].trim();
+                document.getElementById('chapter-input').value = match[2];
+                document.getElementById('verse-input').value = match[3];
+                loadVerse();
+            }
+        }
+
+        async function searchVerses() {
+            const query = document.getElementById('search-input').value.trim();
+            if (!query) return;
+
+            document.getElementById('search-results').innerHTML = '<div class="loading">Searching...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/search?query=${encodeURIComponent(query)}&top_k=10`);
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data.results && data.results.length > 0) {
+                        let html = '';
+                        data.results.forEach(result => {
+                            html += `
+                                <div class="search-result-item" onclick="loadVerseByRef('${result.reference}')">
+                                    <div class="cross-ref-ref">${result.reference}</div>
+                                    <div class="cross-ref-text">${result.text.substring(0, 150)}${result.text.length > 150 ? '...' : ''}</div>
+                                    <div style="margin-top: 5px; font-size: 0.85em; color: #999;">
+                                        Relevance: ${(result.similarity * 100).toFixed(0)}%
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        document.getElementById('search-results').innerHTML = html;
+                    } else {
+                        document.getElementById('search-results').innerHTML = '<div class="error">No results found</div>';
+                    }
+                }
+            } catch (error) {
+                document.getElementById('search-results').innerHTML = `
+                    <div class="error">Search error: ${error.message}</div>
+                `;
+            }
+        }
+
+        function showError(message) {
+            alert(message);
+        }
+
+        // Load default verse on page load
+        window.addEventListener('load', () => {
+            loadVerse();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+{
+  "generated_date": "2026-01-20T11:41:24.405143",
+  "total_books": 66,
+  "studies": [
+    {
+      "book": "Genesis",
+      "file": "Genesis_study.md"
+    },
+    {
+      "book": "Exodus",
+      "file": "Exodus_study.md"
+    },
+    {
+      "book": "Leviticus",
+      "file": "Leviticus_study.md"
+    },
+    {
+      "book": "Numbers",
+      "file": "Numbers_study.md"
+    },
+    {
+      "book": "Deuteronomy",
+      "file": "Deuteronomy_study.md"
+    },
+    {
+      "book": "Joshua",
+      "file": "Joshua_study.md"
+    },
+    {
+      "book": "Judges",
+      "file": "Judges_study.md"
+    },
+    {
+      "book": "Ruth",
+      "file": "Ruth_study.md"
+    },
+    {
+      "book": "1 Samuel",
+      "file": "1_Samuel_study.md"
+    },
+    {
+      "book": "2 Samuel",
+      "file": "2_Samuel_study.md"
+    },
+    {
+      "book": "1 Kings",
+      "file": "1_Kings_study.md"
+    },
+    {
+      "book": "2 Kings",
+      "file": "2_Kings_study.md"
+    },
+    {
+      "book": "1 Chronicles",
+      "file": "1_Chronicles_study.md"
+    },
+    {
+      "book": "2 Chronicles",
+      "file": "2_Chronicles_study.md"
+    },
+    {
+      "book": "Ezra",
+      "file": "Ezra_study.md"
+    },
+    {
+      "book": "Nehemiah",
+      "file": "Nehemiah_study.md"
+    },
+    {
+      "book": "Esther",
+      "file": "Esther_study.md"
+    },
+    {
+      "book": "Job",
+      "file": "Job_study.md"
+    },
+    {
+      "book": "Psalms",
+      "file": "Psalms_study.md"
+    },
+    {
+      "book": "Proverbs",
+      "file": "Proverbs_study.md"
+    },
+    {
+      "book": "Ecclesiastes",
+      "file": "Ecclesiastes_study.md"
+    },
+    {
+      "book": "Song of Songs",
+      "file": "Song_of_Songs_study.md"
+    },
+    {
+      "book": "Isaiah",
+      "file": "Isaiah_study.md"
+    },
+    {
+      "book": "Jeremiah",
+      "file": "Jeremiah_study.md"
+    },
+    {
+      "book": "Lamentations",
+      "file": "Lamentations_study.md"
+    },
+    {
+      "book": "Ezekiel",
+      "file": "Ezekiel_study.md"
+    },
+    {
+      "book": "Daniel",
+      "file": "Daniel_study.md"
+    },
+    {
+      "book": "Hosea",
+      "file": "Hosea_study.md"
+    },
+    {
+      "book": "Joel",
+      "file": "Joel_study.md"
+    },
+    {
+      "book": "Amos",
+      "file": "Amos_study.md"
+    },
+    {
+      "book": "Obadiah",
+      "file": "Obadiah_study.md"
+    },
+    {
+      "book": "Jonah",
+      "file": "Jonah_study.md"
+    },
+    {
+      "book": "Micah",
+      "file": "Micah_study.md"
+    },
+    {
+      "book": "Nahum",
+      "file": "Nahum_study.md"
+    },
+    {
+      "book": "Habakkuk",
+      "file": "Habakkuk_study.md"
+    },
+    {
+      "book": "Zephaniah",
+      "file": "Zephaniah_study.md"
+    },
+    {
+      "book": "Haggai",
+      "file": "Haggai_study.md"
+    },
+    {
+      "book": "Zechariah",
+      "file": "Zechariah_study.md"
+    },
+    {
+      "book": "Malachi",
+      "file": "Malachi_study.md"
+    },
+    {
+      "book": "Matthew",
+      "file": "Matthew_study.md"
+    },
+    {
+      "book": "Mark",
+      "file": "Mark_study.md"
+    },
+    {
+      "book": "Luke",
+      "file": "Luke_study.md"
+    },
+    {
+      "book": "John",
+      "file": "John_study.md"
+    },
+    {
+      "book": "Acts",
+      "file": "Acts_study.md"
+    },
+    {
+      "book": "Romans",
+      "file": "Romans_study.md"
+    },
+    {
+      "book": "1 Corinthians",
+      "file": "1_Corinthians_study.md"
+    },
+    {
+      "book": "2 Corinthians",
+      "file": "2_Corinthians_study.md"
+    },
+    {
+      "book": "Galatians",
+      "file": "Galatians_study.md"
+    },
+    {
+      "book": "Ephesians",
+      "file": "Ephesians_study.md"
+    },
+    {
+      "book": "Philippians",
+      "file": "Philippians_study.md"
+    },
+    {
+      "book": "Colossians",
+      "file": "Colossians_study.md"
+    },
+    {
+      "book": "1 Thessalonians",
+      "file": "1_Thessalonians_study.md"
+    },
+    {
+      "book": "2 Thessalonians",
+      "file": "2_Thessalonians_study.md"
+    },
+    {
+      "book": "1 Timothy",
+      "file": "1_Timothy_study.md"
+    },
+    {
+      "book": "2 Timothy",
+      "file": "2_Timothy_study.md"
+    },
+    {
+      "book": "Titus",
+      "file": "Titus_study.md"
+    },
+    {
+      "book": "Philemon",
+      "file": "Philemon_study.md"
+    },
+    {
+      "book": "Hebrews",
+      "file": "Hebrews_study.md"
+    },
+    {
+      "book": "James",
+      "file": "James_study.md"
+    },
+    {
+      "book": "1 Peter",
+      "file": "1_Peter_study.md"
+    },
+    {
+      "book": "2 Peter",
+      "file": "2_Peter_study.md"
+    },
+    {
+      "book": "1 John",
+      "file": "1_John_study.md"
+    },
+    {
+      "book": "2 John",
+      "file": "2_John_study.md"
+    },
+    {
+      "book": "3 John",
+      "file": "3_John_study.md"
+    },
+    {
+      "book": "Jude",
+      "file": "Jude_study.md"
+    },
+    {
+      "book": "Revelation",
+      "file": "Revelation_study.md"
+    }
+  ]
+}

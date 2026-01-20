@@ -36,6 +36,13 @@ app.add_middleware(
 if QUANTUM_AI_AVAILABLE and quantum_ai_router:
     app.include_router(quantum_ai_router)
 
+# Bible API availability check
+try:
+    from bible_api import BIBLE_APP_AVAILABLE
+    BIBLE_API_AVAILABLE = BIBLE_APP_AVAILABLE
+except ImportError:
+    BIBLE_API_AVAILABLE = False
+
 @app.get("/")
 async def root():
     """Root endpoint"""
@@ -46,7 +53,8 @@ async def root():
         "endpoints": {
             "health": "/health",
             "api_docs": "/docs",
-            "quantum_ai": "/quantum-ai" if QUANTUM_AI_AVAILABLE else "Not available"
+            "quantum_ai": "/quantum-ai" if QUANTUM_AI_AVAILABLE else "Not available",
+            "bible_app": "Run 'python start_bible_app.py' for Bible app" if BIBLE_API_AVAILABLE else "Not available"
         }
     }
 
