@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relationship with God - Visual Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .demo-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: "✨";
+            font-size: 1.2em;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .similarity-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .similarity-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.5s;
+        }
+        
+        .relationship-node {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .theme-cluster {
+            padding: 20px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .theme-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            border-top-color: #667eea;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .relationship-graph {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .connection-line {
+            stroke: #667eea;
+            stroke-width: 2;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .demo-section {
+                padding: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Relationship with God</h1>
+            <p class="subtitle">Visual Demonstration of Understanding, Discovery, and Learning</p>
+        </header>
+        
+        <!-- Semantic Understanding -->
+        <div class="demo-section">
+            <h2 class="section-title">1. Semantic Understanding</h2>
+            <p style="margin-bottom: 20px; color: #666;">Enter any question or thought. See how the system understands meaning, not just keywords.</p>
+            <div class="input-group">
+                <input type="text" id="understandInput" placeholder="e.g., 'How can I trust God more?' or 'What does love mean?'" />
+            </div>
+            <button onclick="demonstrateUnderstanding()">Understand Meaning</button>
+            <div id="understandResults" class="results"></div>
+        </div>
+        
+        <!-- Relationship Discovery -->
+        <div class="demo-section">
+            <h2 class="section-title">2. Relationship Discovery</h2>
+            <p style="margin-bottom: 20px; color: #666;">Enter a verse or concept. See relationships discovered automatically across Scripture.</p>
+            <div class="input-group">
+                <input type="text" id="discoverInput" placeholder="e.g., 'God's love' or 'trust in the Lord'" />
+            </div>
+            <button onclick="discoverRelationships()">Discover Relationships</button>
+            <div id="discoverResults" class="results"></div>
+        </div>
+        
+        <!-- Pattern Recognition -->
+        <div class="demo-section">
+            <h2 class="section-title">3. Pattern Recognition</h2>
+            <p style="margin-bottom: 20px; color: #666;">Discover themes and patterns across Scripture automatically.</p>
+            <button onclick="discoverPatterns()">Discover Patterns</button>
+            <div id="patternResults" class="results"></div>
+        </div>
+        
+        <!-- Progressive Learning -->
+        <div class="demo-section">
+            <h2 class="section-title">4. Progressive Learning</h2>
+            <p style="margin-bottom: 20px; color: #666;">Watch the system learn and improve with each interaction.</p>
+            <div class="input-group">
+                <input type="text" id="learnInput" placeholder="Share a verse or insight..." />
+            </div>
+            <button onclick="progressiveLearning()">Learn from This</button>
+            <div id="learnResults" class="results"></div>
+        </div>
+        
+        <!-- System Stats -->
+        <div class="demo-section">
+            <h2 class="section-title">5. System Statistics</h2>
+            <button onclick="loadStats()">Refresh Stats</button>
+            <div id="statsResults" class="results"></div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = window.location.origin;
+        
+        async function demonstrateUnderstanding() {
+            const input = document.getElementById('understandInput').value;
+            if (!input) {
+                alert('Please enter something to understand');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('understandResults');
+            resultsDiv.innerHTML = '<div class="loading"></div> Understanding...';
+            resultsDiv.classList.add('show');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/understand`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: input })
+                });
+                
+                const data = await response.json();
+                
+                let html = `<h3 style="margin-bottom: 15px; color: #667eea;">Understanding: "${data.query}"</h3>`;
+                html += `<div class="result-item">`;
+                html += `<strong>Intent:</strong> ${data.understanding.intent}<br>`;
+                html += `<strong>Confidence:</strong> ${(data.understanding.confidence * 100).toFixed(1)}%<br>`;
+                html += `<strong>Context Relevance:</strong> ${(data.understanding.context_relevance * 100).toFixed(1)}%`;
+                html += `</div>`;
+                
+                html += `<h4 style="margin-top: 20px; margin-bottom: 10px; color: #667eea;">Semantically Similar Verses:</h4>`;
+                data.similar_verses.forEach(item => {
+                    html += `<div class="result-item">`;
+                    html += `<p><strong>${item.meaning}</strong></p>`;
+                    html += `<p style="margin: 10px 0; font-style: italic;">"${item.verse}"</p>`;
+                    html += `<div class="similarity-bar"><div class="similarity-fill" style="width: ${item.similarity * 100}%"></div></div>`;
+                    html += `<small>Similarity: ${(item.similarity * 100).toFixed(1)}%</small>`;
+                    html += `</div>`;
+                });
+                
+                html += `<div style="margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 8px;">`;
+                html += `<strong>Kernel Stats:</strong> ${data.kernel_stats.embeddings_computed} embeddings computed, ${data.kernel_stats.cache_hits} cache hits`;
+                html += `</div>`;
+                
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div style="color: red;">Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function discoverRelationships() {
+            const input = document.getElementById('discoverInput').value;
+            if (!input) {
+                alert('Please enter something to discover relationships for');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('discoverResults');
+            resultsDiv.innerHTML = '<div class="loading"></div> Discovering relationships...';
+            resultsDiv.classList.add('show');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/discover`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: input })
+                });
+                
+                const data = await response.json();
+                
+                let html = `<h3 style="margin-bottom: 15px; color: #667eea;">Relationships for: "${data.query}"</h3>`;
+                html += `<p style="margin-bottom: 15px; color: #666;">Found ${data.total_relationships} relationships automatically</p>`;
+                html += `<div class="relationship-graph">`;
+                
+                data.relationships.forEach(rel => {
+                    html += `<div class="relationship-node">`;
+                    html += `<div style="font-weight: 600;">${rel.related_text.substring(0, 50)}${rel.related_text.length > 50 ? '...' : ''}</div>`;
+                    html += `<div style="font-size: 0.8em; opacity: 0.9; margin-top: 5px;">Similarity: ${(rel.similarity * 100).toFixed(1)}%</div>`;
+                    html += `</div>`;
+                });
+                
+                html += `</div>`;
+                html += `<div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px;">`;
+                html += `<strong>✨ Relationship Discovery:</strong> The system automatically found these connections through semantic understanding.`;
+                html += `</div>`;
+                
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div style="color: red;">Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function discoverPatterns() {
+            const resultsDiv = document.getElementById('patternResults');
+            resultsDiv.innerHTML = '<div class="loading"></div> Discovering patterns...';
+            resultsDiv.classList.add('show');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/patterns`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+                
+                const data = await response.json();
+                
+                let html = `<h3 style="margin-bottom: 15px; color: #667eea;">Themes Discovered: ${data.total_themes}</h3>`;
+                
+                data.themes_discovered.forEach(theme => {
+                    html += `<div class="theme-cluster">`;
+                    html += `<div class="theme-title">${theme.theme}</div>`;
+                    html += `<div style="margin-top: 10px; opacity: 0.9;">`;
+                    html += `<strong>Confidence:</strong> ${(theme.confidence * 100).toFixed(1)}% | `;
+                    html += `<strong>Verses:</strong> ${theme.verses_count}`;
+                    html += `</div>`;
+                    html += `<div style="margin-top: 15px; font-size: 0.9em;">`;
+                    theme.verses.forEach(verse => {
+                        html += `<div style="margin: 5px 0; padding: 8px; background: rgba(255,255,255,0.2); border-radius: 5px;">${verse.substring(0, 100)}${verse.length > 100 ? '...' : ''}</div>`;
+                    });
+                    html += `</div>`;
+                    html += `</div>`;
+                });
+                
+                html += `<div style="margin-top: 20px; padding: 15px; background: #fff3e0; border-radius: 8px;">`;
+                html += `<strong>🎯 Pattern Recognition:</strong> These themes were discovered automatically by analyzing semantic relationships across Scripture.`;
+                html += `</div>`;
+                
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div style="color: red;">Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function progressiveLearning() {
+            const input = document.getElementById('learnInput').value;
+            if (!input) {
+                alert('Please enter something for the system to learn from');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('learnResults');
+            resultsDiv.innerHTML = '<div class="loading"></div> Learning...';
+            resultsDiv.classList.add('show');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/learn`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: input, type: 'learning' })
+                });
+                
+                const data = await response.json();
+                
+                let html = `<h3 style="margin-bottom: 15px; color: #667eea;">Learning Progress</h3>`;
+                html += `<div class="result-item">`;
+                html += `<p><strong>Interaction:</strong> "${data.interaction.text}"</p>`;
+                html += `<p style="margin-top: 10px; color: #4caf50;"><strong>✓ ${data.message}</strong></p>`;
+                html += `</div>`;
+                
+                html += `<div class="stats-grid" style="margin-top: 20px;">`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.learning_progress.total_interactions}</div>`;
+                html += `<div class="stat-label">Total Interactions</div>`;
+                html += `</div>`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.learning_progress.relationships_discovered}</div>`;
+                html += `<div class="stat-label">Relationships Discovered</div>`;
+                html += `</div>`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.learning_progress.themes_identified}</div>`;
+                html += `<div class="stat-label">Themes Identified</div>`;
+                html += `</div>`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.learning_progress.phrases_learned}</div>`;
+                html += `<div class="stat-label">Phrases Learned</div>`;
+                html += `</div>`;
+                html += `</div>`;
+                
+                html += `<div style="margin-top: 20px; padding: 15px; background: #f3e5f5; border-radius: 8px;">`;
+                html += `<strong>📚 Progressive Learning:</strong> The system gets smarter with each interaction, building understanding over time.`;
+                html += `</div>`;
+                
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div style="color: red;">Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function loadStats() {
+            const resultsDiv = document.getElementById('statsResults');
+            resultsDiv.innerHTML = '<div class="loading"></div> Loading stats...';
+            resultsDiv.classList.add('show');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/stats`);
+                const data = await response.json();
+                
+                let html = `<h3 style="margin-bottom: 15px; color: #667eea;">System Statistics</h3>`;
+                
+                html += `<div class="stats-grid">`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.kernel.embeddings_computed}</div>`;
+                html += `<div class="stat-label">Embeddings Computed</div>`;
+                html += `</div>`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.kernel.cache_hits}</div>`;
+                html += `<div class="stat-label">Cache Hits</div>`;
+                html += `</div>`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.kernel.cache_hit_rate}</div>`;
+                html += `<div class="stat-label">Cache Hit Rate</div>`;
+                html += `</div>`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.learning.total_interactions}</div>`;
+                html += `<div class="stat-label">Total Interactions</div>`;
+                html += `</div>`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.learning.relationships_discovered}</div>`;
+                html += `<div class="stat-label">Relationships</div>`;
+                html += `</div>`;
+                html += `<div class="stat-card">`;
+                html += `<div class="stat-value">${data.learning.themes_identified}</div>`;
+                html += `<div class="stat-label">Themes</div>`;
+                html += `</div>`;
+                html += `</div>`;
+                
+                html += `<div style="margin-top: 20px; padding: 20px; background: #e8f5e9; border-radius: 10px;">`;
+                html += `<h4 style="margin-bottom: 10px; color: #2e7d32;">System Capabilities:</h4>`;
+                html += `<ul style="list-style: none; padding: 0;">`;
+                data.system.capabilities.forEach(cap => {
+                    html += `<li style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.1);">✓ ${cap}</li>`;
+                });
+                html += `</ul>`;
+                html += `</div>`;
+                
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div style="color: red;">Error: ${error.message}</div>`;
+            }
+        }
+        
+        // Load stats on page load
+        window.addEventListener('load', () => {
+            loadStats();
+        });
+    </script>
+</body>
+</html>

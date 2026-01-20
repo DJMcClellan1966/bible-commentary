@@ -17,8 +17,8 @@
       "word_count": 3455,
       "char_count": 22874,
       "added_date": "2026-01-20T11:32:57.605587",
-      "last_read": null,
-      "read_count": 0
+      "last_read": "2026-01-20T12:52:40.588935",
+      "read_count": 1
     },
     {
       "id": 2,
@@ -38,8 +38,8 @@
       "word_count": 5273,
       "char_count": 32664,
       "added_date": "2026-01-20T11:32:57.610585",
-      "last_read": null,
-      "read_count": 0
+      "last_read": "2026-01-20T12:53:32.597947",
+      "read_count": 1
     },
     {
       "id": 3,
@@ -79,8 +79,8 @@
       "word_count": 5273,
       "char_count": 32664,
       "added_date": "2026-01-20T11:41:24.141260",
-      "last_read": null,
-      "read_count": 0
+      "last_read": "2026-01-20T12:52:25.299057",
+      "read_count": 1
     },
     {
       "id": 5,
@@ -119,8 +119,8 @@
       "word_count": 122,
       "char_count": 773,
       "added_date": "2026-01-20T11:41:24.146011",
-      "last_read": null,
-      "read_count": 0
+      "last_read": "2026-01-20T12:52:35.683313",
+      "read_count": 1
     },
     {
       "id": 7,
@@ -1442,8 +1442,131 @@
       "added_date": "2026-01-20T11:42:48.880541",
       "last_read": null,
       "read_count": 0
+    },
+    {
+      "id": 73,
+      "title": "The Mysteries of the Bible: How Divine Mysteries Reveal God's Grand Design",
+      "description": "A comprehensive exploration of 20 biblical mysteries and how they relate to the whole of Scripture",
+      "category": "Theological Studies",
+      "tags": [
+        "mysteries",
+        "theology",
+        "biblical studies",
+        "relationships"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\bible_mysteries_book.md",
+      "original_path": "bible_mysteries_book/bible_mysteries_book.md",
+      "word_count": 3455,
+      "char_count": 22874,
+      "added_date": "2026-01-20T12:21:30.884726",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 74,
+      "title": "Red Letters: How Jesus' Words Reveal the Way to Relationship with God",
+      "description": "Exploring Jesus' sayings from the Gospels and how they relate to the whole Bible and reveal relationships",
+      "category": "Gospel Studies",
+      "tags": [
+        "jesus",
+        "gospels",
+        "red letters",
+        "relationships",
+        "discipleship"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\red_letters_book.md",
+      "original_path": "red_letters_book/red_letters_book.md",
+      "word_count": 5273,
+      "char_count": 32664,
+      "added_date": "2026-01-20T12:21:30.892220",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 75,
+      "title": "The Mysteries of the Bible: How Divine Mysteries Reveal God's Grand Design",
+      "description": "A comprehensive exploration of 20 biblical mysteries and how they relate to the whole of Scripture",
+      "category": "Theological Studies",
+      "tags": [
+        "mysteries",
+        "theology",
+        "biblical studies",
+        "relationships"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\bible_mysteries_book.md",
+      "original_path": "bible_mysteries_book/bible_mysteries_book.md",
+      "word_count": 3455,
+      "char_count": 22874,
+      "added_date": "2026-01-20T12:49:11.819144",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 76,
+      "title": "Red Letters: How Jesus' Words Reveal the Way to Relationship with God",
+      "description": "Exploring Jesus' sayings from the Gospels and how they relate to the whole Bible and reveal relationships",
+      "category": "Gospel Studies",
+      "tags": [
+        "jesus",
+        "gospels",
+        "red letters",
+        "relationships",
+        "discipleship"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\red_letters_book.md",
+      "original_path": "red_letters_book/red_letters_book.md",
+      "word_count": 5273,
+      "char_count": 32664,
+      "added_date": "2026-01-20T12:49:11.827776",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 77,
+      "title": "The Mysteries of the Bible: How Divine Mysteries Reveal God's Grand Design",
+      "description": "A comprehensive exploration of 20 biblical mysteries and how they relate to the whole of Scripture",
+      "category": "Theological Studies",
+      "tags": [
+        "mysteries",
+        "theology",
+        "biblical studies",
+        "relationships"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\bible_mysteries_book.md",
+      "original_path": "bible_mysteries_book/bible_mysteries_book.md",
+      "word_count": 3455,
+      "char_count": 22874,
+      "added_date": "2026-01-20T12:52:21.298577",
+      "last_read": null,
+      "read_count": 0
+    },
+    {
+      "id": 78,
+      "title": "Red Letters: How Jesus' Words Reveal the Way to Relationship with God",
+      "description": "Exploring Jesus' sayings from the Gospels and how they relate to the whole Bible and reveal relationships",
+      "category": "Gospel Studies",
+      "tags": [
+        "jesus",
+        "gospels",
+        "red letters",
+        "relationships",
+        "discipleship"
+      ],
+      "author": "AI-Powered Biblical Analysis",
+      "file_path": "book_library\\books\\red_letters_book.md",
+      "original_path": "red_letters_book/red_letters_book.md",
+      "word_count": 5273,
+      "char_count": 32664,
+      "added_date": "2026-01-20T12:52:21.307415",
+      "last_read": null,
+      "read_count": 0
     }
   ],
-  "last_updated": "2026-01-20T11:42:48.880541",
-  "total_books": 72
+  "last_updated": "2026-01-20T12:53:32.597947",
+  "total_books": 78
 }

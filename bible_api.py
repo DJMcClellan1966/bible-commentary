@@ -74,25 +74,17 @@ def get_bible_app():
         base_path = r'C:\Users\DJMcC\OneDrive\Desktop\bible-commentary\bible-commentary\data\bible-versions'
         if os.path.exists(base_path):
             try:
-                versions = {
-                    'asv': 'American Standard Version',
-                    'engDBY': 'Darby Bible',
-                    'englyt': "Young's Literal Translation"
-                }
-                
-                for version_folder, version_name in versions.items():
-                    version_path = os.path.join(base_path, version_folder)
-                    if os.path.exists(version_path):
-                        print(f"Loading {version_name}...")
-                        verses = load_bible_version(base_path, version_folder, version_name)
-                        if verses:
-                            for book, chapter, verse, text in verses[:1000]:  # Load first 1000 for demo
-                                _bible_app.add_verse(book, chapter, verse, text, version=version_folder)
-                            print(f"Loaded {min(1000, len(verses))} verses from {version_name}")
+                from load_bible_from_html import load_all_versions_into_app
+                print("Loading all Bible versions (this may take a few minutes)...")
+                total = load_all_versions_into_app(_bible_app, base_path)
+                print(f"[OK] Loaded {total} total verses from all versions")
             except Exception as e:
                 print(f"Warning: Could not load Bible versions: {e}")
+                import traceback
+                traceback.print_exc()
         else:
-            print("Bible data path not found, using empty app")
+            print(f"Bible data path not found: {base_path}")
+            print("Using empty app - verses will not be available")
     
     return _bible_app
 
@@ -119,18 +111,24 @@ def get_llm():
 
 @app.get("/")
 async def root():
-    """Root endpoint"""
-    return FileResponse("bible_app.html") if os.path.exists("bible_app.html") else {
-        "message": "Bible Study App API",
-        "version": "1.0.0",
-        "endpoints": {
-            "verse": "/api/verse/{book}/{chapter}/{verse}",
-            "commentary": "/api/commentary/{book}/{chapter}/{verse}",
-            "search": "/api/search",
-            "cross_references": "/api/cross-references/{book}/{chapter}/{verse}",
-            "health": "/health"
+    """Root endpoint - serves main dashboard with all features"""
+    if os.path.exists("main_dashboard.html"):
+        return FileResponse("main_dashboard.html")
+    elif os.path.exists("bible_app.html"):
+        return FileResponse("bible_app.html")
+    else:
+        return {
+            "message": "Bible Study App API",
+            "version": "1.0.0",
+            "endpoints": {
+                "main_dashboard": "/ (this page)",
+                "bible_app": "/bible",
+                "journey": "/journey",
+                "understanding": "/understanding",
+                "library": "/api/library/books",
+                "api_docs": "/docs"
+            }
         }
-    }
 
 
 @app.get("/health")
@@ -746,6 +744,14 @@ async def understanding_web_app():
     if os.path.exists("understanding_bible_web.html"):
         return FileResponse("understanding_bible_web.html")
     raise HTTPException(status_code=404, detail="Understanding Bible web app not found")
+
+@app.get("/library")
+async def serve_library_viewer():
+    """Serve the library viewer"""
+    if os.path.exists("library_viewer.html"):
+        return FileResponse("library_viewer.html")
+    raise HTTPException(status_code=404, detail="Library viewer not found")
+
 
 if __name__ == "__main__":
     import uvicorn

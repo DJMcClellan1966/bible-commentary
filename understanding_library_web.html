@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Understanding Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .content-area {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .verse-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .verse-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+        
+        .verse-item:hover {
+            background: #e9ecef;
+            border-left-color: #667eea;
+            transform: translateX(5px);
+        }
+        
+        .verse-item.active {
+            background: #667eea;
+            color: white;
+            border-left-color: #764ba2;
+        }
+        
+        .understanding-content {
+            line-height: 1.8;
+        }
+        
+        .understanding-content h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        
+        .understanding-content h3 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .understanding-content h4 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        .verse-text {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+        
+        .connection-item {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .theme-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px 5px 5px 0;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .empty-state h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bible Understanding Library</h1>
+            <p class="subtitle">Readable Content That Provides Understanding</p>
+        </header>
+        
+        <div class="stats" id="stats"></div>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <h3 style="margin-bottom: 15px; color: #667eea;">Verses</h3>
+                <input type="text" class="search-box" id="searchBox" placeholder="Search verses...">
+                <div class="verse-list" id="verseList"></div>
+            </div>
+            
+            <div class="content-area">
+                <div id="understandingContent">
+                    <div class="empty-state">
+                        <h3>Select a Verse</h3>
+                        <p>Choose a verse from the list to see its understanding</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Get API base URL - handle both direct file access and server access
+        const API_BASE = window.location.origin === 'file://' 
+            ? 'http://localhost:8000'  // Default if opening file directly
+            : window.location.origin;
+        let allVerses = [];
+        let currentVerse = null;
+        
+        // Load stats
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE}/api/understanding/stats`);
+                const stats = await response.json();
+                
+                const statsHtml = `
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.total_verses}</div>
+                        <div class="stat-label">Verses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.total_passages}</div>
+                        <div class="stat-label">Passages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.total_entries}</div>
+                        <div class="stat-label">Total Entries</div>
+                    </div>
+                `;
+                
+                document.getElementById('stats').innerHTML = statsHtml;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+        
+        // Load verse list
+        async function loadVerseList() {
+            try {
+                const response = await fetch(`${API_BASE}/api/understanding/verses`);
+                const data = await response.json();
+                allVerses = data.verses.sort();
+                
+                renderVerseList(allVerses);
+            } catch (error) {
+                console.error('Error loading verses:', error);
+                document.getElementById('verseList').innerHTML = 
+                    '<div class="empty-state"><p>Error loading verses</p></div>';
+            }
+        }
+        
+        // Render verse list
+        function renderVerseList(verses) {
+            const verseList = document.getElementById('verseList');
+            
+            if (verses.length === 0) {
+                verseList.innerHTML = '<div class="empty-state"><p>No verses in library</p></div>';
+                return;
+            }
+            
+            verseList.innerHTML = verses.map(verse => `
+                <div class="verse-item" data-verse="${verse}" onclick="loadUnderstanding('${verse}')">
+                    ${verse}
+                </div>
+            `).join('');
+        }
+        
+        // Search
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = allVerses.filter(v => v.toLowerCase().includes(query));
+            renderVerseList(filtered);
+        });
+        
+        // Load understanding
+        async function loadUnderstanding(verseRef) {
+            // Update active state
+            document.querySelectorAll('.verse-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.verse === verseRef) {
+                    item.classList.add('active');
+                }
+            });
+            
+            currentVerse = verseRef;
+            
+            // Show loading
+            document.getElementById('understandingContent').innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading understanding for ${verseRef}...</p>
+                </div>
+            `;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/understanding/verse/${encodeURIComponent(verseRef)}`);
+                const understanding = await response.json();
+                
+                renderUnderstanding(understanding);
+            } catch (error) {
+                document.getElementById('understandingContent').innerHTML = `
+                    <div class="empty-state">
+                        <h3>Understanding Not Found</h3>
+                        <p>Understanding for ${verseRef} is not yet in the library.</p>
+                        <p style="margin-top: 20px; color: #666;">Use the API to generate it, or expand the library.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Render understanding
+        function renderUnderstanding(understanding) {
+            const content = understanding.understanding;
+            
+            // Convert markdown-like content to HTML
+            let html = content
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/^\- (.*$)/gim, '<li>$1</li>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            
+            html = '<p>' + html + '</p>';
+            
+            // Wrap verse text
+            html = html.replace(/\*\*The Verse:\*\*<br><br>(.*?)<br><br>/g, 
+                '<div class="verse-text"><strong>The Verse:</strong><br><br>$1</div>');
+            
+            // Wrap connections
+            html = html.replace(/\*\*(.*?)\*\*: (.*?)<br><br>/g, 
+                '<div class="connection-item"><strong>$1</strong><br>$2</div>');
+            
+            document.getElementById('understandingContent').innerHTML = `
+                <div class="understanding-content">
+                    ${html}
+                </div>
+            `;
+        }
+        
+        // Initialize
+        window.addEventListener('load', () => {
+            loadStats();
+            loadVerseList();
+        });
+    </script>
+</body>
+</html>
