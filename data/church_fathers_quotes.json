@@ -1,0 +1,511 @@
+{
+  "metadata": {
+    "description": "Curated Church Fathers quotes organized by Scripture reference and theme",
+    "sources": ["CCEL - Christian Classics Ethereal Library", "Ante-Nicene Fathers", "Nicene and Post-Nicene Fathers"],
+    "era_guide": {
+      "apostolic": "30-100 AD (Clement of Rome, Ignatius, Polycarp)",
+      "ante_nicene": "100-325 AD (Justin Martyr, Irenaeus, Tertullian, Origen, Cyprian)",
+      "nicene": "325-451 AD (Athanasius, Basil, Gregory, Chrysostom, Augustine, Jerome, Cyril)",
+      "post_nicene": "451-750 AD (Gregory the Great, John of Damascus)"
+    }
+  },
+  "quotes_by_verse": {
+    "Genesis 1:1": [
+      {
+        "author": "Augustine",
+        "work": "Confessions",
+        "era": "nicene",
+        "quote": "In the beginning God made heaven and earth. How, O God, didst Thou make heaven and earth? Truly, neither in heaven nor in earth didst Thou make heaven and earth.",
+        "context": "Augustine meditates on creation from nothing"
+      },
+      {
+        "author": "Basil the Great",
+        "work": "Hexaemeron",
+        "era": "nicene",
+        "quote": "'In the beginning God created.' It is to teach us that at the will of God the world arose in less than an instant.",
+        "context": "Commentary on the six days of creation"
+      }
+    ],
+    "Genesis 3:15": [
+      {
+        "author": "Irenaeus",
+        "work": "Against Heresies",
+        "era": "ante_nicene",
+        "quote": "He has therefore summed up all things in Himself, both waging war against our enemy and crushing him who at the beginning had led us captive in Adam.",
+        "context": "The Protoevangelium - first gospel promise"
+      },
+      {
+        "author": "Justin Martyr",
+        "work": "Dialogue with Trypho",
+        "era": "ante_nicene",
+        "quote": "Christ became man by the Virgin, in order that the disobedience which proceeded from the serpent might receive its destruction in the same manner in which it derived its origin.",
+        "context": "Christ as the seed of the woman"
+      }
+    ],
+    "Psalm 22:1": [
+      {
+        "author": "Augustine",
+        "work": "Expositions on the Psalms",
+        "era": "nicene",
+        "quote": "Our Lord Jesus Christ spoke these words on the Cross. They are His words, and yet not His, for He was speaking in our name.",
+        "context": "Christ prays the Psalms from the cross"
+      }
+    ],
+    "Psalm 23:1": [
+      {
+        "author": "Gregory of Nyssa",
+        "work": "On the Inscriptions of the Psalms",
+        "era": "nicene",
+        "quote": "He who has made the Good Shepherd his own will not want any good thing. For the Lord himself is what he wants.",
+        "context": "Christ as the Good Shepherd"
+      },
+      {
+        "author": "Augustine",
+        "work": "Expositions on the Psalms",
+        "era": "nicene",
+        "quote": "The Lord rules me, and nothing shall be wanting to me. Who can say this? The humble, the poor.",
+        "context": "Spiritual poverty and divine provision"
+      }
+    ],
+    "Isaiah 7:14": [
+      {
+        "author": "Justin Martyr",
+        "work": "Dialogue with Trypho",
+        "era": "ante_nicene",
+        "quote": "The prophecy foretold that He would be born of a virgin. Behold, a virgin shall conceive and bear a son.",
+        "context": "Virgin birth prophecy"
+      },
+      {
+        "author": "Irenaeus",
+        "work": "Against Heresies",
+        "era": "ante_nicene",
+        "quote": "The Lord Himself gave us a sign, in the depth and in the height, which man did not ask for, because he never expected that a virgin could conceive.",
+        "context": "The miraculous nature of the incarnation"
+      }
+    ],
+    "Isaiah 53:5": [
+      {
+        "author": "Clement of Rome",
+        "work": "First Epistle to the Corinthians",
+        "era": "apostolic",
+        "quote": "He was wounded for our transgressions, and bruised for our iniquities. By His stripes we are healed.",
+        "context": "Earliest post-apostolic reference to Isaiah 53"
+      },
+      {
+        "author": "Origen",
+        "work": "Contra Celsum",
+        "era": "ante_nicene",
+        "quote": "The prophecy clearly speaks of one who would suffer for the sins of others, and by whose wounds healing would come to all.",
+        "context": "Defending the suffering servant prophecy"
+      }
+    ],
+    "Matthew 5:3": [
+      {
+        "author": "Chrysostom",
+        "work": "Homilies on Matthew",
+        "era": "nicene",
+        "quote": "What is being poor in spirit? Being humble and contrite in mind. For by 'spirit' He meant the soul and the temper of mind.",
+        "context": "Commentary on the Beatitudes"
+      },
+      {
+        "author": "Augustine",
+        "work": "Sermon on the Mount",
+        "era": "nicene",
+        "quote": "Blessed are the poor in spirit, for theirs is the kingdom of heaven. The poor in spirit are rightly understood as the humble.",
+        "context": "Spiritual poverty as humility"
+      }
+    ],
+    "Matthew 16:18": [
+      {
+        "author": "Chrysostom",
+        "work": "Homilies on Matthew",
+        "era": "nicene",
+        "quote": "Upon this rock, that is, upon the faith of his confession. Thereby signifying that many throughout the world were to believe.",
+        "context": "Peter's confession and the Church's foundation"
+      },
+      {
+        "author": "Augustine",
+        "work": "Retractations",
+        "era": "nicene",
+        "quote": "I said that the Church is built upon Peter, as upon a rock, but this rock was Christ, whom Simon confessed.",
+        "context": "Christ as the ultimate rock"
+      },
+      {
+        "author": "Cyprian",
+        "work": "On the Unity of the Church",
+        "era": "ante_nicene",
+        "quote": "Upon one He builds the Church, and to him He gives the command to feed the sheep.",
+        "context": "Peter and church unity"
+      }
+    ],
+    "John 1:1": [
+      {
+        "author": "Origen",
+        "work": "Commentary on John",
+        "era": "ante_nicene",
+        "quote": "In the beginning was the Word. We must understand that Jesus is more things than one. He is the Light of the world, the Way, the Truth, and the Life.",
+        "context": "The Logos theology"
+      },
+      {
+        "author": "Augustine",
+        "work": "Tractates on John",
+        "era": "nicene",
+        "quote": "In the beginning was the Word. He was, He was not made; for if made, He was not; and if He was, He was not made.",
+        "context": "The eternal existence of the Word"
+      }
+    ],
+    "John 1:14": [
+      {
+        "author": "Athanasius",
+        "work": "On the Incarnation",
+        "era": "nicene",
+        "quote": "The Word became flesh to make us partakers of the divine nature. He became what we are that He might make us what He is.",
+        "context": "Deification through incarnation"
+      },
+      {
+        "author": "Cyril of Alexandria",
+        "work": "Commentary on John",
+        "era": "nicene",
+        "quote": "The Word became flesh, not by changing into flesh, but by assuming flesh while remaining what He was.",
+        "context": "The hypostatic union"
+      }
+    ],
+    "John 3:16": [
+      {
+        "author": "Augustine",
+        "work": "Tractates on John",
+        "era": "nicene",
+        "quote": "God loves each of us as if there were only one of us to love.",
+        "context": "The personal nature of divine love"
+      },
+      {
+        "author": "Chrysostom",
+        "work": "Homilies on John",
+        "era": "nicene",
+        "quote": "See the Father's love! He gave not a servant, not an angel, but His own Son. His only-begotten.",
+        "context": "The magnitude of the gift"
+      }
+    ],
+    "John 6:53-56": [
+      {
+        "author": "Ignatius of Antioch",
+        "work": "Letter to the Smyrnaeans",
+        "era": "apostolic",
+        "quote": "They abstain from the Eucharist, because they do not confess that the Eucharist is the flesh of our Savior Jesus Christ.",
+        "context": "Real presence in the Eucharist"
+      },
+      {
+        "author": "Cyril of Jerusalem",
+        "work": "Catechetical Lectures",
+        "era": "nicene",
+        "quote": "He has declared this is My Body. Who shall dare to doubt hereafter? He has assured us this is My Blood. Who shall ever hesitate?",
+        "context": "Eucharistic instruction to catechumens"
+      },
+      {
+        "author": "Augustine",
+        "work": "Tractates on John",
+        "era": "nicene",
+        "quote": "O sacrament of devotion! O sign of unity! O bond of charity! He who would live has where to live, has what to live by.",
+        "context": "The Eucharist as source of life"
+      }
+    ],
+    "John 14:6": [
+      {
+        "author": "Augustine",
+        "work": "Tractates on John",
+        "era": "nicene",
+        "quote": "Christ is the way, walk by Him. Christ is the truth, be established by Him. Christ is the life, live in Him.",
+        "context": "Christ as the exclusive path to the Father"
+      },
+      {
+        "author": "Cyril of Alexandria",
+        "work": "Commentary on John",
+        "era": "nicene",
+        "quote": "He is the Way because He leads us to the Father. He is the Truth because He is not a type but reality itself. He is the Life because He conquered death.",
+        "context": "Explaining the three titles"
+      }
+    ],
+    "Romans 5:12": [
+      {
+        "author": "Augustine",
+        "work": "On Original Sin",
+        "era": "nicene",
+        "quote": "Through one man sin entered into the world, and death through sin, and so death passed to all men, in whom all sinned.",
+        "context": "Original sin and its transmission"
+      },
+      {
+        "author": "Irenaeus",
+        "work": "Against Heresies",
+        "era": "ante_nicene",
+        "quote": "As by the disobedience of one man sin entered, and death by sin, so also by the obedience of one man righteousness was introduced.",
+        "context": "Adam-Christ parallel"
+      }
+    ],
+    "Romans 8:28": [
+      {
+        "author": "Augustine",
+        "work": "Enchiridion",
+        "era": "nicene",
+        "quote": "God would never allow any evil to exist in His works unless His omnipotence and goodness were such as to bring good even out of evil.",
+        "context": "Divine providence"
+      },
+      {
+        "author": "Chrysostom",
+        "work": "Homilies on Romans",
+        "era": "nicene",
+        "quote": "Not things only, but even what seem to be distressing, these work together for good to those who love God.",
+        "context": "Suffering transformed by divine love"
+      }
+    ],
+    "1 Corinthians 11:24-25": [
+      {
+        "author": "Justin Martyr",
+        "work": "First Apology",
+        "era": "ante_nicene",
+        "quote": "This food we call Eucharist, of which no one is allowed to partake except one who believes our teachings to be true and has received the washing for forgiveness of sins.",
+        "context": "Early liturgical practice"
+      },
+      {
+        "author": "Irenaeus",
+        "work": "Against Heresies",
+        "era": "ante_nicene",
+        "quote": "When the mingled cup and the manufactured bread receive the Word of God, the Eucharist becomes the body and blood of Christ.",
+        "context": "Eucharistic transformation"
+      }
+    ],
+    "Ephesians 5:25-27": [
+      {
+        "author": "Augustine",
+        "work": "City of God",
+        "era": "nicene",
+        "quote": "Christ loved the Church and gave Himself for her, that He might make her glorious, without spot or wrinkle.",
+        "context": "Christ and the Church as Bridegroom and Bride"
+      },
+      {
+        "author": "Chrysostom",
+        "work": "Homilies on Ephesians",
+        "era": "nicene",
+        "quote": "Would you have your wife obedient to you, as the Church is to Christ? Take the same care for her as Christ takes for the Church.",
+        "context": "Marriage reflecting Christ and Church"
+      }
+    ],
+    "Philippians 2:6-8": [
+      {
+        "author": "Athanasius",
+        "work": "On the Incarnation",
+        "era": "nicene",
+        "quote": "He became man that we might become divine. He revealed Himself through a body that we might receive knowledge of the invisible Father.",
+        "context": "Kenosis and theosis"
+      },
+      {
+        "author": "Hilary of Poitiers",
+        "work": "On the Trinity",
+        "era": "nicene",
+        "quote": "He emptied Himself, taking the form of a servant, not losing what He was but assuming what He was not.",
+        "context": "The incarnation without loss of divinity"
+      }
+    ],
+    "Hebrews 4:12": [
+      {
+        "author": "Origen",
+        "work": "Homilies on Hebrews",
+        "era": "ante_nicene",
+        "quote": "The word of God is living and active, sharper than any two-edged sword. It enters into the depths of our soul.",
+        "context": "Scripture's penetrating power"
+      }
+    ],
+    "1 Peter 3:21": [
+      {
+        "author": "Cyprian",
+        "work": "Letters",
+        "era": "ante_nicene",
+        "quote": "As the ark of Noah saved through water, so baptism now saves us, not as a removal of dirt but as a pledge of a good conscience.",
+        "context": "Baptismal typology"
+      },
+      {
+        "author": "Augustine",
+        "work": "City of God",
+        "era": "nicene",
+        "quote": "The ark signifies the Church, which is saved through the wood of Christ's cross, floating above the waters of this world.",
+        "context": "The Church as ark of salvation"
+      }
+    ],
+    "Revelation 21:1-4": [
+      {
+        "author": "Augustine",
+        "work": "City of God",
+        "era": "nicene",
+        "quote": "There shall be a new heaven and a new earth. The first heaven and the first earth shall pass away, and the Church, the bride, shall appear in glory.",
+        "context": "The eschatological hope"
+      },
+      {
+        "author": "Irenaeus",
+        "work": "Against Heresies",
+        "era": "ante_nicene",
+        "quote": "God shall wipe away every tear, and death shall be no more. This is the promise reserved for those who persevere.",
+        "context": "The final restoration"
+      }
+    ]
+  },
+  "quotes_by_theme": {
+    "trinity": [
+      {
+        "author": "Athanasius",
+        "work": "On the Incarnation",
+        "quote": "The Father is made known by the Son, and in the Spirit. They are one in essence, three in persons."
+      },
+      {
+        "author": "Gregory of Nazianzus",
+        "work": "Orations",
+        "quote": "I cannot think of the One without being encircled by the splendor of the Three; nor can I discern the Three without being led back to the One."
+      },
+      {
+        "author": "Augustine",
+        "work": "On the Trinity",
+        "quote": "The Father and the Son and the Holy Spirit, as they are one God, so also are one substance. And therefore it is not three gods, but one God."
+      }
+    ],
+    "salvation": [
+      {
+        "author": "Clement of Rome",
+        "work": "First Epistle to the Corinthians",
+        "quote": "We are not justified by ourselves, nor by our wisdom or understanding or piety, but by faith, through which almighty God has justified all who have existed from the beginning."
+      },
+      {
+        "author": "Augustine",
+        "work": "Confessions",
+        "quote": "You have made us for yourself, O Lord, and our heart is restless until it rests in you."
+      }
+    ],
+    "church": [
+      {
+        "author": "Cyprian",
+        "work": "On the Unity of the Church",
+        "quote": "He cannot have God for his father who does not have the Church for his mother."
+      },
+      {
+        "author": "Ignatius of Antioch",
+        "work": "Letter to the Smyrnaeans",
+        "quote": "Wherever the bishop appears, let the people be there; just as wherever Jesus Christ is, there is the Catholic Church."
+      }
+    ],
+    "suffering": [
+      {
+        "author": "Augustine",
+        "work": "Confessions",
+        "quote": "In my deepest wound I saw your glory, and it dazzled me."
+      },
+      {
+        "author": "Chrysostom",
+        "work": "Homilies",
+        "quote": "Affliction is able to produce glory, and glory that is eternal. Therefore do not faint in tribulations."
+      }
+    ],
+    "prayer": [
+      {
+        "author": "Augustine",
+        "work": "Confessions",
+        "quote": "Pray as though everything depended on God. Work as though everything depended on you."
+      },
+      {
+        "author": "Evagrius Ponticus",
+        "work": "On Prayer",
+        "quote": "Prayer is the raising of the mind and heart to God."
+      }
+    ],
+    "love": [
+      {
+        "author": "Augustine",
+        "work": "Homilies on 1 John",
+        "quote": "Love, and do what you will. If you keep silence, keep silence by love; if you speak, speak by love; if you correct, correct by love; if you pardon, pardon by love."
+      },
+      {
+        "author": "Maximus the Confessor",
+        "work": "Centuries on Love",
+        "quote": "Love is the goal of all virtues; it contains them all within itself."
+      }
+    ]
+  },
+  "authors": {
+    "augustine": {
+      "name": "Augustine of Hippo",
+      "dates": "354-430 AD",
+      "era": "nicene",
+      "location": "North Africa",
+      "significance": "Bishop of Hippo, Doctor of the Church, foundational Western theologian",
+      "major_works": ["Confessions", "City of God", "On the Trinity", "Enchiridion"]
+    },
+    "chrysostom": {
+      "name": "John Chrysostom",
+      "dates": "349-407 AD",
+      "era": "nicene",
+      "location": "Antioch, Constantinople",
+      "significance": "Archbishop of Constantinople, greatest preacher of the early church",
+      "major_works": ["Homilies on Matthew", "Homilies on John", "Homilies on Romans"]
+    },
+    "irenaeus": {
+      "name": "Irenaeus of Lyon",
+      "dates": "130-202 AD",
+      "era": "ante_nicene",
+      "location": "Lyon, Gaul",
+      "significance": "Student of Polycarp (who knew John), key anti-Gnostic writer",
+      "major_works": ["Against Heresies", "Demonstration of Apostolic Preaching"]
+    },
+    "origen": {
+      "name": "Origen of Alexandria",
+      "dates": "185-254 AD",
+      "era": "ante_nicene",
+      "location": "Alexandria, Caesarea",
+      "significance": "Greatest biblical scholar of early church, pioneered allegory",
+      "major_works": ["Hexapla", "Commentary on John", "On First Principles"]
+    },
+    "athanasius": {
+      "name": "Athanasius of Alexandria",
+      "dates": "296-373 AD",
+      "era": "nicene",
+      "location": "Alexandria",
+      "significance": "Defender of Nicene orthodoxy against Arianism",
+      "major_works": ["On the Incarnation", "Against the Arians"]
+    },
+    "jerome": {
+      "name": "Jerome",
+      "dates": "342-420 AD",
+      "era": "nicene",
+      "location": "Rome, Bethlehem",
+      "significance": "Translator of the Vulgate, biblical scholar",
+      "major_works": ["Vulgate Bible", "Commentaries", "Letters"]
+    },
+    "cyril_jerusalem": {
+      "name": "Cyril of Jerusalem",
+      "dates": "313-386 AD",
+      "era": "nicene",
+      "location": "Jerusalem",
+      "significance": "Bishop known for catechetical instruction",
+      "major_works": ["Catechetical Lectures"]
+    },
+    "cyprian": {
+      "name": "Cyprian of Carthage",
+      "dates": "200-258 AD",
+      "era": "ante_nicene",
+      "location": "Carthage, North Africa",
+      "significance": "Bishop and martyr, ecclesiology",
+      "major_works": ["On the Unity of the Church", "Letters"]
+    },
+    "ignatius": {
+      "name": "Ignatius of Antioch",
+      "dates": "35-108 AD",
+      "era": "apostolic",
+      "location": "Antioch",
+      "significance": "Third bishop of Antioch, martyr, earliest witness to church structure",
+      "major_works": ["Seven Letters"]
+    },
+    "justin_martyr": {
+      "name": "Justin Martyr",
+      "dates": "100-165 AD",
+      "era": "ante_nicene",
+      "location": "Rome",
+      "significance": "Philosopher convert, apologist, martyr",
+      "major_works": ["First Apology", "Dialogue with Trypho"]
+    }
+  }
+}

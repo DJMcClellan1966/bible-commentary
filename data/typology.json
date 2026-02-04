@@ -1,0 +1,452 @@
+{
+  "metadata": {
+    "description": "Curated database of Old Testament types and their New Testament antitypes",
+    "version": "1.0",
+    "note": "Typology shows how OT figures, events, and institutions prefigure Christ and the Church"
+  },
+  "types": [
+    {
+      "id": "adam_christ",
+      "type": {
+        "name": "Adam",
+        "category": "person",
+        "references": ["Genesis 2:7", "Genesis 3:6", "Genesis 5:1-5"],
+        "description": "The first man, created in God's image, who fell through disobedience"
+      },
+      "antitype": {
+        "name": "Christ - The Second Adam",
+        "references": ["Romans 5:12-21", "1 Corinthians 15:22", "1 Corinthians 15:45-49"],
+        "description": "Christ reverses Adam's fall through obedience unto death"
+      },
+      "connection": "As death came through one man (Adam), life comes through one man (Christ). Adam's disobedience brought condemnation; Christ's obedience brings justification.",
+      "church_fathers": [
+        {"author": "Irenaeus", "quote": "Christ recapitulated in Himself the long history of mankind, summing up and giving us salvation."},
+        {"author": "Augustine", "quote": "The first Adam was made a living soul; the last Adam a quickening spirit."}
+      ]
+    },
+    {
+      "id": "isaac_sacrifice",
+      "type": {
+        "name": "Isaac's Near-Sacrifice",
+        "category": "event",
+        "references": ["Genesis 22:1-19"],
+        "description": "Abraham's willingness to sacrifice his only beloved son, who carries the wood up the mountain"
+      },
+      "antitype": {
+        "name": "Christ's Crucifixion",
+        "references": ["John 3:16", "Romans 8:32", "Hebrews 11:17-19", "John 19:17"],
+        "description": "God gives His only begotten Son, who carries His cross up Golgotha"
+      },
+      "connection": "Abraham's willingness prefigures God the Father's gift. Isaac carrying wood up Moriah prefigures Christ carrying the cross. The ram caught in thorns points to Christ crowned with thorns.",
+      "church_fathers": [
+        {"author": "Origen", "quote": "Isaac himself carrying the wood for the holocaust is a figure of Christ, for He bore His own cross."},
+        {"author": "Augustine", "quote": "Who was that ram but Jesus, who before He was offered up was crowned with Jewish thorns?"}
+      ]
+    },
+    {
+      "id": "passover_lamb",
+      "type": {
+        "name": "Passover Lamb",
+        "category": "institution",
+        "references": ["Exodus 12:1-13", "Exodus 12:21-28", "Exodus 12:46"],
+        "description": "Unblemished lamb whose blood on doorposts saves Israel from the angel of death"
+      },
+      "antitype": {
+        "name": "Christ - The Lamb of God",
+        "references": ["John 1:29", "1 Corinthians 5:7", "1 Peter 1:18-19", "John 19:36", "Revelation 5:6-12"],
+        "description": "Christ's blood saves believers from eternal death"
+      },
+      "connection": "The lamb must be without blemish (Christ sinless). No bone broken (fulfilled at crucifixion). Blood applied for salvation (appropriation of Christ's sacrifice).",
+      "church_fathers": [
+        {"author": "Chrysostom", "quote": "Christ is called our Passover because He was slain for us, and His blood protects us."},
+        {"author": "Justin Martyr", "quote": "The mystery of the lamb which God commanded to be sacrificed as the Passover was a type of Christ."}
+      ]
+    },
+    {
+      "id": "moses_christ",
+      "type": {
+        "name": "Moses",
+        "category": "person",
+        "references": ["Exodus 2-3", "Deuteronomy 18:15-19", "Numbers 12:3"],
+        "description": "Deliverer of Israel, lawgiver, mediator between God and people"
+      },
+      "antitype": {
+        "name": "Christ - The Greater Moses",
+        "references": ["Acts 3:22-23", "Hebrews 3:1-6", "John 1:17", "John 6:32-35"],
+        "description": "Christ delivers from sin, gives new law, and is the perfect mediator"
+      },
+      "connection": "Moses delivered Israel from Egypt; Christ delivers from sin. Moses gave manna; Christ is the bread of life. Moses mediated the old covenant; Christ mediates the new.",
+      "church_fathers": [
+        {"author": "Origen", "quote": "Moses was a type of Christ, leading the people out of bondage as Christ leads us from the bondage of sin."},
+        {"author": "Cyril of Alexandria", "quote": "What Moses began in figure, Christ completed in truth."}
+      ]
+    },
+    {
+      "id": "manna_eucharist",
+      "type": {
+        "name": "Manna from Heaven",
+        "category": "event",
+        "references": ["Exodus 16:4-35", "Numbers 11:7-9", "Psalm 78:24-25"],
+        "description": "Miraculous bread from heaven that sustained Israel in the wilderness"
+      },
+      "antitype": {
+        "name": "Christ - The Bread of Life / Eucharist",
+        "references": ["John 6:31-58", "1 Corinthians 10:3-4", "Revelation 2:17"],
+        "description": "Christ is the true bread from heaven that gives eternal life"
+      },
+      "connection": "Manna sustained physical life temporarily; Christ gives eternal life. Manna came daily; Christ's grace is renewed daily. The Eucharist continues this mystery.",
+      "church_fathers": [
+        {"author": "Augustine", "quote": "They ate manna; we eat Another. But they in symbol; we in reality."},
+        {"author": "Cyril of Jerusalem", "quote": "In the Old Testament there was the showbread; now there is the Bread of Life. Then there was manna; now the True Manna."}
+      ]
+    },
+    {
+      "id": "bronze_serpent",
+      "type": {
+        "name": "Bronze Serpent",
+        "category": "event",
+        "references": ["Numbers 21:4-9"],
+        "description": "Moses lifted up a bronze serpent; those bitten who looked upon it were healed"
+      },
+      "antitype": {
+        "name": "Christ Lifted Up on Cross",
+        "references": ["John 3:14-15", "John 12:32-33", "Galatians 3:13"],
+        "description": "Christ lifted up on the cross brings healing to all who look upon Him in faith"
+      },
+      "connection": "Jesus explicitly makes this connection in John 3:14. As looking at the serpent brought physical healing, looking to Christ in faith brings spiritual salvation.",
+      "church_fathers": [
+        {"author": "Justin Martyr", "quote": "This sign was given for the destruction of the power of the serpent, and for the salvation of those who believe."},
+        {"author": "Augustine", "quote": "By the serpent understand death; by the serpent lifted up, the Lord's death on the cross."}
+      ]
+    },
+    {
+      "id": "jonah_resurrection",
+      "type": {
+        "name": "Jonah in the Fish",
+        "category": "event",
+        "references": ["Jonah 1:17", "Jonah 2:1-10"],
+        "description": "Jonah spent three days and nights in the belly of the great fish"
+      },
+      "antitype": {
+        "name": "Christ's Death and Resurrection",
+        "references": ["Matthew 12:39-40", "Matthew 16:4", "Luke 11:29-30"],
+        "description": "Christ in the tomb three days before resurrection"
+      },
+      "connection": "Jesus explicitly cites this as the only sign He would give. Three days in the fish = three days in the tomb. Jonah's emergence = Christ's resurrection.",
+      "church_fathers": [
+        {"author": "Jerome", "quote": "As Jonah spent three days in the whale's belly, so Christ spent three days in the heart of the earth."},
+        {"author": "Tertullian", "quote": "Jonah served as a type of the Lord's passion."}
+      ]
+    },
+    {
+      "id": "david_king",
+      "type": {
+        "name": "King David",
+        "category": "person",
+        "references": ["1 Samuel 16:1-13", "2 Samuel 7:12-16", "Psalm 89:3-4"],
+        "description": "The shepherd-king of Israel, chosen by God, promised an eternal throne"
+      },
+      "antitype": {
+        "name": "Christ - Son of David, King of Kings",
+        "references": ["Matthew 1:1", "Luke 1:32-33", "Revelation 22:16", "Acts 13:22-23"],
+        "description": "Christ fulfills the Davidic covenant as the eternal King"
+      },
+      "connection": "David was a shepherd who became king; Christ is the Good Shepherd and King. The promise to David of an eternal throne is fulfilled in Christ's eternal reign.",
+      "church_fathers": [
+        {"author": "Augustine", "quote": "David in all things was a figure of Christ: in his anointing, his trials, his victories, his kingdom."},
+        {"author": "Eusebius", "quote": "The promises made to David find their ultimate fulfillment not in Solomon but in Christ."}
+      ]
+    },
+    {
+      "id": "ark_church",
+      "type": {
+        "name": "Noah's Ark",
+        "category": "institution",
+        "references": ["Genesis 6:13-22", "Genesis 7:1-24", "Genesis 8:1-19"],
+        "description": "The vessel that saved Noah's family and animals from the flood"
+      },
+      "antitype": {
+        "name": "The Church / Baptism",
+        "references": ["1 Peter 3:20-21", "2 Peter 2:5", "Matthew 24:37-39"],
+        "description": "The Church as the ark of salvation; baptism as passing through the waters"
+      },
+      "connection": "As the ark saved through water, baptism now saves. One door into the ark; one way into the Church. Eight souls saved; new creation begins.",
+      "church_fathers": [
+        {"author": "Cyprian", "quote": "Outside the ark of Noah no one was saved; outside the Church no one is saved."},
+        {"author": "Augustine", "quote": "The ark signifies the Church sailing through the floods of time."}
+      ]
+    },
+    {
+      "id": "melchizedek_priest",
+      "type": {
+        "name": "Melchizedek",
+        "category": "person",
+        "references": ["Genesis 14:18-20", "Psalm 110:4"],
+        "description": "King of Salem and priest of God Most High who blessed Abraham with bread and wine"
+      },
+      "antitype": {
+        "name": "Christ - Priest Forever",
+        "references": ["Hebrews 5:5-10", "Hebrews 6:20", "Hebrews 7:1-28"],
+        "description": "Christ is priest forever after the order of Melchizedek, not Levi"
+      },
+      "connection": "Both king and priest (unique). Offers bread and wine (Eucharistic prefigurement). Without recorded genealogy (eternal priesthood). Greater than Abraham (greater than Levitical priests).",
+      "church_fathers": [
+        {"author": "Clement of Alexandria", "quote": "Melchizedek, king of righteousness, offered bread and wine, sanctified food, as a type of the Eucharist."},
+        {"author": "Ambrose", "quote": "Who is the King of righteousness and peace? No one is this but Christ."}
+      ]
+    },
+    {
+      "id": "joseph_christ",
+      "type": {
+        "name": "Joseph",
+        "category": "person",
+        "references": ["Genesis 37", "Genesis 39-50"],
+        "description": "Rejected by brothers, sold for silver, later exalted to save many lives"
+      },
+      "antitype": {
+        "name": "Christ - Rejected and Exalted",
+        "references": ["Acts 7:9-14", "Matthew 26:15", "Philippians 2:8-11"],
+        "description": "Christ was rejected, sold for silver, and exalted to save all who come to Him"
+      },
+      "connection": "Sold by brothers for silver (Judas). Falsely accused (Jesus before Sanhedrin). Exalted to right hand of power. What was meant for evil, God used for good (the cross).",
+      "church_fathers": [
+        {"author": "Ambrose", "quote": "Joseph, sold into Egypt, is a type of Christ sold by Judas."},
+        {"author": "Ephrem the Syrian", "quote": "Joseph saved his brothers who sold him; Christ saves all who crucified Him."}
+      ]
+    },
+    {
+      "id": "temple_body",
+      "type": {
+        "name": "The Temple",
+        "category": "institution",
+        "references": ["1 Kings 6-8", "2 Chronicles 3-7", "Ezekiel 40-48"],
+        "description": "The dwelling place of God's presence among His people"
+      },
+      "antitype": {
+        "name": "Christ's Body / The Church",
+        "references": ["John 2:19-21", "1 Corinthians 3:16-17", "1 Corinthians 6:19", "Ephesians 2:19-22"],
+        "description": "Christ's body is the true temple; believers are living stones"
+      },
+      "connection": "God's presence dwelt in the Temple; the fullness of deity dwells in Christ bodily. The temple had a veil; Christ's flesh was torn. We become temples of the Holy Spirit.",
+      "church_fathers": [
+        {"author": "Origen", "quote": "Christ spoke of the temple of His body, which was to be destroyed and raised in three days."},
+        {"author": "Augustine", "quote": "The temple was His body, in which dwelt the fullness of the Godhead."}
+      ]
+    },
+    {
+      "id": "exodus_salvation",
+      "type": {
+        "name": "The Exodus",
+        "category": "event",
+        "references": ["Exodus 12-15", "Deuteronomy 6:21-23"],
+        "description": "Israel's deliverance from slavery in Egypt through the Red Sea"
+      },
+      "antitype": {
+        "name": "Salvation in Christ / Baptism",
+        "references": ["1 Corinthians 10:1-4", "Colossians 1:13", "Luke 9:31"],
+        "description": "Deliverance from bondage to sin; baptism as passing through the waters"
+      },
+      "connection": "Bondage in Egypt = bondage to sin. Passover blood = Christ's blood. Crossing the sea = baptism. Wilderness journey = Christian life. Promised land = heaven.",
+      "church_fathers": [
+        {"author": "Origen", "quote": "The crossing of the Red Sea is a figure of baptism; Pharaoh is the devil who pursues."},
+        {"author": "Gregory of Nyssa", "quote": "What the history teaches us is clear: that those who pass through the water of salvation must put to death the tyrant who pursues."}
+      ]
+    },
+    {
+      "id": "sabbath_rest",
+      "type": {
+        "name": "The Sabbath Rest",
+        "category": "institution",
+        "references": ["Genesis 2:2-3", "Exodus 20:8-11", "Deuteronomy 5:12-15"],
+        "description": "God's rest on the seventh day; Israel commanded to keep the Sabbath"
+      },
+      "antitype": {
+        "name": "Eternal Rest in Christ",
+        "references": ["Hebrews 4:1-11", "Matthew 11:28-30", "Colossians 2:16-17"],
+        "description": "Christ offers true rest; the eternal Sabbath in heaven"
+      },
+      "connection": "The weekly Sabbath pointed to the eternal rest. Christ is Lord of the Sabbath. We enter God's rest through faith. Sunday worship celebrates resurrection.",
+      "church_fathers": [
+        {"author": "Augustine", "quote": "The seventh day is ourselves when we are full of God's blessing and refreshment."},
+        {"author": "Jerome", "quote": "The true Sabbath is when our hearts are at rest in Christ."}
+      ]
+    },
+    {
+      "id": "high_priest_christ",
+      "type": {
+        "name": "The High Priest",
+        "category": "person",
+        "references": ["Leviticus 16", "Exodus 28-29", "Leviticus 21:10-15"],
+        "description": "The one who enters the Holy of Holies once a year to make atonement"
+      },
+      "antitype": {
+        "name": "Christ - Our Great High Priest",
+        "references": ["Hebrews 4:14-16", "Hebrews 9:11-28", "Hebrews 10:19-22"],
+        "description": "Christ entered the heavenly sanctuary once for all with His own blood"
+      },
+      "connection": "Aaron entered yearly; Christ once for all. Blood of animals; Christ's own blood. Earthly tabernacle; heavenly sanctuary. Temporary covering; eternal redemption.",
+      "church_fathers": [
+        {"author": "Chrysostom", "quote": "Our High Priest is not one who cannot sympathize with our weaknesses."},
+        {"author": "Cyril of Alexandria", "quote": "Christ is both priest and sacrifice, altar and offering."}
+      ]
+    },
+    {
+      "id": "scapegoat_sins",
+      "type": {
+        "name": "The Scapegoat",
+        "category": "event",
+        "references": ["Leviticus 16:20-22"],
+        "description": "On Day of Atonement, one goat is sacrificed, another carries sins into wilderness"
+      },
+      "antitype": {
+        "name": "Christ Bears Our Sins Away",
+        "references": ["Isaiah 53:4-6", "John 1:29", "1 Peter 2:24", "Hebrews 13:11-13"],
+        "description": "Christ both dies for our sins and carries them away forever"
+      },
+      "connection": "Sins laid on the scapegoat; our sins laid on Christ. Sent outside the camp; Christ crucified outside the city. Sins removed completely; as far as east from west.",
+      "church_fathers": [
+        {"author": "Tertullian", "quote": "One goat was offered for sins, the other sent away - both were Christ."},
+        {"author": "Cyril of Alexandria", "quote": "The goat that was sent away into the wilderness bore the type of Christ."}
+      ]
+    },
+    {
+      "id": "rock_water",
+      "type": {
+        "name": "Water from the Rock",
+        "category": "event",
+        "references": ["Exodus 17:1-7", "Numbers 20:1-13"],
+        "description": "Moses strikes the rock and water flows for the thirsty Israelites"
+      },
+      "antitype": {
+        "name": "Christ - The Rock / Living Water",
+        "references": ["1 Corinthians 10:4", "John 4:10-14", "John 7:37-39", "John 19:34"],
+        "description": "Christ is the rock that was struck; from Him flows living water (the Spirit)"
+      },
+      "connection": "Paul explicitly says 'that rock was Christ.' Christ struck on cross; water flows from His side. He gives living water - the Holy Spirit.",
+      "church_fathers": [
+        {"author": "Augustine", "quote": "That rock was Christ, prefiguring Christ who was to be struck with a rod, that is, the cross."},
+        {"author": "Origen", "quote": "The rock followed them, for Christ accompanies His people."}
+      ]
+    },
+    {
+      "id": "elijah_john",
+      "type": {
+        "name": "Elijah",
+        "category": "person",
+        "references": ["1 Kings 17-19", "2 Kings 2:1-14", "Malachi 4:5-6"],
+        "description": "The great prophet who called Israel to repentance and was taken up to heaven"
+      },
+      "antitype": {
+        "name": "John the Baptist (in Elijah's spirit) / Christ",
+        "references": ["Matthew 11:14", "Matthew 17:10-13", "Luke 1:17", "Mark 9:11-13"],
+        "description": "John came in the spirit of Elijah; Christ also compared to Elijah"
+      },
+      "connection": "Malachi prophesied Elijah's return. John fulfilled this in ministry and spirit. Both called people to repentance. Both confronted corrupt rulers.",
+      "church_fathers": [
+        {"author": "Jerome", "quote": "John was Elijah because he came in the spirit and power of Elijah."},
+        {"author": "Chrysostom", "quote": "As Elijah prepared for the first coming, so Elijah will prepare for the second."}
+      ]
+    },
+    {
+      "id": "ruth_church",
+      "type": {
+        "name": "Ruth the Moabitess",
+        "category": "person",
+        "references": ["Ruth 1-4"],
+        "description": "A Gentile who left her people to join Israel and married Boaz the kinsman-redeemer"
+      },
+      "antitype": {
+        "name": "The Gentile Church / Christ as Kinsman-Redeemer",
+        "references": ["Ephesians 2:11-22", "Romans 11:17-24", "Galatians 3:28-29"],
+        "description": "Gentiles grafted into Israel; Christ as our kinsman-redeemer"
+      },
+      "connection": "Ruth left her gods for the true God (Gentile conversion). Boaz redeems her inheritance (Christ redeems us). From this union comes David, then Christ.",
+      "church_fathers": [
+        {"author": "Jerome", "quote": "Ruth, being of Gentile origin, signifies the Church gathered from the Gentiles."},
+        {"author": "Ambrose", "quote": "Boaz is a figure of Christ who redeemed the Church, His bride."}
+      ]
+    },
+    {
+      "id": "joshua_jesus",
+      "type": {
+        "name": "Joshua",
+        "category": "person",
+        "references": ["Joshua 1-24", "Numbers 27:18-23"],
+        "description": "Moses' successor who led Israel into the Promised Land"
+      },
+      "antitype": {
+        "name": "Jesus - Who Leads Us to Heaven",
+        "references": ["Hebrews 4:8-11", "Acts 7:45"],
+        "description": "Jesus (same name as Joshua) leads us into the true rest"
+      },
+      "connection": "The names Joshua and Jesus are the same (Yeshua = 'salvation'). Moses (Law) could not enter; Joshua leads in. Christ brings us where the Law could not.",
+      "church_fathers": [
+        {"author": "Origen", "quote": "Joshua, whose name is the same as Jesus, was a type of our Savior."},
+        {"author": "Justin Martyr", "quote": "He who led the people into the land was named Jesus, not by chance but by providence."}
+      ]
+    },
+    {
+      "id": "creation_new_creation",
+      "type": {
+        "name": "Creation",
+        "category": "event",
+        "references": ["Genesis 1-2"],
+        "description": "God creates the heavens and earth, bringing order from chaos"
+      },
+      "antitype": {
+        "name": "New Creation in Christ",
+        "references": ["2 Corinthians 5:17", "Galatians 6:15", "Revelation 21:1-5", "John 1:1-3"],
+        "description": "In Christ we are new creations; ultimately a new heavens and new earth"
+      },
+      "connection": "'In the beginning' (Genesis) echoes in John 1. The Spirit hovers over waters; the Spirit regenerates. Six days of work, seventh rest; resurrection on the eighth day (new creation).",
+      "church_fathers": [
+        {"author": "Irenaeus", "quote": "Christ recapitulates all things in Himself, making the new creation."},
+        {"author": "Augustine", "quote": "The old has passed away; behold, the new has come. This is the true creation."}
+      ]
+    }
+  ],
+  "thematic_connections": {
+    "sacrifice_blood": {
+      "theme": "Blood Sacrifice and Atonement",
+      "ot_references": ["Genesis 4:4", "Leviticus 17:11", "Hebrews 9:22"],
+      "nt_fulfillment": ["Hebrews 9:12", "1 John 1:7", "Revelation 1:5"],
+      "summary": "From Abel's offering through the Levitical system, blood sacrifice points to Christ's once-for-all atonement."
+    },
+    "covenant_progression": {
+      "theme": "Covenant Progression",
+      "covenants": [
+        {"name": "Adamic", "references": ["Genesis 1:28-30", "Genesis 2:16-17"]},
+        {"name": "Noahic", "references": ["Genesis 9:1-17"]},
+        {"name": "Abrahamic", "references": ["Genesis 12:1-3", "Genesis 15", "Genesis 17"]},
+        {"name": "Mosaic", "references": ["Exodus 19-24"]},
+        {"name": "Davidic", "references": ["2 Samuel 7:12-16"]},
+        {"name": "New", "references": ["Jeremiah 31:31-34", "Luke 22:20", "Hebrews 8:6-13"]}
+      ],
+      "summary": "Each covenant builds toward the New Covenant in Christ's blood."
+    },
+    "temple_presence": {
+      "theme": "God's Dwelling Among His People",
+      "progression": [
+        {"stage": "Garden", "reference": "Genesis 3:8"},
+        {"stage": "Tabernacle", "reference": "Exodus 25:8"},
+        {"stage": "Temple", "reference": "1 Kings 8:10-11"},
+        {"stage": "Christ (Immanuel)", "reference": "John 1:14"},
+        {"stage": "Church", "reference": "1 Corinthians 3:16"},
+        {"stage": "New Jerusalem", "reference": "Revelation 21:3"}
+      ],
+      "summary": "God progressively dwells more intimately with His people, culminating in eternal presence."
+    },
+    "promised_seed": {
+      "theme": "The Promised Seed",
+      "progression": [
+        {"reference": "Genesis 3:15", "description": "Seed of the woman will crush the serpent"},
+        {"reference": "Genesis 12:3", "description": "In Abraham's seed, all nations blessed"},
+        {"reference": "Genesis 49:10", "description": "Scepter will not depart from Judah"},
+        {"reference": "2 Samuel 7:12-13", "description": "David's seed will reign forever"},
+        {"reference": "Isaiah 7:14", "description": "Virgin will bear Immanuel"},
+        {"reference": "Galatians 3:16", "description": "The seed is Christ"}
+      ],
+      "summary": "The promise narrows from humanity to woman to Abraham to Judah to David to Jesus."
+    }
+  }
+}

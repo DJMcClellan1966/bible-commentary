@@ -37,3 +37,11 @@ ENABLE_LEARNING = True
 KERNEL_EMBEDDING_DIM = 256
 KERNEL_CACHE_SIZE = 50000
 KERNEL_ENABLE_CACHING = True
+
+# External reference data (Catholic Encyclopedia, Church Fathers, Summa, etc.)
+# Default: sibling folder bible-commentary/data; override with EXTERNAL_DATA_ROOT env.
+_project_root = os.path.dirname(os.path.abspath(__file__))
+EXTERNAL_DATA_ROOT = os.getenv(
+    "EXTERNAL_DATA_ROOT",
+    os.path.normpath(os.path.join(_project_root, "..", "bible-commentary", "data")),
+)

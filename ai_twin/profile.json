@@ -1,0 +1,40 @@
+{
+  "created": "2026-02-03T22:25:09.211023",
+  "last_active": "2026-02-04T10:35:41.433432",
+  "interests": {
+    "typology": {
+      "topic": "typology",
+      "first_encountered": "2026-02-04T09:44:52.670978",
+      "times_explored": 2,
+      "last_explored": "2026-02-04T10:35:41.433432",
+      "related_verses": [],
+      "notes": ""
+    },
+    "evil": {
+      "topic": "evil",
+      "first_encountered": "2026-02-04T09:44:52.670978",
+      "times_explored": 1,
+      "last_explored": "2026-02-04T09:44:52.670978",
+      "related_verses": [],
+      "notes": ""
+    },
+    "general": {
+      "topic": "general",
+      "first_encountered": "2026-02-04T10:01:09.165321",
+      "times_explored": 1,
+      "last_explored": "2026-02-04T10:01:09.165321",
+      "related_verses": [],
+      "notes": ""
+    }
+  },
+  "struggles": {},
+  "verses_read": [],
+  "chapters_completed": [],
+  "books_explored": [],
+  "favorite_themes": [],
+  "reading_patterns": {},
+  "milestones": [],
+  "preferred_version": "asv",
+  "daily_reading_time": "morning",
+  "reading_depth": "deep"
+}

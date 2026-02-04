@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Bible Study</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="nav-brand">Deep Bible Study</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-view="today">Today</a>
+                <a href="#" class="nav-link" data-view="explore">Explore</a>
+                <a href="#" class="nav-link" data-view="twin">AI Twin</a>
+                <a href="#" class="nav-link" data-view="progress">Progress</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="sun">☀️</span>
+                <span class="moon">🌙</span>
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Today View -->
+            <section id="today-view" class="view active">
+                <div class="daily-reading">
+                    <!-- Header -->
+                    <header class="reading-header">
+                        <div class="day-info">
+                            <span class="day-number">Day <span id="dayNumber">1</span></span>
+                            <span class="date" id="currentDate">January 1, 2026</span>
+                        </div>
+                        <div class="theme-badge" id="monthlyTheme">Beginnings</div>
+                    </header>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text"><span id="progressPercent">0</span>% through the year</span>
+                    </div>
+
+                    <!-- Passage Card -->
+                    <article class="reading-card">
+                        <h1 class="passage-reference" id="passageRef">Genesis 1:1-2:3</h1>
+                        <h2 class="passage-title" id="passageTitle">In the Beginning</h2>
+                        
+                        <div class="passage-context">
+                            <span class="context-label">Salvation History:</span>
+                            <span id="salvationContext">Creation establishes God as the sovereign Creator</span>
+                        </div>
+
+                        <div class="passage-text" id="passageText">
+                            <p>In the beginning God created the heaven and the earth...</p>
+                        </div>
+
+                        <div class="key-verse">
+                            <span class="key-label">Key Verse:</span>
+                            <span id="keyVerse">Genesis 1:1 - In the beginning God created the heaven and the earth.</span>
+                        </div>
+
+                        <!-- Daily reflection in the style of the Church Fathers -->
+                        <div class="patristic-summary" id="patristicSummarySection">
+                            <h4 class="patristic-summary-title">Daily Reflection</h4>
+                            <p id="patristicSummary" class="patristic-summary-text">A brief summary tying this passage to the whole of Scripture and to Christ, in the spirit of the Fathers.</p>
+                        </div>
+                    </article>
+
+                    <!-- Interconnections -->
+                    <section class="interconnections">
+                        <h3 class="section-title">Interconnections</h3>
+                        
+                        <!-- Backward Links -->
+                        <div class="connection-group" id="backwardLinks">
+                            <h4 class="connection-type">
+                                <span class="arrow">←</span> Looking Back
+                            </h4>
+                            <div class="connection-list">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Forward Links -->
+                        <div class="connection-group" id="forwardLinks">
+                            <h4 class="connection-type">
+                                <span class="arrow">→</span> Looking Forward
+                            </h4>
+                            <div class="connection-list">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Typology -->
+                        <div class="connection-group" id="typologySection">
+                            <h4 class="connection-type">
+                                <span class="icon">⟳</span> Typology
+                            </h4>
+                            <div class="typology-list">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Connection to Christ -->
+                        <div class="christ-connection" id="christConnection">
+                            <h4>How This Points to Christ</h4>
+                            <p id="christText">John 1:1-3 reveals Christ was present at creation.</p>
+                        </div>
+                    </section>
+
+                    <!-- Church Fathers -->
+                    <section class="church-fathers" id="churchFathersSection">
+                        <h3 class="section-title">Church Fathers</h3>
+                        <div class="fathers-list" id="fathersList">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </section>
+
+                    <!-- Reflection -->
+                    <section class="reflection">
+                        <h3 class="section-title">Reflection</h3>
+                        <div class="reflection-questions" id="reflectionQuestions">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </section>
+
+                    <!-- Ask Question -->
+                    <section class="ask-section">
+                        <h3 class="section-title">Ask Your AI Twin</h3>
+                        <div class="question-input-container">
+                            <textarea id="questionInput" placeholder="What questions does this passage raise for you?"></textarea>
+                            <button id="askButton" class="btn-primary">Ask</button>
+                        </div>
+                        <div id="twinResponse" class="twin-response hidden"></div>
+                    </section>
+                </div>
+            </section>
+
+            <!-- Explore View -->
+            <section id="explore-view" class="view">
+                <div class="explore-container">
+                    <h2>Explore Scripture</h2>
+                    <div class="search-container">
+                        <input type="text" id="verseSearch" placeholder="Enter a verse (e.g., John 3:16)" class="search-input">
+                        <button id="searchButton" class="btn-primary">Explore</button>
+                    </div>
+                    <div id="exploreResults" class="explore-results">
+                        <p class="placeholder-text">Enter a verse reference to see its deep interconnections.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Twin View -->
+            <section id="twin-view" class="view">
+                <div class="twin-container">
+                    <h2>Your AI Twin</h2>
+                    
+                    <div class="twin-greeting" id="twinGreeting">
+                        <p>Welcome! I'm learning your spiritual journey...</p>
+                    </div>
+
+                    <div class="journey-stats" id="journeyStats">
+                        <div class="stat-card">
+                            <span class="stat-value" id="daysOnJourney">0</span>
+                            <span class="stat-label">Days on Journey</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="versesRead">0</span>
+                            <span class="stat-label">Verses Read</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="questionsAsked">0</span>
+                            <span class="stat-label">Questions Asked</span>
+                        </div>
+                    </div>
+
+                    <div class="twin-insights">
+                        <h3>What I've Learned About You</h3>
+                        <div id="insights" class="insights-list">
+                            <p class="placeholder-text">Keep asking questions and I'll learn your interests and struggles.</p>
+                        </div>
+                    </div>
+
+                    <div class="top-interests">
+                        <h3>Your Top Interests</h3>
+                        <div id="topInterests" class="interests-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="active-struggles">
+                        <h3>Topics to Revisit</h3>
+                        <div id="activeStruggles" class="struggles-list">
+                            <p class="placeholder-text">Topics you've wrestled with will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress View -->
+            <section id="progress-view" class="view">
+                <div class="progress-container-full">
+                    <h2>Your Reading Journey</h2>
+                    
+                    <div class="year-progress">
+                        <div class="progress-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                                <circle class="progress-ring" cx="50" cy="50" r="45" id="progressRing"/>
+                            </svg>
+                            <div class="progress-center">
+                                <span class="progress-number" id="progressNumber">0%</span>
+                                <span class="progress-label">Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="period-progress">
+                        <h3>Salvation History Periods</h3>
+                        <div class="periods-list" id="periodsList">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="milestones">
+                        <h3>Recent Milestones</h3>
+                        <div id="milestonesList" class="milestones-list">
+                            <p class="placeholder-text">Your milestones will appear here as you read.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
