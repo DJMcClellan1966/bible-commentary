@@ -64,66 +64,17 @@
                             <span id="keyVerse">Genesis 1:1 - In the beginning God created the heaven and the earth.</span>
                         </div>
 
-                        <!-- Daily reflection in the style of the Church Fathers -->
+                        <!-- The Fathers' explanation: themes, echoes, typology, Christ, reflection in one narrative -->
                         <div class="patristic-summary" id="patristicSummarySection">
-                            <h4 class="patristic-summary-title">Daily Reflection</h4>
-                            <p id="patristicSummary" class="patristic-summary-text">A brief summary tying this passage to the whole of Scripture and to Christ, in the spirit of the Fathers.</p>
+                            <h4 class="patristic-summary-title">The Fathers’ Explanation</h4>
+                            <p id="patristicSummary" class="patristic-summary-text">The daily verses explained in the spirit of the Fathers—themes, echoes of the past and future, and how they touch the life and ministry of Christ.</p>
                         </div>
                     </article>
 
-                    <!-- Interconnections -->
-                    <section class="interconnections">
-                        <h3 class="section-title">Interconnections</h3>
-                        
-                        <!-- Backward Links -->
-                        <div class="connection-group" id="backwardLinks">
-                            <h4 class="connection-type">
-                                <span class="arrow">←</span> Looking Back
-                            </h4>
-                            <div class="connection-list">
-                                <!-- Populated dynamically -->
-                            </div>
-                        </div>
-
-                        <!-- Forward Links -->
-                        <div class="connection-group" id="forwardLinks">
-                            <h4 class="connection-type">
-                                <span class="arrow">→</span> Looking Forward
-                            </h4>
-                            <div class="connection-list">
-                                <!-- Populated dynamically -->
-                            </div>
-                        </div>
-
-                        <!-- Typology -->
-                        <div class="connection-group" id="typologySection">
-                            <h4 class="connection-type">
-                                <span class="icon">⟳</span> Typology
-                            </h4>
-                            <div class="typology-list">
-                                <!-- Populated dynamically -->
-                            </div>
-                        </div>
-
-                        <!-- Connection to Christ -->
-                        <div class="christ-connection" id="christConnection">
-                            <h4>How This Points to Christ</h4>
-                            <p id="christText">John 1:1-3 reveals Christ was present at creation.</p>
-                        </div>
-                    </section>
-
-                    <!-- Church Fathers -->
+                    <!-- Church Fathers (quotes) -->
                     <section class="church-fathers" id="churchFathersSection">
-                        <h3 class="section-title">Church Fathers</h3>
+                        <h3 class="section-title">In the Words of the Fathers</h3>
                         <div class="fathers-list" id="fathersList">
-                            <!-- Populated dynamically -->
-                        </div>
-                    </section>
-
-                    <!-- Reflection -->
-                    <section class="reflection">
-                        <h3 class="section-title">Reflection</h3>
-                        <div class="reflection-questions" id="reflectionQuestions">
                             <!-- Populated dynamically -->
                         </div>
                     </section>
@@ -150,6 +101,21 @@
                     </div>
                     <div id="exploreResults" class="explore-results">
                         <p class="placeholder-text">Enter a verse reference to see its deep interconnections.</p>
+                    </div>
+
+                    <div class="theme-chat-section">
+                        <h3 class="section-title">Theme &amp; Symbolism</h3>
+                        <p class="theme-chat-hint">Ask about biblical themes, numbers, and symbols—e.g. “What is the symbolism of 40 days?” or “What does the lamb mean?”</p>
+                        <div class="theme-chat-input-row">
+                            <input type="text" id="themeQuestionInput" placeholder="e.g. What is the symbolism of 40 days?" class="search-input theme-input">
+                            <button id="themeAskButton" class="btn-primary">Ask</button>
+                        </div>
+                        <div id="themeAnswer" class="theme-answer hidden">
+                            <div class="theme-answer-body" id="themeAnswerBody"></div>
+                            <div class="theme-answer-verses" id="themeAnswerVerses"></div>
+                            <div class="theme-answer-fathers" id="themeAnswerFathers"></div>
+                        </div>
+                        <p id="themeAnswerError" class="theme-error hidden"></p>
                     </div>
                 </div>
             </section>

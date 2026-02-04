@@ -379,6 +379,31 @@ async def get_twin_stats():
     return twin.get_journey_stats()
 
 
+@app.post("/api/explore/theme")
+async def ask_theme_question(request: QuestionRequest):
+    """Answer questions about themes, symbolism, and biblical patterns (e.g. 'What is the symbolism of 40 days?')"""
+    try:
+        from ai_twin.answer_engine import AnswerEngine
+        from ai_twin.question_analyzer import QuestionAnalyzer
+        bible_data = get_bible_data()
+        engine = AnswerEngine(bible_data)
+        analyzer = QuestionAnalyzer()
+        analysis = analyzer.analyze(request.question)
+        topics = analysis.get("topics", ["general"])
+        answer_data = engine.answer_question(request.question, topics)
+        return {
+            "question": request.question,
+            "answer": answer_data.get("answer", ""),
+            "key_verses": answer_data.get("key_verses", []),
+            "church_fathers": answer_data.get("church_fathers", []),
+            "typology": answer_data.get("typology"),
+            "topic": answer_data.get("topic", "general"),
+            "confidence": answer_data.get("confidence", "medium"),
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Theme answer could not be generated: {str(e)}")
+
+
 @app.get("/api/twin/greeting")
 async def get_twin_greeting():
     """Get personalized daily greeting from AI Twin"""

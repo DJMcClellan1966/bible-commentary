@@ -89,9 +89,15 @@ function initEventListeners() {
     
     // Explore search
     document.getElementById('searchButton').addEventListener('click', handleExploreSearch);
+    document.getElementById('themeAskButton').addEventListener('click', handleThemeQuestion);
     document.getElementById('verseSearch').addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             handleExploreSearch();
+        }
+    });
+    document.getElementById('themeQuestionInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            handleThemeQuestion();
         }
     });
 }
@@ -133,12 +139,7 @@ function renderDailyReading(reading) {
     document.getElementById('passageText').innerHTML = formatPassageText(reading.passage_text);
     document.getElementById('keyVerse').textContent = reading.key_verse || '';
     
-    // Interconnections
-    renderConnections('backwardLinks', reading.backward_links, 'Looking Back');
-    renderConnections('forwardLinks', reading.forward_links, 'Looking Forward');
-    renderTypology(reading.typological);
-    
-    // Daily reflection (patristic-style summary)
+    // The Fathers' explanation (single narrative: themes, interconnections, Christ, reflection)
     const patristicEl = document.getElementById('patristicSummary');
     const patristicSection = document.getElementById('patristicSummarySection');
     if (reading.patristic_summary && patristicEl && patristicSection) {
@@ -148,17 +149,8 @@ function renderDailyReading(reading) {
         patristicSection.classList.add('hidden');
     }
 
-    // Christ connection
-    if (reading.connection_to_christ) {
-        document.getElementById('christText').textContent = reading.connection_to_christ;
-        document.getElementById('christConnection').classList.remove('hidden');
-    }
-    
-    // Church Fathers
+    // Church Fathers quotes
     renderChurchFathers(reading.church_fathers);
-    
-    // Reflection questions
-    renderReflectionQuestions(reading.reflection_questions);
 }
 
 function renderDailyReadingFallback() {
@@ -172,7 +164,7 @@ function renderDailyReadingFallback() {
         salvation_history_context: 'Creation establishes God as the sovereign Creator and humanity as His image-bearers.',
         key_verse: 'Genesis 1:1 - In the beginning God created the heaven and the earth.',
         connection_to_christ: 'John 1:1-3 reveals Christ was present at creation - "All things were made through him."',
-        patristic_summary: 'This portion of Holy Scripture—In the Beginning—finds its place in the divine economy as creation establishes God as the sovereign Creator and humanity as His image-bearers. Here the great themes of covenant and creation are woven together, echoing what went before and prefiguring what was to come. Above all, the Fathers teach that this word touches the life and ministry of our Lord: John 1:1-3 reveals Christ was present at creation—"All things were made through him."',
+        patristic_summary: 'This portion of Holy Scripture—In the Beginning—finds its place in the divine economy as creation establishes God as the sovereign Creator and humanity as His image-bearers. Here the great themes of Covenant, Creation are woven together. It points forward to John 1:1-3: John echoes Genesis, revealing Christ as the creative Word. As Creation finds its fulfillment in New Creation, so as God created the world, He creates us anew in Christ (2 Cor 5:17). Above all, this word touches the life and ministry of our Lord: John 1:1-3 reveals Christ was present at creation—"All things were made through him." Let us therefore receive this word as the Fathers did—as one that shapes both belief and life, and that draws us into the same story of redemption.',
         progress_percentage: (getDayOfYear() / 365) * 100,
         monthly_theme: { name: getMonthTheme() },
         backward_links: [],
@@ -439,6 +431,54 @@ function renderExploreResults(data) {
             </div>
         ` : ''}
     `;
+}
+
+// Theme & Symbolism (Explore)
+async function handleThemeQuestion() {
+    const input = document.getElementById('themeQuestionInput');
+    const question = input?.value?.trim();
+    if (!question) return;
+
+    const answerDiv = document.getElementById('themeAnswer');
+    const bodyEl = document.getElementById('themeAnswerBody');
+    const versesEl = document.getElementById('themeAnswerVerses');
+    const fathersEl = document.getElementById('themeAnswerFathers');
+    const errEl = document.getElementById('themeAnswerError');
+
+    answerDiv?.classList.add('hidden');
+    errEl?.classList.add('hidden');
+    bodyEl.textContent = 'Searching...';
+    versesEl.innerHTML = '';
+    fathersEl.innerHTML = '';
+
+    try {
+        const response = await fetch(`${API_BASE}/api/explore/theme`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question })
+        });
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.detail || 'Request failed');
+
+        bodyEl.textContent = data.answer || '';
+        if (data.key_verses?.length) {
+            versesEl.innerHTML = '<h4>Key verses</h4>' + data.key_verses.map(v =>
+                `<div class="theme-verse"><strong>${v.reference}</strong> ${v.text ? `— ${truncate(v.text, 120)}` : ''}</div>`
+            ).join('');
+        }
+        if (data.church_fathers?.length) {
+            fathersEl.innerHTML = '<h4>Church Fathers</h4>' + data.church_fathers.map(f =>
+                `<blockquote class="theme-father-quote">"${truncate(f.quote, 180)}"<br><cite>— ${f.author}${f.work ? `, ${f.work}` : ''}</cite></blockquote>`
+            ).join('');
+        }
+        answerDiv?.classList.remove('hidden');
+    } catch (error) {
+        if (errEl) {
+            errEl.textContent = error.message || 'Could not get an answer. Try rephrasing or another theme.';
+            errEl.classList.remove('hidden');
+        }
+    }
 }
 
 // Twin Stats

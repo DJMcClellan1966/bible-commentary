@@ -263,13 +263,16 @@ class DailyReadingGenerator:
         key_verse: str,
     ) -> str:
         """
-        Generate a daily summary in the style of the Church Fathers: theological,
-        tying themes to the whole of Scripture, echoing past and future, and
-        showing impact on Christ's life and ministry.
+        Generate the Fathers' explanation of the daily verses: one flowing
+        narrative that includes place in salvation history, themes, echoes of
+        the past (backward links), what points forward (forward links and
+        typology), how it touches Christ's life and ministry, and a brief
+        reflection for the reader. Replaces separate interconnections,
+        Christ, and reflection sections.
         """
         parts = []
         
-        # Opening: what this passage is in the divine economy
+        # Opening: place in the divine economy
         if salvation_history_context:
             parts.append(
                 f"This portion of Holy Scripture—{title}—finds its place in the divine economy as {salvation_history_context.lower().rstrip('.')}."
@@ -279,52 +282,61 @@ class DailyReadingGenerator:
                 f"The Fathers saw in {title} a word that speaks to the whole of redemption."
             )
         
-        # Themes, if we have them
+        # Themes
         if themes:
             theme_str = ", ".join(themes[:4])
             parts.append(
-                f"Here the great themes of {theme_str} are woven together, echoing what went before and prefiguring what was to come."
+                f"Here the great themes of {theme_str} are woven together."
             )
         
-        # Echoes of the past (backward links)
+        # Echoes of the past: backward links with their explanations
         if backward_links:
-            refs = [link.get("reference", "") for link in backward_links[:2] if link.get("reference")]
-            if refs:
-                ref_str = " and ".join(refs) if len(refs) == 2 else refs[0]
-                parts.append(
-                    f"What was revealed in {ref_str} is recalled and deepened here, for God does not speak in fragments but in one unfolding mystery."
-                )
+            for link in backward_links[:3]:
+                ref = link.get("reference", "").strip()
+                expl = (link.get("explanation") or "").strip()
+                if ref:
+                    if expl:
+                        parts.append(f" What was revealed in {ref} is recalled here: {expl.rstrip('.')}.")
+                    else:
+                        parts.append(f" The passage echoes {ref}, for God does not speak in fragments but in one unfolding mystery.")
         
-        # Pointing forward and typology
-        if forward_links or typological:
-            if typological:
-                t = typological[0]
+        # Forward links with explanations
+        if forward_links:
+            for link in forward_links[:3]:
+                ref = link.get("reference", "").strip()
+                expl = (link.get("explanation") or "").strip()
+                if ref:
+                    if expl:
+                        parts.append(f" It points forward to {ref}: {expl.rstrip('.')}.")
+                    else:
+                        parts.append(f" It looks toward {ref} and the fullness of time.")
+        
+        # Typology: type → antitype and explanation
+        if typological:
+            for t in typological[:2]:
                 type_name = t.get("type_name", "the type")
                 antitype_name = t.get("antitype_name", "the fulfillment")
-                parts.append(
-                    f"As {type_name} finds its fulfillment in {antitype_name}, so this passage looks toward the fullness of time."
-                )
-            elif forward_links:
-                refs = [link.get("reference", "") for link in forward_links[:2] if link.get("reference")]
-                if refs:
-                    ref_str = " and ".join(refs) if len(refs) == 2 else refs[0]
-                    parts.append(
-                        f"It points forward to {ref_str}, for the same Spirit who spoke then was at work in the apostles and in the Church."
-                    )
+                conn = (t.get("connection_explanation") or "").strip()
+                if conn:
+                    parts.append(f" As {type_name} finds its fulfillment in {antitype_name}, so {conn.rstrip('.')}.")
+                else:
+                    parts.append(f" As {type_name} finds its fulfillment in {antitype_name}, this passage looks toward the mystery of Christ.")
         
-        # Connection to Christ's life and ministry
+        # How this touches Christ's life and ministry
         if connection_to_christ:
-            # Slightly rephrase so it reads as the conclusion of the reflection
             christ = connection_to_christ.strip()
             if not christ.endswith("."):
                 christ += "."
-            parts.append(
-                f"Above all, the Fathers teach that this word touches the life and ministry of our Lord: {christ}"
-            )
+            parts.append(f" Above all, this word touches the life and ministry of our Lord: {christ}")
         else:
             parts.append(
-                "In the incarnation, passion, and resurrection of the Word, these shadows find their substance and this promise its Yes."
+                " In the incarnation, passion, and resurrection of the Word, these shadows find their substance and this promise its Yes."
             )
+        
+        # Brief reflection: how to receive the word
+        parts.append(
+            " Let us therefore receive this word as the Fathers did—as one that shapes both belief and life, and that draws us into the same story of redemption."
+        )
         
         return " ".join(parts)
     

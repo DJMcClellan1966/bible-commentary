@@ -215,6 +215,82 @@ class AnswerEngine:
                 ),
                 'church_fathers_topic': 'mary',
                 'typology_connection': None
+            },
+            # Theme & symbolism (Explore "way chat")
+            '40 days': {
+                'key_verses': ['Genesis 7:4', 'Genesis 7:12', 'Exodus 24:18', 'Matthew 4:2', 'Acts 1:3'],
+                'explanation': (
+                    "In Scripture, forty days (and forty years) often signify a period of testing, trial, or preparation "
+                    "that leads to a new beginning. The flood rained forty days and forty nights; Moses was on Sinai "
+                    "forty days when he received the Law; Israel wandered forty years in the wilderness. Jesus fasted "
+                    "forty days in the wilderness and was tempted before beginning his public ministry; he appeared to "
+                    "the disciples forty days after the resurrection before the Ascension. The Fathers saw in this "
+                    "pattern a divine pedagogy: God uses bounded periods of trial to purify and prepare his people, "
+                    "and Lent's forty days echo this same symbolism—a time of repentance and renewal before the feast."
+                ),
+                'church_fathers_topic': 'faith',
+                'typology_connection': None
+            },
+            'forty days': {
+                'key_verses': ['Genesis 7:4', 'Exodus 24:18', 'Matthew 4:2', 'Acts 1:3'],
+                'explanation': (
+                    "In Scripture, forty days (and forty years) often signify a period of testing, trial, or preparation "
+                    "that leads to a new beginning. The flood rained forty days; Moses was on Sinai forty days; "
+                    "Jesus fasted forty days in the wilderness and was tempted; he appeared forty days after the resurrection. "
+                    "The Fathers saw in this a divine pedagogy: God uses bounded periods of trial to purify and prepare "
+                    "his people. Lent's forty days echo this same symbolism—repentance and renewal before the feast."
+                ),
+                'church_fathers_topic': 'faith',
+                'typology_connection': None
+            },
+            'symbolism of 40': {
+                'key_verses': ['Genesis 7:4', 'Exodus 24:18', 'Matthew 4:2', 'Numbers 14:33-34'],
+                'explanation': (
+                    "The number forty in the Bible repeatedly marks a time of testing, wilderness, or preparation: "
+                    "the flood (40 days), Moses on Sinai (40 days), Israel in the wilderness (40 years), "
+                    "Jesus in the desert (40 days), and his post-resurrection appearances (40 days). "
+                    "The Church Fathers understood this as a pattern of divine discipline and grace—God shapes his people "
+                    "through bounded trials so they emerge ready for the next chapter of his plan. Lent continues this "
+                    "symbolism in the Church's calendar."
+                ),
+                'church_fathers_topic': 'faith',
+                'typology_connection': None
+            },
+            'seven': {
+                'key_verses': ['Genesis 2:2-3', 'Leviticus 25:8', 'Joshua 6:4', 'Revelation 1:4', 'Matthew 18:22'],
+                'explanation': (
+                    "Seven in Scripture commonly signifies completeness, perfection, or fulfillment. God rested on the seventh day "
+                    "when creation was complete; the sabbatical year and Jubilee are built on sevens; Jericho fell after seven days. "
+                    "In the New Testament, Jesus speaks of forgiving seventy-seven times; Revelation addresses seven churches and "
+                    "unfolds with seven seals, trumpets, and bowls. The Fathers saw in the number seven the fullness of God's "
+                    "design—nothing lacking, a cycle brought to its proper end."
+                ),
+                'church_fathers_topic': 'faith',
+                'typology_connection': None
+            },
+            'twelve': {
+                'key_verses': ['Genesis 49:28', 'Matthew 10:1-4', 'Revelation 21:12', 'Acts 1:25-26'],
+                'explanation': (
+                    "Twelve in Scripture often represents the people of God in covenant order. The twelve tribes of Israel "
+                    "descend from Jacob's twelve sons; Jesus chose twelve apostles, who will sit on twelve thrones judging "
+                    "the twelve tribes; the new Jerusalem has twelve gates and twelve foundations bearing the apostles' names. "
+                    "The Fathers saw here a continuity from Israel to the Church—one people of God, under the twelve patriarchs "
+                    "and then under the twelve apostles, as the restored Israel."
+                ),
+                'church_fathers_topic': 'faith',
+                'typology_connection': None
+            },
+            'lamb': {
+                'key_verses': ['Exodus 12:3-7', 'Isaiah 53:7', 'John 1:29', '1 Peter 1:19', 'Revelation 5:6'],
+                'explanation': (
+                    "The lamb in Scripture points to sacrifice, substitution, and innocence. The Passover lamb's blood spared "
+                    "Israel in Egypt; Isaiah's suffering servant is led like a lamb to the slaughter; John the Baptist declares "
+                    "Jesus the 'Lamb of God, who takes away the sin of the world.' Peter says we were ransomed with the precious "
+                    "blood of Christ, a lamb without blemish. In Revelation, the Lamb who was slain is worthy to open the scroll. "
+                    "The Fathers saw the Passover lamb as the type of Christ—one true Lamb whose sacrifice takes away sin."
+                ),
+                'church_fathers_topic': 'salvation',
+                'typology_connection': 'passover_christ'
             }
         }
     
